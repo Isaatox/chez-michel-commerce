@@ -21,6 +21,7 @@ class Meuble extends Migration
             $table->string('description');
             $table->dateTime('date_ajout', $precision = 0);
             $table->float('prix', 6, 2);
+            $table->float('note', 1, 1);
             $table->string('photo1');
             $table->string('photo2');
             $table->string('photo3');
