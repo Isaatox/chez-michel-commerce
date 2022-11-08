@@ -15,7 +15,7 @@ header {
     padding: 15px 100px;
     z-index: 10;
     background-color: #28464b79;
-}
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;}
 
 header .logo {
     position: relative;
@@ -94,14 +94,14 @@ header .navigation .mon_profile {
     cursor: pointer;
 }
 
-header .navigation .mon_profile p{
+header .navigation .mon_profile p {
     color: rgb(81, 78, 78);
     padding-top: 5px;
     font-size: 1em;
     text-decoration: none;
 }
 
-header .navigation .mon_profile i{
+header .navigation .mon_profile i {
     padding-left: 30px;
 }
 
@@ -143,7 +143,7 @@ header .panier {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    margin: 10px 0; 
+    margin: 10px 0;
     cursor: pointer;
 }
 
@@ -155,7 +155,7 @@ header .panier a {
     padding-right: 10px;
 }
 
-header .panier .circle{
+header .panier .circle {
     height: 15px;
     width: 15px;
     background-color: red;
@@ -165,12 +165,12 @@ header .panier .circle{
     margin-top: -5px;
 }
 
-header .panier .circle p{
+header .panier .circle p {
     color: #fff;
     font-size: 0.8em;
     margin-left: 5px;
     margin-top: -2.5px;
-       
+
 }
 
 

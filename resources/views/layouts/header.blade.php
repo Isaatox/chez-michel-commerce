@@ -10,11 +10,18 @@
         <i class="fas fa-search"></i>
     </div>
     <div class="navigation">
-        {{-- <a href="#" id="connecter">Se connecter</a> --}}
-        <div class="mon_profile" onclick="location.href='google.com'">
-            <p id="profile">Mon profil</p>
-            <i class="fas fa-user-circle fa-2x"></i>
-        </div>
+        @if (Route::has('login'))
+            @auth
+                <div class="mon_profile" onclick="location.href='google.com'">
+                    <p id="profile">Mon profil</p>
+                    <i class="fas fa-user-circle fa-2x"></i>
+                </div>
+            @else
+                <a href="{{ route('login') }}" id="connecter">Se connecter</a>
+            @endauth
+        @endif
+
+
     </div>
     <div class="panier" onclick="location.href='google.com'">
         <a href="#">Mon panier</a>
