@@ -21,27 +21,27 @@
                 @csrf
 
                 <!-- Email Address -->
-                <div id='element'>
+                <div class='element'>
                     <label for="email" :value="__('Email')">Email :
                         <input id="email" type="email" name="email" :value="old('email')" required autofocus />
                     </label>
                 </div>
 
                 <!-- Password -->
-                <div id='element'>
+                <div class='element'>
                     <label for="password" :value="__('Password')">Mot de passe :
                         <input id="password" type="password" name="password" required autocomplete="current-password" />
                     </label>
                 </div>
 
                 <!-- Remember Me -->
-                <div id='element'>
+                <div class='element' id="remember">
                     <label for='remember_me'>Se souvenir de moi
                         <input id="remember_me" type="checkbox" name="remember">
                     </label>
                 </div>
 
-                <div id='element'>
+                <div class='element'>
                     @if (Route::has('password.request'))
                         <a href="{{ route('password.request') }}">{{ __('Mot de passe oublié ?') }}</a>
                     @endif
