@@ -43,7 +43,7 @@ body{
     font-size: 1.4em;
 }
 
-.inscription_connexion .formulaire input[type=email],input[type=password]{
+.inscription_connexion .formulaire input[type=email],input[type=text],input[type=password]{
     width: 100%;
     height: 30px;
     font-size: 0.8em;

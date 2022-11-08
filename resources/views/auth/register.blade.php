@@ -23,8 +23,8 @@
 
                 <!-- Entreprise -->
                 <div class="element">
-                    <label for="entreprise" :value="__('Entreprise')" >Entreprise :<br>
-                        <input id="entreprise" type="text" name="entreprise" :value="old('entreprise')" required autofocus />
+                    <label for="nom" :value="__('Nom')" >Entreprise :<br>
+                        <input id="nom" type="text" name="nom" :value="old('nom')" required autofocus />
                     </label>
                 </div>
             
