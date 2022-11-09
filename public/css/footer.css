@@ -23,7 +23,7 @@ footer{
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    text-align: center;
+    text-align:center;
 }
 .footer-content h3{
     font-size: 1.8rem;
