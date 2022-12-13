@@ -7,16 +7,16 @@ body{
     background: #fcfcfc;
 }
 footer{
-    position: absolute;
+    position: relative;
     bottom: 0;
     left: 0;
     right: 0;
-    background: #111;
+    background: #28464b79;
     height: auto;
     width: 100vw;
-    font-family: "Open Sans";
-    padding-top: 20px;
+    padding-top: 5px;
     color: #fff;
+    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
 }
 .footer-content{
     display: flex;
@@ -34,15 +34,18 @@ footer{
 .footer-content p{
     max-width: 500px;
     margin: 10px auto;
-    line-height: 28px;
+    line-height: 10px;
     font-size: 14px;
+}
+.footer-content p a{
+    color:white;
 }
 .socials{
     list-style: none;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 1rem 0 3rem 0;
+    margin: 1rem 0 0.5rem 0;
 }
 .socials li{
     margin: 0 10px;
