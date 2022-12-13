@@ -11,25 +11,25 @@ footer{
     bottom: 0;
     left: 0;
     right: 0;
-    background: #28464b79;
+    background-color: #28464b79;
     height: auto;
     width: 100vw;
-    padding-top: 5px;
     color: #fff;
-    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+    padding: 5px;
 }
 .footer-content{
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    text-align: center;
+    text-align:center;
 }
 .footer-content h3{
     font-size: 1.8rem;
     font-weight: 400;
     text-transform: capitalize;
-    line-height: 3rem;
+    line-height: 2rem;
 }
 .footer-content p{
     max-width: 500px;
@@ -70,7 +70,7 @@ footer{
     text-align: center;
 }
 .footer-bottom p{
-    font-size: 14px;
+    font-size: 5px;
     word-spacing: 2px;
     text-transform: capitalize;
 }
