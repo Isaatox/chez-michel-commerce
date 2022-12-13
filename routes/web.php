@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MeubleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,5 +21,11 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+
+Route::get('/ajouter_meuble', function () {
+    return view('ajouter_meuble');
+});
+
+Route::post('/enregistrer_meuble',[MeubleController::class,'enregistrer_meuble'])->name('enregistrer_meuble');
 
 require __DIR__.'/auth.php';
