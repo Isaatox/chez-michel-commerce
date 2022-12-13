@@ -7,7 +7,7 @@ body{
     background: #fcfcfc;
 }
 footer{
-    position: absolute;
+    position: relative;
     bottom: 0;
     left: 0;
     right: 0;
@@ -36,6 +36,9 @@ footer{
     margin: 10px auto;
     line-height: 10px;
     font-size: 14px;
+}
+.footer-content p a{
+    color:white;
 }
 .socials{
     list-style: none;

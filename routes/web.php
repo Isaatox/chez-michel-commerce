@@ -22,6 +22,10 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
+Route::get('/Compte', function () {
+    return view('Compte');
+});
+
 Route::get('/ajouter_meuble', function () {
     return view('ajouter_meuble');
 });
