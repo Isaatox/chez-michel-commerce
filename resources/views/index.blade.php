@@ -212,116 +212,233 @@
         .item input {
             opacity: 0;
         }
+
+        .container input:checked+label::before {
+            content: '\2714';
+            font-size: 16px;
+        }
+
+        #dropdownOrdre ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #dropdownOrdre li {
+            display: flex;
+            align-items: center;
+            padding: 8px;
+        }
+
+        #dropdownOrdre input[type="radio"] {
+            margin-right: 8px;
+        }
+
+        #dropdownOrdre input[type="radio"]:checked+label {
+            font-weight: bold;
+        }
+
+
+
+        #dropdownCategorie ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #dropdownCategorie li {
+            display: flex;
+            align-items: center;
+            padding: 8px;
+        }
+
+        #dropdownCategorie input[type="checkbox"] {
+            margin-right: 8px;
+        }
+
+        #dropdownCategorie input[type="checkbox"]:checked+label {
+            font-weight: bold;
+        }
+
+        .btn {
+            height: 3rem;
+            width: 7rem;
+            margin-top: 1.5rem;
+        }
+
+        @media only screen and (max-width: 600px) {
+            .h3 {
+                font-size: 1rem;
+            }
+
+            .filtres {
+                gap: 1rem;
+                display: flex;
+                justify-content: space-evenly;
+                flex-direction: column;
+            }
+
+            .btn {
+                width: auto;
+            }
+
+            .dropbtn {
+                padding: 1rem;
+                width: 100%;
+            }
+
+            .dropdown-content a {
+                font-size: 1.2rem;
+            }
+
+            .field input {
+                width: 80%;
+                font-size: 1.2rem;
+            }
+
+            .price-input .separator {
+                width: 80px;
+            }
+        }
     </style>
-    <div class="container">
-        <p class="h3">Nos produits populaires</p>
-        <hr>
-        <div class="filtres">
-            <div class="filtre">Prix
-                <div class="dropdown">
-                    <button onclick="dropdownPrix()" class="dropbtn">Sélectionner Prix<i
-                            class="fa-solid fa-caret-down mt-1"></i></button>
-                    <div id="dropdownPrix" class="dropdown-content">
-                        <div class="container">
-                            <div class="price-input">
-                                <div class="field">
-                                    <span>Min</span>
-                                    <input type="number" class="input-min" value="2500">
-                                    <span>€</span>
+    <main>
+        <div class="container">
+            <p class="h3">Nos produits populaires</p>
+            <hr>
+            <div class="filtres">
+                <div class="filtre">Prix
+                    <div class="dropdown">
+                        <button onclick="dropdownPrix()" class="dropbtn">Sélectionner Prix<i
+                                class="fa-solid fa-caret-down mt-1"></i></button>
+                        <div id="dropdownPrix" class="dropdown-content">
+                            <div class="container">
+                                <div class="price-input">
+                                    <div class="field">
+                                        <span>Min</span>
+                                        <input type="number" class="input-min" value="2500">
+                                        <span>€</span>
+                                    </div>
+                                    <div class="separator">-</div>
+                                    <div class="field">
+                                        <span>Max</span>
+                                        <input type="number" class="input-max" value="7500">
+                                        <span>€</span>
+                                    </div>
                                 </div>
-                                <div class="separator">-</div>
-                                <div class="field">
-                                    <span>Max</span>
-                                    <input type="number" class="input-max" value="7500">
-                                    <span>€</span>
+                                <div class="slider">
+                                    <div class="progress"></div>
+                                </div>
+                                <div class="range-input">
+                                    <input type="range" class="range-min" min="0" max="10000" value="2500"
+                                        step="100">
+                                    <input type="range" class="range-max" min="0" max="10000" value="7500"
+                                        step="100">
                                 </div>
                             </div>
-                            <div class="slider">
-                                <div class="progress"></div>
-                            </div>
-                            <div class="range-input">
-                                <input type="range" class="range-min" min="0" max="10000" value="2500"
-                                    step="100">
-                                <input type="range" class="range-max" min="0" max="10000" value="7500"
-                                    step="100">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="filtre">Couleur
+                    <div class="dropdown">
+                        <button onclick="dropdownCouleur()" class="dropbtn">Sélectionner la couleur<i
+                                class="fa-solid fa-caret-down mt-1"></i></button>
+                        <div id="dropdownCouleur" class="dropdown-content">
+                            <div class="container item">
+                                <div>
+                                    <input type="checkbox" id="noir" name="noir">
+                                    <label for="noir" class="couleur noir"></label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" id="blanc" name="blanc">
+                                    <label for="blanc" class="couleur blanc"></label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" id="gris" name="gris">
+                                    <label for="gris" class="couleur gris"></label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" id="marron" name="marron">
+                                    <label for="marron" class="couleur marron"></label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" id="bleu" name="bleu">
+                                    <label for="bleu" class="couleur bleu"></label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" id="rouge" name="rouge">
+                                    <label for="rouge" class="couleur rouge"></label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" id="rose" name="rose">
+                                    <label for="rose" class="couleur rose"></label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" id="vert" name="vert">
+                                    <label for="vert" class="couleur vert"></label>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="filtre">Couleur
-                <div class="dropdown">
-                    <button onclick="dropdownCouleur()" class="dropbtn">Sélectionner la couleur<i
-                            class="fa-solid fa-caret-down mt-1"></i></button>
-                    <div id="dropdownCouleur" class="dropdown-content">
-                        <div class="container item">
-                            <span id="lesCouleurs"></span>
-                            <div>
-                                <input type="checkbox" id="noir" name="noir">
-                                <label for="noir" class="couleur noir"></label>
-                            </div>
-                            <div>
-                                <input type="checkbox" id="blanc" name="blanc">
-                                <label for="blanc" class="couleur blanc"></label>
-                            </div>
-                            <div>
-                                <input type="checkbox" id="gris" name="gris">
-                                <label for="gris" class="couleur gris"></label>
-                            </div>
-                            <div>
-                                <input type="checkbox" id="marron" name="marron">
-                                <label for="marron" class="couleur marron"></label>
-                            </div>
-                            <div>
-                                <input type="checkbox" id="bleu" name="bleu">
-                                <label for="bleu" class="couleur bleu"></label>
-                            </div>
-                            <div>
-                                <input type="checkbox" id="rouge" name="rouge">
-                                <label for="rouge" class="couleur rouge"></label>
-                            </div>
-                            <div>
-                                <input type="checkbox" id="rose" name="rose">
-                                <label for="rose" class="couleur rose"></label>
-                            </div>
-                            <div>
-                                <input type="checkbox" id="vert" name="vert">
-                                <label for="vert" class="couleur vert"></label>
+
+                <div class="filtre">Trier
+                    <div class="dropdown">
+                        <button onclick="dropdownOrdre()" class="dropbtn">Trier<i
+                                class="fa-solid fa-caret-down mt-1"></i></button>
+                        <div id="dropdownOrdre" class="dropdown-content">
+                            <div class="container">
+                                <ul>
+                                    <li>
+                                        <input type="radio" id="prixCroissant" name="ordre" value="prixCroissant">
+                                        <label for="prixCroissant">Prix croissant</label>
+                                    </li>
+                                    <li>
+                                        <input type="radio" id="prixDecroissant" name="ordre" value="prixDecroissant">
+                                        <label for="prixDecroissant">Prix décroissant</label>
+                                    </li>
+                                    <li>
+                                        <input type="radio" id="nom" name="ordre" value="nom">
+                                        <label for="nom">Nom</label>
+                                    </li>
+                                    <li>
+                                        <input type="radio" id="noteClient" name="ordre" value="noteClient">
+                                        <label for="noteClient">Note client</label>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="filtre">Trier
-                <div class="dropdown">
-                    <button onclick="dropdownOrdre()" class="dropbtn">Trier<i
-                            class="fa-solid fa-caret-down mt-1"></i></button>
-                    <div id="dropdownOrdre" class="dropdown-content">
-                        <div class="container">
-
+                <div class="filtre">Catégorie
+                    <div class="dropdown">
+                        <button onclick="dropdownCategorie()" class="dropbtn">Sélectionner la catégorie<i
+                                class="fa-solid fa-caret-down mt-1"></i></button>
+                        <div id="dropdownCategorie" class="dropdown-content">
+                            <div class="container">
+                                <ul>
+                                    <li>
+                                        <input type="checkbox" id="bureau" name="bureau" value="bureau">
+                                        <label for="bureau">Bureau</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="table" name="table" value="table">
+                                        <label for="table">Table</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="tableDeSalon" name="tableDeSalon"
+                                            value="tableDeSalon">
+                                        <label for="nom">Table de salon</label>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <button class="btn btn-primary">Rechercher</button>
             </div>
-
-            <div class="filtre">Catégorie
-                <div class="dropdown">
-                    <button onclick="dropdownCategorie()" class="dropbtn">Sélectionner la catégorie<i
-                            class="fa-solid fa-caret-down mt-1"></i></button>
-                    <div id="dropdownCategorie" class="dropdown-content">
-                        <div class="container">
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <a href="" class="btn btn-primary">Rechercher</a>
         </div>
-    </div>
+    </main>
     <script>
-        console.log(document.getElementById("lesCouleurs"));
-
         function dropdownPrix() {
             document.getElementById("dropdownPrix").classList.toggle("show");
 
@@ -397,5 +514,28 @@
                 }
             });
         });
+
+        var inputs = document.querySelectorAll('.container input');
+        inputs.forEach(function(input) {
+            input.addEventListener('change', function() {
+                if (this.checked) {
+                    this.nextElementSibling.classList.add('selected');
+                    this.setAttribute('checked', '');
+                } else {
+                    this.nextElementSibling.classList.remove('selected');
+                    this.removeAttribute('checked', '');
+
+                }
+            });
+        });
+        var inputs = document.querySelectorAll('#dropdownOrdre input');
+        for (var i = 0; i < inputs.length; i++) {
+            inputs[i].addEventListener('change', function() {
+                var previouslyChecked = document.querySelector("#dropdownOrdre input[checked]");
+                if (previouslyChecked) previouslyChecked.removeAttribute("checked");
+                this.setAttribute("checked", '');
+                sortProducts(this.value);
+            });
+        }
     </script>
 @endsection
