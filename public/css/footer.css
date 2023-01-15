@@ -9,13 +9,13 @@ body {
 }
 
 footer {
-    position: fixed;
+    position: relative;
     bottom: 0;
     left: 0;
     right: 0;
     background-color: #28464b79;
     height: auto;
-    width: 100vw;
+    /* width: 100vw; */
     color: #fff;
     box-shadow: rgb(14 30 37 / 12%) 0px 2px 4px 0px, rgb(14 30 37 / 32%) 0px 2px 16px 0px;
     padding: 5px;
@@ -88,12 +88,4 @@ footer {
     text-transform: uppercase;
     opacity: .4;
     font-weight: 200;
-}
-
-@media only screen and (max-width: 600px) {
-
-    footer {
-        position: relative;
-    }
-
 }
