@@ -13,9 +13,10 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 15px 100px;
-    z-index: 10; 
+    z-index: 10;
     background-color: #28464b79;
-    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;}
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
 
 header .logo {
     position: relative;
@@ -25,7 +26,6 @@ header .logo {
     color: #fff;
     letter-spacing: 1px;
 }
-
 
 header .logo img {
     width: 75px;
@@ -44,6 +44,7 @@ header .navigation a {
     margin: 0 10px;
 }
 
+
 /* header .navigation li a {
     color: #fff;
     text-decoration: none;
@@ -54,7 +55,6 @@ header .navigation a {
 header .navigation li a:hover {
     color: blue;
 } */
-
 
 header .navigation a {
     color: #fff;
@@ -104,7 +104,6 @@ header .navigation .mon_profile p {
 header .navigation .mon_profile i {
     padding-left: 30px;
 }
-
 
 header .search {
     position: relative;
@@ -170,9 +169,7 @@ header .panier .circle p {
     font-size: 0.8em;
     margin-left: 5px;
     margin-top: -2.5px;
-
 }
-
 
 @media (max-width: 991px) {
     header {
@@ -186,7 +183,6 @@ header .panier .circle p {
         padding: 10px 20px;
         flex-direction: column;
     }
-
     header .search {
         width: 100%;
     }
