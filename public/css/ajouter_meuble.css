@@ -1,49 +1,35 @@
+@import url('app.css');
+
 body{
-    margin: 0;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-form.form_ajouter_meubles{
-    width: 50%;
-    height: 75%;
-    background-color: rgba(255, 255, 128, .5);
-}
-
-form.form_ajouter_meubles input, textarea{
-    margin-bottom: 3%;
-}
-
-form.form_ajouter_meubles .premiere_partie{
     display: flex;
     flex-direction: column;
-}
-
-form.form_ajouter_meubles .seconde_partie{
-    transition: transform 2s;
-    display: none;
-}
-
-form.form_ajouter_meubles .premiere_partie .centrer_bouton{
-    display: flex;
     justify-content: center;
     align-items: center;
+    background-color: blue;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
 }
 
-form.form_ajouter_meubles .premiere_partie .suivant{
+form{
+    background-color: aliceblue;
     display: flex;
-    width: 4rem;
-    height: 4rem;
+    flex-direction: column;
     justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    background-color: #21D3C3;
-    border-radius: 100%;
+    width: 800px;
+    height: 500px;
 }
 
-form.form_ajouter_meubles .premiere_partie .suivant svg{
-    width: 65%;
+form .elements{
+    display: flex;
+    margin: 0.5rem;
+}
+
+form .elements label{
+    width: 33%;
+}
+
+form .elements input, textarea{
+    width: 67%;
+    resize: none;
 }

@@ -1,12 +1,17 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\admin;
 
-use App\Models\Meuble;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class MeubleController extends Controller
 {
+    public function index()
+    {
+        return view('admin.ajouter_meuble');
+    }
+    
     public function enregistrer_meuble(Request $request)
     {        
         if (!isset($request->image1)) {

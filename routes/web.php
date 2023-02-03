@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\MeubleController;
+use App\Http\Controllers\admin;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,10 +26,7 @@ Route::get('/Compte', function () {
     return view('Compte');
 });
 
-Route::get('/ajouter_meuble', function () {
-    return view('ajouter_meuble');
-});
-
-Route::post('/enregistrer_meuble',[MeubleController::class,'enregistrer_meuble'])->name('enregistrer_meuble');
+Route::get('/admin/ajouter_meubles',[MeubleController::class,'index'])->name('ajouter_meubles');
+Route::post('/admin/enregistrer_meuble',[MeubleController::class,'enregistrer_meuble'])->name('enregistrer_meuble');
 
 require __DIR__.'/auth.php';
