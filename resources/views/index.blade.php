@@ -239,3 +239,5 @@
         </div>
     </main>
 @endsection
+
+<a href='{{ url('/meubles/table') }}'>Table</a>
