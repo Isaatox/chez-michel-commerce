@@ -32,7 +32,7 @@ Route::get('/meubles/{categorie}', [MeublesParCategorieController::class, 'index
 
 
 /*! Admin */
-Route::get('/admin/ajouter_meubles',[MeubleController::class,'index'])->name('ajouter_meubles');
-Route::post('/admin/enregistrer_meuble',[MeubleController::class,'enregistrer_meuble'])->name('enregistrer_meuble');
+Route::get('/admin/ajouter_meubles',[admin\MeubleController::class,'index'])->name('ajouter_meubles');
+Route::post('/admin/enregistrer_meuble',[admin\MeubleController::class,'enregistrer_meuble'])->name('enregistrer_meuble');
 
 require __DIR__.'/auth.php';
