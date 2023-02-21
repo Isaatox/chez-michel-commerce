@@ -15,6 +15,7 @@ class CreateCarteBancairesTable extends Migration
     {
         Schema::create('carte_bancaires', function (Blueprint $table) {
             $table->id();
+            $table->integer('id_user');
             $table->string('nom');
             $table->string('numero_carte');
             $table->integer('date_validite');

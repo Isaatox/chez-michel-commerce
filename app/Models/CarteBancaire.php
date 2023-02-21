@@ -22,6 +22,6 @@ class CarteBancaire extends Model
      * @var array
      */
     protected $fillable = [
-        'nom', 'numero_carte', 'date_validite', 'cryptogramme',
+        'id_user', 'nom', 'numero_carte', 'date_validite', 'cryptogramme',
     ];
 }
