@@ -47,38 +47,12 @@
                                 class="fa-solid fa-caret-down mt-1"></i></button>
                         <div id="dropdownCouleur" class="dropdown-content">
                             <div class="container item">
-                                <div>
-                                    <input type="checkbox" id="noir" name="noir">
-                                    <label for="noir" class="couleur noir"></label>
-                                </div>
-                                <div>
-                                    <input type="checkbox" id="blanc" name="blanc">
-                                    <label for="blanc" class="couleur blanc"></label>
-                                </div>
-                                <div>
-                                    <input type="checkbox" id="gris" name="gris">
-                                    <label for="gris" class="couleur gris"></label>
-                                </div>
-                                <div>
-                                    <input type="checkbox" id="marron" name="marron">
-                                    <label for="marron" class="couleur marron"></label>
-                                </div>
-                                <div>
-                                    <input type="checkbox" id="bleu" name="bleu">
-                                    <label for="bleu" class="couleur bleu"></label>
-                                </div>
-                                <div>
-                                    <input type="checkbox" id="rouge" name="rouge">
-                                    <label for="rouge" class="couleur rouge"></label>
-                                </div>
-                                <div>
-                                    <input type="checkbox" id="rose" name="rose">
-                                    <label for="rose" class="couleur rose"></label>
-                                </div>
-                                <div>
-                                    <input type="checkbox" id="vert" name="vert">
-                                    <label for="vert" class="couleur vert"></label>
-                                </div>
+                                @foreach ($couleurs as $couleur)
+                                    <div>
+                                        <input type="checkbox" id="{{$couleur->name}}" name="{{$couleur->name}}">
+                                        <label for="{{$couleur->name}}" class="couleur {{$couleur->name}}"></label>
+                                    </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -120,19 +94,12 @@
                         <div id="dropdownCategorie" class="dropdown-content">
                             <div class="container">
                                 <ul>
-                                    <li>
-                                        <input type="checkbox" id="bureau" name="bureau" value="bureau">
-                                        <label for="bureau">Bureau</label>
-                                    </li>
-                                    <li>
-                                        <input type="checkbox" id="table" name="table" value="table">
-                                        <label for="table">Table</label>
-                                    </li>
-                                    <li>
-                                        <input type="checkbox" id="tableDeSalon" name="tableDeSalon"
-                                            value="tableDeSalon">
-                                        <label for="tableDeSalon">Table de salon</label>
-                                    </li>
+                                    @foreach ($categories as $categorie)
+                                        <li>
+                                            <input type="checkbox" id="{{$categorie->name}}" name="{{$categorie->name}}">
+                                            <label for="{{$categorie->name}}">{{$categorie->name}}</label>
+                                        </li>
+                                    @endforeach
                                 </ul>
                             </div>
                         </div>

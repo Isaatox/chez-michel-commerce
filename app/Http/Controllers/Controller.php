@@ -16,10 +16,10 @@ class Controller extends BaseController
     public function index()
     {
         $categories = Categorie::all();
-        $couleur = Couleur::all();
+        $couleurs = Couleur::all();
         return view('index', [
             'categories' => $categories,
-            'couleur' => $couleur
+            'couleurs' => $couleurs
         ]);
     }
 }
