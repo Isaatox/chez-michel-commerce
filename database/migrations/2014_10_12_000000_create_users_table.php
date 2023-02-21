@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
-            $table->string('role')->default('client');
+            $table->string('role');
             $table->integer('nb_commandes')->default('0');
             $table->integer('argent_depense')->default('0');
         });

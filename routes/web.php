@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\admin;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MeublesParCategorieController;
 
@@ -15,9 +16,7 @@ use App\Http\Controllers\MeublesParCategorieController;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', [Controller::class, 'index'])->name('index');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

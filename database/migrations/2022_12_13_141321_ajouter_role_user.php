@@ -14,7 +14,8 @@ class AjouterRoleUser extends Migration
     public function up()
     {
         Schema::table('users', function(Blueprint $table) {
-            $table->string('role')->default('client');
+            $table->id();
+            $table->string('role');
         });
     }
 
