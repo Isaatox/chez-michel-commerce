@@ -3,7 +3,10 @@
 use App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\mon_compte\MesCommandes;
+use App\Http\Controllers\mon_compte\MesInformations;
 use App\Http\Controllers\MeublesParCategorieController;
+use App\Http\Controllers\mon_compte\MesCartesDePaiement;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +20,12 @@ use App\Http\Controllers\MeublesParCategorieController;
 */
 
 Route::get('/', [Controller::class, 'index'])->name('index');
+
+/*! Mon petit Evan regarde les routes si dessoous mon bichon ps ( oublis pas les putain de route de déco et de mdp a changer ) : MON COMPTE */
+Route::get('/mon_compte/MesCartesDePaiements', [MesCartesDePaiement::class, 'index'])->name('MesCartesDePaiement');
+Route::get('/mon_compte/MesCommandes', [MesCommandes::class, 'index'])->name('MesCommandes');
+Route::get('/mon_compte/MesInformations', [MesInformations::class, 'index'])->name('MesInformations');
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
