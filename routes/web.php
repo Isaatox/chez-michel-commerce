@@ -36,6 +36,10 @@ Route::get('/Compte', function () {
 });
 
 Route::get('/meubles/{categorie}', [MeublesParCategorieController::class, 'index'])->name('MeublesParCategorie');
+Route::get('/Meuble', function () {
+    return view('Compte');
+});
+
 
 
 

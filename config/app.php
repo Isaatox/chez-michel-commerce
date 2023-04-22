@@ -175,6 +175,9 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        //File d'arianne
+        DaveJamesMiller\Breadcrumbs\BreadcrumbsServiceProvider::class,
+
     ],
 
     /*
@@ -231,5 +234,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
     ],
+
+    
 
 ];
