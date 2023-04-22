@@ -21,26 +21,20 @@ use App\Http\Controllers\mon_compte\MesCartesDePaiement;
 
 Route::get('/', [Controller::class, 'index'])->name('index');
 
-/*! Mon petit Evan regarde les routes si dessoous mon bichon ps ( oublis pas les putain de route de déco et de mdp a changer ) : MON COMPTE */
-Route::get('/mon_compte/MesCartesDePaiements', [MesCartesDePaiement::class, 'index'])->name('MesCartesDePaiement');
-Route::get('/mon_compte/MesCommandes', [MesCommandes::class, 'index'])->name('MesCommandes');
-Route::get('/mon_compte/MesInformations', [MesInformations::class, 'index'])->name('MesInformations');
-
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::get('/compte', function () {
-    return view('Compte');
-});
+
 
 Route::get('/meubles/{categorie}', [MeublesParCategorieController::class, 'index'])->name('MeublesParCategorie');
-Route::get('/Meuble', function () {
-    return view('Compte');
-});
 
-
+/*! Compte */
+Route::get('/MonCompte/MesCommandes', [MesCommandes::class, 'index'])->name('MesCommandes');
+Route::get('/MonCompte/MesInformations', [MesInformations::class, 'index'])->name('MesInformations');
+Route::get('/MonCompte/MotDepasse', [MotDePasse::class, 'index'])->name('MotDePasse');
+Route::get('/MonCompte/MesCartesDePaiements', [MesCartesDePaiement::class, 'index'])->name('MesCartesDePaiement');
 
 
 /*! Admin */

@@ -26,7 +26,7 @@
 
                             <!-- Prenom -->
                             <div class="form-group">
-                                <label for="prenom" class="form-label">{{ __('Entreprise') }} :</label>
+                                <label for="prenom" class="form-label">{{ __('Prenom') }} :</label>
                                 <input id="prenom" type="text" name="prenom" class="form-control" value="{{ old('prenom') }}" required autofocus />
                             </div>
                         
@@ -70,13 +70,13 @@
                             <!-- Password -->
                             <div class="form-group">
                                 <label for="password" class="form-label">{{ __('Mot de passe') }} :</label>
-                                <input id="password" type="password" name="password" class="form-control" required autocomplete="new-password" />
+                                <input id="password" type="password" name="password" class="form-control" value="{{ old('mot_passe') }}" required autocomplete="new-password" />
                             </div>
                         
                             <!-- Confirm Password -->
                             <div class="form-group">
                                 <label for="password_confirmation" class="form-label">{{ __('Confirmer votre mot de passe') }} :</label>
-                                <input id="password_confirmation" type="password" name="password_confirmation" class="form-control" required />
+                                <input id="password_confirmation" type="password" name="password_confirmation" class="form-control"value="{{ old('mot_passe') }}" required />
                             </div>
                         
                             <div class="form-group text-center mt-4">
