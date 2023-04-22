@@ -2,20 +2,6 @@
 
 use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
 
-//Breadcrumbs::for('home', function ($trail) {
-//    $trail->push('Accueil', route('home'));
-//});
-
-//Breadcrumbs::for('products', function ($trail) {
-//    $trail->parent('home');
-//    $trail->push('Produits', route('products.index'));
-//});
-
-//Breadcrumbs::for('product', function ($trail, $product) {
-//    $trail->parent('products');
-//    $trail->push($product->name, route('products.show', $product));
-//});
-
 Breadcrumbs::for('admin', function ($trail) {
     $trail->push('Admin', route('index'));
 });
@@ -33,5 +19,15 @@ Breadcrumbs::for('categorie', function ($trail) {
 Breadcrumbs::for('couleur', function ($trail) {
     $trail->parent('admin');
     $trail->push('Couleur', route('couleur'));
+});
+
+Breadcrumbs::for('uneCouleur', function ($trail) {
+    $trail->parent('couleur');
+    $trail->push('La couleur', route('couleur'));
+});
+
+Breadcrumbs::for('uneCategorie', function ($trail) {
+    $trail->parent('categorie');
+    $trail->push('La categorie', route('categorie'));
 });
 

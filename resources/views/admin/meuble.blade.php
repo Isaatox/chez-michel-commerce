@@ -16,7 +16,7 @@
             width: 80%;
         }
     </style>
-    <div class="columns-md" style="width: 100%;">
+    <div class="columns-md w-100" style="padding: 15px">
 
     <div class="breadcrumbs">
         {{ Breadcrumbs::render('ajouter_meubles') }}

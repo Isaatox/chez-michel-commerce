@@ -43,7 +43,7 @@ class MeubleController extends Controller
         $images = array();
         foreach($request->file('images') as $image) {
             $fileName = $request->nom . time() . '.' . $image->getClientOriginalExtension();
-            $image->storeAs('images', $fileName);
+            $image->move(public_path('public'), $fileName); // utilise public_path() pour sauvegarder les images dans le dossier public
             array_push($images, $fileName);
         }
 
@@ -63,13 +63,59 @@ class MeubleController extends Controller
 
     }
 
+    public function getMeuble($id)
+    {
+        $categories = Categorie::all();
+        $couleurs = Couleur::all();
+        $meuble = Meuble::findOrFail($id);
+        return view('admin.meubleDetail', compact('meuble','couleurs','categories'));
+    }
+
+    public function modifierMeuble(Request $request, $id)
+    {
+        $meuble = Meuble::findOrFail($id);
+        $images = array();
+        foreach($request->file('images') as $image) {
+            $fileName = $request->nom . time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('public'), $fileName); // utilise public_path() pour sauvegarder les images dans le dossier public
+            array_push($images, $fileName);
+        }
+
+        $meuble->nom = $request->nom;
+        $meuble->categorie = $request->categorie;
+        $meuble->couleur = $request->couleur;
+        $meuble->description = $request->description;
+        $meuble->stock = $request->stock;
+        $meuble->prix = $request->prix;
+        $meuble->photo1 = $images[0];
+        $meuble->photo2 = isset($images[1]) ? $images[1] : null;
+        $meuble->photo3 = isset($images[2]) ? $images[2] : null;
+        $meuble->save();
+
+        return redirect()->route('meuble.afficher', ['id' => $meuble->id])->with('success', 'Le meuble a été modifié avec succès.');
+    }
+
+    public function supprimerMeuble($id)
+    {
+        $meuble = Meuble::findOrFail($id);
+        $meuble->delete();
+
+        return redirect()->route('admin.liste_meubles')->with('success', 'Le meuble a été supprimé avec succès.');
+    }
+
+
     public function viewCategorie()
     {
-        return view('admin.categorie');
+        $categories = Categorie::all();
+        $categories = Categorie::orderBy('label', 'asc')->paginate(5);
+
+        return view('admin.categorie', compact( 'categories'));
     }
 
     public function viewCouleur()
     {
-        return view('admin.couleur');
+        $couleurs = Couleur::all();
+        $couleurs = Couleur::orderBy('label', 'asc')->paginate(5);
+        return view('admin.couleur', compact( 'couleurs'));
     }
 }

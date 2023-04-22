@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\admin;
+use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\CouleurController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\mon_compte\MesCommandes;
 use App\Http\Controllers\mon_compte\MesInformations;
@@ -47,12 +49,27 @@ Route::get('/Meuble', function () {
 Route::get('/admin',[admin\MeubleController::class,'index'])->name('index');
 
 Route::get('/admin/categorie',[admin\MeubleController::class,'viewCategorie'])->name('categorie');
-Route::post('/admin/ajouter_categorie',[\App\Http\Controllers\CategorieController::class,'ajouterCategorie'])->name('ajouter_categorie');
+Route::post('/admin/ajouter_categorie',[CategorieController::class,'ajouterCategorie'])->name('ajouter_categorie');
+
+Route::get('/admin/categorie/{id}', [CategorieController::class, 'getCategorie'])->name('categorie.afficher');
+Route::post('/admin/categorie/{id}', [CategorieController::class, 'modifierCategorie'])->name('categorie.modifier');
+Route::delete('/admin/categorie/{id}', [CategorieController::class, 'supprimerCategorie'])->name('categorie.supprimer');
+
 
 Route::get('/admin/couleur',[admin\MeubleController::class,'viewCouleur'])->name('couleur');
-Route::post('/admin/ajouter_couleur',[\App\Http\Controllers\CouleurController::class,'ajouterCouleur'])->name('ajouter_couleur');
+Route::post('/admin/ajouter_couleur',[CouleurController::class,'ajouterCouleur'])->name('ajouter_couleur');
+
+Route::get('/admin/couleur/{id}', [CouleurController::class, 'getCouleur'])->name('couleur.afficher');
+Route::put('/admin/couleur/{id}', [CouleurController::class, 'modifierCouleur'])->name('couleur.modifier');
+Route::delete('/admin/couleur/{id}', [CouleurController::class, 'supprimerCouleur'])->name('couleur.supprimer');
 
 Route::get('/admin/ajouter_meubles',[admin\MeubleController::class,'viewAjoutMeuble'])->name('ajouter_meubles');
 Route::post('/admin/enregistrer_meuble',[admin\MeubleController::class,'enregistrer_meuble'])->name('enregistrer_meuble');
+
+Route::get('/admin/meuble/{id}', [admin\MeubleController::class, 'getMeuble'])->name('meuble.afficher');
+Route::post('/admin/meuble/{id}', [admin\MeubleController::class, 'modifierMeuble'])->name('meuble.modifier');
+Route::delete('/admin/meuble/{id}', [admin\MeubleController::class, 'supprimerMeuble'])->name('meuble.supprimer');
+
+
 
 require __DIR__.'/auth.php';

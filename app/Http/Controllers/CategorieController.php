@@ -16,6 +16,27 @@ class CategorieController extends Controller
         ]);
 
         return redirect("admin/categorie");
+    }
 
+    public function supprimerCategorie($id)
+    {
+        $categorie = Categorie::findOrFail($id);
+        $categorie->delete();
+        return redirect("admin/categorie");
+    }
+
+    public function modifierCategorie(Request $request, $id)
+    {
+        $categorie = Categorie::findOrFail($id);
+        $categorie->nom = $request->nom;
+        $categorie->label = $request->label;
+        $categorie->save();
+        return redirect("admin/categorie");
+    }
+
+    public function getCategorie($id)
+    {
+        $categorie = Categorie::findOrFail($id);
+        return view('admin.categorieDetail', ['categorie' => $categorie]);
     }
 }
