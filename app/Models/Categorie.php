@@ -23,5 +23,6 @@ class Categorie extends Model
      */
     protected $fillable = [
         'nom',
+        'label',
     ];
 }

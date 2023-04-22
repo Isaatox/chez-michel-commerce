@@ -45,6 +45,13 @@ Route::get('/Meuble', function () {
 
 /*! Admin */
 Route::get('/admin',[admin\MeubleController::class,'index'])->name('index');
+
+Route::get('/admin/categorie',[admin\MeubleController::class,'viewCategorie'])->name('categorie');
+Route::post('/admin/ajouter_categorie',[\App\Http\Controllers\CategorieController::class,'ajouterCategorie'])->name('ajouter_categorie');
+
+Route::get('/admin/couleur',[admin\MeubleController::class,'viewCouleur'])->name('couleur');
+Route::post('/admin/ajouter_couleur',[\App\Http\Controllers\CouleurController::class,'ajouterCouleur'])->name('ajouter_couleur');
+
 Route::get('/admin/ajouter_meubles',[admin\MeubleController::class,'viewAjoutMeuble'])->name('ajouter_meubles');
 Route::post('/admin/enregistrer_meuble',[admin\MeubleController::class,'enregistrer_meuble'])->name('enregistrer_meuble');
 

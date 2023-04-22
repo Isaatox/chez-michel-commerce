@@ -22,6 +22,6 @@ class Couleur extends Model
      * @var array
      */
     protected $fillable = [
-        'nom', 'hex_couleur',
+        'nom', 'hex_couleur', 'label'
     ];
 }

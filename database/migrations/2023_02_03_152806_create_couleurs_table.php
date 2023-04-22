@@ -17,6 +17,8 @@ class CreateCouleursTable extends Migration
             $table->id();
             $table->string('nom');
             $table->string('hex_couleur');
+            $table->string('label');
+            $table->timestamps();
         });
     }
 

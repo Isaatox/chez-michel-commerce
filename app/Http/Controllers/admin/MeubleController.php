@@ -19,10 +19,18 @@ class MeubleController extends Controller
         return view('admin.admin');
     }
 
-    public function viewAjoutMeuble()
+    public function viewAjoutMeuble(Request $request)
     {
         $meubles = Meuble::all();
-        return view('admin.meuble', ['meubles' => $meubles]);
+        $sortOrder = 'asc'; // Valeur par défaut
+        if(request()->has('sort_order')){
+            $sortOrder = request()->query('sort_order');
+        }
+
+        $meubles = Meuble::orderBy('nom', $sortOrder)->paginate(5);
+
+
+        return view('admin.meuble', compact('meubles', 'sortOrder'));
 
     }
 
@@ -49,5 +57,15 @@ class MeubleController extends Controller
 
         return redirect("admin/ajouter_meubles");
 
+    }
+
+    public function viewCategorie()
+    {
+        return view('admin.categorie');
+    }
+
+    public function viewCouleur()
+    {
+        return view('admin.couleur');
     }
 }

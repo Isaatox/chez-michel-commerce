@@ -15,13 +15,8 @@
             margin: auto;
             width: 80%;
         }
-        .column{
-            flex-direction: column;
-            width: 100%;
-            height: 100%;
-        }
     </style>
-    <div class="column">
+    <div class="columns-md">
 
     <div class="breadcrumbs">
         {{ Breadcrumbs::render('ajouter_meubles') }}
@@ -84,22 +79,23 @@
         <button type="submit" class="btn btn-primary">Valider</button>
     </form>
         <div class="container"> <!-- ou container-fluid -->
-        <h4>Tous les meubles :</h4>
+            <hr>
+        <h4>Tous les meubles :</h4>.
+
     @if(count($meubles) > 0)
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>Nom</th>
+                    <th><a href="?sort_order={{ $sortOrder == 'asc' ? 'desc' : 'asc' }}">Nom</a></th>
                     <th>Description</th>
-                    <th>Prix</th>
+                    <th><a href="?sort_order={{ $sortOrder == 'asc' ? 'desc' : 'asc' }}">Prix</a></th>
+
                     <th>Actions</th>
                 </tr>
                 </thead>
                 <tbody>
                 @foreach($meubles as $meuble)
                     <tr>
-                        <td>{{ $meuble->id }}</td>
                         <td>{{ $meuble->nom }}</td>
                         <td>{{ $meuble->description }}</td>
                         <td>{{ $meuble->prix }}</td>
@@ -113,8 +109,24 @@
                 @endforeach
                 </tbody>
             </table>
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        @if ($meubles->currentPage() > 1)
+                            <li class="page-item"><a class="page-link" href="{{ $meubles->previousPageUrl() }}" rel="prev">&laquo;</a></li>
+                        @endif
 
-        @else
+                        @for ($i = 1; $i <= $meubles->lastPage(); $i++)
+                            <li class="page-item{{ $meubles->currentPage() == $i ? ' active' : '' }}"><a class="page-link" href="{{ $meubles->url($i) }}">{{ $i }}</a></li>
+                        @endfor
+
+                        @if ($meubles->hasMorePages())
+                            <li class="page-item"><a class="page-link" href="{{ $meubles->nextPageUrl() }}" rel="next">&raquo;</a></li>
+                        @endif
+                    </ul>
+                </nav>
+
+
+            @else
         <p>Aucun meuble trouvé</p>
     @endif
     </div>
