@@ -44,7 +44,7 @@ Route::get('/Meuble', function () {
 
 
 /*! Admin */
-Route::get('/admin/ajouter_meubles',[admin\MeubleController::class,'index'])->name('ajouter_meubles');
+Route::get('/admin',[admin\MeubleController::class,'index'])->name('ajouter_meubles');
 Route::post('/admin/enregistrer_meuble',[admin\MeubleController::class,'enregistrer_meuble'])->name('enregistrer_meuble');
 
 require __DIR__.'/auth.php';

@@ -1,11 +1,9 @@
 <div class="menu">
-    <a href="#">Mes commandes</a>
-    <a href="#">Mes informations</a>
-    <a href="#">Mot de passe</a>
-    <a href="#">Mes cartes de paiement</a>
-    @if(Auth::user()->role === "admin")
-        <a href="#">Administration</a>
-    @endif
+    <a href="#">Utilisateurs</a>
+    <a href="#">Articles</a>
+    <a href="#">Commandes</a>
+    <a href="#">Catégorie</a>
+    <a href="#">Couleur</a>
     <a href="#">Se déconnecter</a>
 </div>
 <div class="menuPhone" >
