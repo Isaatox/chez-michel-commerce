@@ -2,3 +2,4 @@
 @section('content')
     test
 @endsection
+
