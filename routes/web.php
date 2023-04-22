@@ -31,7 +31,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::get('/Compte', function () {
+Route::get('/compte', function () {
     return view('Compte');
 });
 

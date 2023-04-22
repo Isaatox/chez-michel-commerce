@@ -206,5 +206,3 @@
     </main>
 <script src="{{ url('js/accueil.js') }}"></script>
 @endsection
-
-<a href='{{ url('/meubles/table') }}'>Table</a>
