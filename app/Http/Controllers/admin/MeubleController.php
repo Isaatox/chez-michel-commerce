@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Meuble;
 use Illuminate\Http\Request;
 
 class MeubleController extends Controller
@@ -15,44 +16,38 @@ class MeubleController extends Controller
 
     public function index()
     {
-        return view('admin.meuble');
+        return view('admin.admin');
+    }
+
+    public function viewAjoutMeuble()
+    {
+        $meubles = Meuble::all();
+        return view('admin.meuble', ['meubles' => $meubles]);
+
     }
 
     public function enregistrer_meuble(Request $request)
     {
-        if (!isset($request->image1)) {
-            $request->validate([
-                'image1' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            ]);
-            $fileName = $request->nom . time() . '.' . request()->image1->getClientOriginalExtension();
-            $request->image1->storeAs('image1', $fileName);
+        $images = array();
+        foreach($request->file('images') as $image) {
+            $fileName = $request->nom . time() . '.' . $image->getClientOriginalExtension();
+            $image->storeAs('images', $fileName);
+            array_push($images, $fileName);
         }
 
-        if (!isset($request->image2)) {
-            $request->validate([
-                'image2' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            ]);
-            $fileName = $request->nom . time() . '.' . request()->image2->getClientOriginalExtension();
-            $request->image2->storeAs('image2', $fileName);
-        }
-
-        if (!isset($request->image3)) {
-            $request->validate([
-                'image3' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            ]);
-            $fileName = $request->nom . time() . '.' . request()->image3->getClientOriginalExtension();
-            $request->image3->storeAs('image3', $fileName);
-        }
-
-        $meuble = Meuble::create([
+       Meuble::create([
             'nom' => $request->nom,
             'categorie' => $request->categorie,
             'couleur' => $request->couleur,
             'description' => $request->description,
             'stock' => $request->stock,
             'prix' => $request->prix,
-            'photo1' => $request->image1,
+            'photo1' => $images[0],
+            'photo2' => isset($images[1]) ? $images[1] : null,
+            'photo3' => isset($images[2]) ? $images[2] : null,
         ]);
-        return redirect("ajouter_meuble");
+
+        return redirect("admin/ajouter_meubles");
+
     }
 }

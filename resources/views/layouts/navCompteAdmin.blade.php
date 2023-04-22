@@ -1,6 +1,6 @@
 <div class="menu">
+    <a href="{{ route('ajouter_meubles') }}">Ajouter un meuble</a>
     <a href="#">Utilisateurs</a>
-    <a href="#">Articles</a>
     <a href="#">Commandes</a>
     <a href="#">Catégorie</a>
     <a href="#">Couleur</a>
