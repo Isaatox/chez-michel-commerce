@@ -15,8 +15,12 @@ text-align: center;
 }
 
 .menu{
-    width: 20%; 
-    background-color: #121227;
+    width: 20%;
+    background-color: #28464b79;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5rem;
 }
 
 .menu a{
@@ -31,8 +35,44 @@ text-align: center;
 }
 
 .menu a:hover{
-    background-color: red;
+    background-color: #28464b79;
     transition: 0.5s;
-    letter-spacing: 4px;
-    text-transform: uppercase   ;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+footer{
+    margin-top: 0 !important;
+}
+
+.menuPhone{
+    display: none;
+}
+
+@media only screen and (max-width: 768px) {
+    .menu {
+        display: none;
+    }
+
+    .menuPhone{
+        width: 20%;
+        background-color: #28464b79;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    .menuPhone a:hover{
+        background-color: #28464b79;
+        transition: 0.5s;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+    }
+
+    .menuPhone a {
+        font-size: 1.0rem;
+        padding: 1.5rem;
+        color: white;
+    }
 }
