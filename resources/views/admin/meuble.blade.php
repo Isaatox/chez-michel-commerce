@@ -16,7 +16,7 @@
             width: 80%;
         }
     </style>
-    <div class="columns-md">
+    <div class="columns-md" style="width: 100%;">
 
     <div class="breadcrumbs">
         {{ Breadcrumbs::render('ajouter_meubles') }}
@@ -39,9 +39,9 @@
                 <label for="categorie" class="form-label">Catégorie :</label>
                 <select class="form-select" name="categorie" id="categorie" required>
                     <option value="" selected disabled>Sélectionnez une catégorie</option>
-                    <option value="1">Catégorie 1</option>
-                    <option value="2">Catégorie 2</option>
-                    <option value="3">Catégorie 3</option>
+                    @foreach ($categories as $categorie)
+                        <option value="{{$categorie->id}}">{{$categorie->label}}</option>
+                    @endforeach
                 </select>
             </div>
             <div class="col">
@@ -59,9 +59,9 @@
                 <label for="couleur" class="form-label">Couleur :</label>
                 <select class="form-select" name="couleur" id="couleur" required>
                     <option value="" selected disabled>Sélectionnez une couleur</option>
-                    <option value="1">Rouge</option>
-                    <option value="2">Bleu</option>
-                    <option value="3">Vert</option>
+                    @foreach ($couleurs as $couleur)
+                        <option value="{{$couleur->id}}" style="color: {{$couleur->hex_couleur}}">{{$couleur->label}}</option>
+                    @endforeach
                 </select>
             </div>
         </div>

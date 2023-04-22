@@ -2,8 +2,8 @@
     <a href="{{ route('ajouter_meubles') }}">Ajouter un meuble</a>
     <a href="#">Utilisateurs</a>
     <a href="#">Commandes</a>
-    <a href="#">Catégorie</a>
-    <a href="#">Couleur</a>
+    <a href="{{ route('categorie') }}">Catégorie</a>
+    <a href="{{ route('couleur') }}">Couleur</a>
     <a href="#">Se déconnecter</a>
 </div>
 <div class="menuPhone" >

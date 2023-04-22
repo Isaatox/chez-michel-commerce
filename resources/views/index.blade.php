@@ -48,8 +48,8 @@
                             <div class="container item">
                                 @foreach ($couleurs as $couleur)
                                     <div>
-                                        <input type="checkbox" id="{{$couleur->name}}" name="{{$couleur->name}}">
-                                        <label for="{{$couleur->name}}" class="couleur {{$couleur->name}}"></label>
+                                        <input type="checkbox" id="{{$couleur->nom}}" name="{{$couleur->nom}}">
+                                        <label for="{{$couleur->nom}}" class="couleur {{$couleur->nom}}" style="background-color: {{$couleur->hex_couleur}}"></label>
                                     </div>
                                 @endforeach
                             </div>
@@ -95,8 +95,8 @@
                                 <ul>
                                     @foreach ($categories as $categorie)
                                         <li>
-                                            <input type="checkbox" id="{{$categorie->name}}" name="{{$categorie->name}}">
-                                            <label for="{{$categorie->name}}">{{$categorie->name}}</label>
+                                            <input type="checkbox" id="{{$categorie->nom}}" name="{{$categorie->nom}}">
+                                            <label for="{{$categorie->nom}}">{{$categorie->label}}</label>
                                         </li>
                                     @endforeach
                                 </ul>

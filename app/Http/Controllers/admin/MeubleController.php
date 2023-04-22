@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Categorie;
+use App\Models\Couleur;
 use App\Models\Meuble;
 use Illuminate\Http\Request;
 
@@ -21,6 +23,8 @@ class MeubleController extends Controller
 
     public function viewAjoutMeuble(Request $request)
     {
+        $categories = Categorie::all();
+        $couleurs = Couleur::all();
         $meubles = Meuble::all();
         $sortOrder = 'asc'; // Valeur par défaut
         if(request()->has('sort_order')){
@@ -30,7 +34,7 @@ class MeubleController extends Controller
         $meubles = Meuble::orderBy('nom', $sortOrder)->paginate(5);
 
 
-        return view('admin.meuble', compact('meubles', 'sortOrder'));
+        return view('admin.meuble', compact('meubles', 'sortOrder', 'categories', 'couleurs'));
 
     }
 
