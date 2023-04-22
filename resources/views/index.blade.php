@@ -2,7 +2,6 @@
 
 @section('content')
 <link rel="stylesheet" href="{{ url('css/accueil.css') }}">
-<script src="{{ url('js/accueil.js') }}"></script>
     <main>
         <div class="container">
             <p class="h3">Nos produits populaires</p>
@@ -205,6 +204,7 @@
             </div>
         </div>
     </main>
+<script src="{{ url('js/accueil.js') }}"></script>
 @endsection
 
 <a href='{{ url('/meubles/table') }}'>Table</a>
