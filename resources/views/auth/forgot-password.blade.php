@@ -1,40 +1,30 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Mot de passe oublier</title>
-    <link rel="stylesheet" href="css/inscription_connexion.css">
+  <meta charset="UTF-8">
+  <title>Mot de passe oublié</title>
+  <!-- Import Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 <body>
-    <div class="inscription_connexion">
-        <div class="formulaire">
-            <p>Vous avez oublié votre mot de passe ? pas de problème, on va vous envoyer un email de récupération ! </p>
-            <!-- Session Status -->
-            <x-auth-session-status class="mb-4" :status="session('status')" />
-
-            <!-- Validation Errors -->
-            <x-auth-validation-errors class="mb-4" :errors="$errors" />
-
-            <form method="POST" action="{{ route('password.email') }}">
-                @csrf
-
-                <!-- Email Address -->
-                <div id="element">
-                    <label for="email" :value="__('Email')" >Email
-                        <input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
-                    </label>
-                </div>
-
-                <div class="bouton">
-                    <button class="btn">{{ __('Envoyer email de récupération') }}</button>
-                </div>
-            </form>
-        </div>
+  <div class="container mt-5">
+    <div class="card mx-auto" style="max-width: 400px;">
+      <div class="card-body">
+        <h5 class="card-title">Mot de passe oublié</h5>
+        <form>
+          <div class="form-group">
+            <label for="email">Adresse email :</label>
+            <input type="email" class="form-control" id="email" required>
+          </div>
+          <button type="submit" class="btn btn-primary">Envoyer un email de récupération</button>
+        </form>
+        <a href="index.html" class="card-link">Retourner à la page d'accueil</a>
+      </div>
     </div>
+  </div>
+  <!-- Import Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
 </html>
-
-        
-
