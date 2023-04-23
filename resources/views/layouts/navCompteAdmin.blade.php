@@ -4,7 +4,7 @@
     <a href="#">Commandes</a>
     <a href="{{ route('categorie') }}">Catégorie</a>
     <a href="{{ route('couleur') }}">Couleur</a>
-    <a href="#">Se déconnecter</a>
+    <a href="{{ route('logout') }}">Se déconnecter</a>
 </div>
 <div class="menuPhone" >
     <a href="#"><i class="fa-solid fa-cart-shopping fa-lg"></i></a>

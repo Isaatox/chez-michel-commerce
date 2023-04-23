@@ -20,14 +20,14 @@
                             @csrf
                             <!-- Name -->
                             <div class="form-group">
-                                <label for="name" class="form-label">{{ __('Nom') }} :</label>
-                                <input id="name" type="text" name="name" class="form-control" value="{{ old('name') }}" required autofocus />
+                                <label for="prenom" class="form-label">{{ __('Prénom') }} :</label>
+                                <input id="prenom" type="text" name="prenom" class="form-control" value="{{ old('prenom') }}" required autofocus />
                             </div>
 
                             <!-- Prenom -->
                             <div class="form-group">
-                                <label for="prenom" class="form-label">{{ __('Prénom') }} :</label>
-                                <input id="prenom" type="text" name="nom" class="form-control" value="{{ old('nom') }}" required autofocus />
+                                <label for="name" class="form-label">{{ __('Nom') }} :</label>
+                                <input id="name" type="text" name="nom" class="form-control" value="{{ old('nom') }}" required autofocus />
                             </div>
 
                             <!-- Email Address -->

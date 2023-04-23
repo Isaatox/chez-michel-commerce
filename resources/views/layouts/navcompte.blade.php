@@ -5,8 +5,10 @@
     <a href="#">Mes cartes de paiement</a>
     @if(Auth::user()->role === "admin")
         <a href="#">Administration</a>
+    @else
+
     @endif
-    <a href="#">Se déconnecter</a>
+    <a href="{{ route('logout') }}">Se déconnecter</a>
 </div>
 <div class="menuPhone" >
     <a href="#"><i class="fa-solid fa-cart-shopping fa-lg"></i></a>
