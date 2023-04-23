@@ -18,7 +18,7 @@ class Meuble extends Migration
             $table->string('nom');
             $table->string('categorie');
             $table->string('couleur');
-            $table->string('description');
+            $table->longText('description');
             $table->string('stock');
             $table->timestamps();
             $table->float('prix', 6, 2);
