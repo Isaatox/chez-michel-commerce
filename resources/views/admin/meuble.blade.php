@@ -131,8 +131,6 @@
     @endif
     </div>
     </div>
-@endsection
-
-@section('scripts')
     <script src="{{ url('js/admin.js') }}"></script>
+
 @endsection

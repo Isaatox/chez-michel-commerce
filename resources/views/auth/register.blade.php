@@ -26,10 +26,10 @@
 
                             <!-- Prenom -->
                             <div class="form-group">
-                                <label for="prenom" class="form-label">{{ __('Entreprise') }} :</label>
-                                <input id="prenom" type="text" name="prenom" class="form-control" value="{{ old('prenom') }}" required autofocus />
+                                <label for="prenom" class="form-label">{{ __('Prénom') }} :</label>
+                                <input id="prenom" type="text" name="nom" class="form-control" value="{{ old('nom') }}" required autofocus />
                             </div>
-                        
+
                             <!-- Email Address -->
                             <div class="form-group">
                                 <label for="email" class="form-label">{{ __('Email') }} :</label>
@@ -51,34 +51,34 @@
                                     <label class="form-check-label" for="civilite_mme">Mme</label>
                                 </div>
                             </div>
-                            
+
                             <div class="form-group">
                                 <label for="adresse" :value="__('Adresse')">Adresse :</label><br>
                                 <input id="adresse" type="text" name="adresse" class="form-control" value="{{ old('adresse') }}" required autofocus />
                             </div>
-                            
+
                             <div class="form-group">
                                 <label for="ville" :value="__('Ville')">Ville :</label><br>
                                 <input id="ville" type="text" name="ville" class="form-control" value="{{ old('ville') }}" required autofocus />
                             </div>
-                            
+
                             <div class="form-group">
                                 <label for="code_postal" class="form-label">{{ __('Code Postal') }} :</label>
                                 <input id="code_postal" type="text" name="code_postal" class="form-control" value="{{ old('code_postal') }}" required autofocus />
                             </div>
-                        
+
                             <!-- Password -->
                             <div class="form-group">
                                 <label for="password" class="form-label">{{ __('Mot de passe') }} :</label>
                                 <input id="password" type="password" name="password" class="form-control" required autocomplete="new-password" />
                             </div>
-                        
+
                             <!-- Confirm Password -->
                             <div class="form-group">
                                 <label for="password_confirmation" class="form-label">{{ __('Confirmer votre mot de passe') }} :</label>
                                 <input id="password_confirmation" type="password" name="password_confirmation" class="form-control" required />
                             </div>
-                        
+
                             <div class="form-group text-center mt-4">
                                 <a href="{{ route('login') }}">{{ __('Déjà inscrit ?') }}</a><br>
                                 <button class="btn btn-primary">{{ __('Inscription') }}</button>

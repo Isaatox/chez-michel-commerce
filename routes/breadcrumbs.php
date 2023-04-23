@@ -11,6 +11,11 @@ Breadcrumbs::for('ajouter_meubles', function ($trail) {
     $trail->push('Ajouter un meuble', route('ajouter_meubles'));
 });
 
+Breadcrumbs::for('unMeuble', function ($trail) {
+    $trail->parent('ajouter_meubles');
+    $trail->push('Un meuble', route('ajouter_meubles'));
+});
+
 Breadcrumbs::for('categorie', function ($trail) {
     $trail->parent('admin');
     $trail->push('Categorie', route('categorie'));

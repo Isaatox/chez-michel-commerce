@@ -19,9 +19,9 @@
     <div class="columns-md w-100" style="padding: 15px">
 
     <div class="breadcrumbs">
-        {{ Breadcrumbs::render('ajouter_meubles') }}
+        {{ Breadcrumbs::render('unMeuble') }}
     </div>
-    <form action="{{ route('enregistrer_meuble') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('meuble.modifier', ['id' => $meuble->id]) }}" method="POST" enctype="multipart/form-data">
         @csrf
 
         <div class="mb-3">
@@ -40,7 +40,7 @@
                 <select class="form-select" name="categorie" id="categorie" required>
                     <option value="" selected disabled>Sélectionnez une catégorie</option>
                     @foreach ($categories as $categorie)
-                        <option value="{{ $categorie->id }}" @if($meuble->categorie_id == $categorie->id) selected @endif>{{ $categorie->label }}</option>
+                        <option value="{{ $categorie->id }}" @if($meuble->categorie == $categorie->id) selected @endif>{{ $categorie->label }}</option>
                     @endforeach
                 </select>
             </div>
@@ -60,7 +60,7 @@
                 <select class="form-select" name="couleur" id="couleur" required>
                     <option value="" selected disabled>Sélectionnez une couleur</option>
                     @foreach ($couleurs as $couleur)
-                        <option value="{{ $couleur->id }}" style="color: {{ $couleur->hex_couleur }}" @if($meuble->couleur_id == $couleur->id) selected @endif>{{ $couleur->label }}</option>
+                        <option value="{{ $couleur->id }}" style="color: {{ $couleur->hex_couleur }}" @if($meuble->couleur == $couleur->id) selected @endif>{{ $couleur->label }}</option>
                     @endforeach
                 </select>
             </div>

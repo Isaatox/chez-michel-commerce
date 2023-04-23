@@ -42,7 +42,7 @@ class MeubleController extends Controller
     {
         $images = array();
         foreach($request->file('images') as $image) {
-            $fileName = $request->nom . time() . '.' . $image->getClientOriginalExtension();
+            $fileName = uniqid() . '_' . $image->getClientOriginalName();
             $image->move(public_path('public'), $fileName); // utilise public_path() pour sauvegarder les images dans le dossier public
             array_push($images, $fileName);
         }
@@ -74,9 +74,21 @@ class MeubleController extends Controller
     public function modifierMeuble(Request $request, $id)
     {
         $meuble = Meuble::findOrFail($id);
+
+        // Supprime les anciennes images
+        if ($meuble->photo1) {
+            unlink(public_path('public/' . $meuble->photo1));
+        }
+        if ($meuble->photo2) {
+            unlink(public_path('public/' . $meuble->photo2));
+        }
+        if ($meuble->photo3) {
+            unlink(public_path('public/' . $meuble->photo3));
+        }
+
         $images = array();
         foreach($request->file('images') as $image) {
-            $fileName = $request->nom . time() . '.' . $image->getClientOriginalExtension();
+            $fileName = uniqid() . '_' . $image->getClientOriginalName();
             $image->move(public_path('public'), $fileName); // utilise public_path() pour sauvegarder les images dans le dossier public
             array_push($images, $fileName);
         }
@@ -94,6 +106,7 @@ class MeubleController extends Controller
 
         return redirect()->route('meuble.afficher', ['id' => $meuble->id])->with('success', 'Le meuble a été modifié avec succès.');
     }
+
 
     public function supprimerMeuble($id)
     {
