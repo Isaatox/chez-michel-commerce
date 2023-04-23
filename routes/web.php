@@ -67,7 +67,10 @@ Route::delete('/admin/meuble/{id}', [admin\MeubleController::class, 'supprimerMe
 
 /*! Compte */
 Route::get('/moncompte/mesCommandes', [MesCommandes::class, 'index'])->name('mesCommandes');
-Route::get('/moncompte/mesinformations', [MesInformations::class, 'index'])->name('MesInformations');
+
+Route::get('/moncompte/mesInformations', [MesInformations::class, 'index'])->name('mesInformations');
+Route::post('/moncompte/mesInformations', [MesInformations::class, 'modifier'])->name('mesInformations.modifier');
+
 Route::get('/moncompte/motdepasse', [MotDePasse::class, 'index'])->name('MotDePasse');
 Route::get('/moncompte/mescartesdepaiements', [MesCartesDePaiement::class, 'index'])->name('MesCartesDePaiement');
 

@@ -8,12 +8,30 @@ use App\Http\Controllers\Controller;
 
 class MesCommandes extends Controller
 {
-    public function index()
+      public function index()
     {
-        $commande = Mescommandes::where('id_user', \Auth::user()->id)->get();
-        return view('compte.mesCommandes', [
-            'commandes' => $commande
+        // Récupérer l'utilisateur courant
+        $user = auth()->user();
+
+        // Récupérer les commandes de l'utilisateur courant
+        $commandes = $user->commandes;
+
+        // Récupérer les données nécessaires pour chaque commande
+        $commandesDetails = [];
+        foreach ($commandes as $commande) {
+            $commandeDetails = [
+                'numero' => $commande->id,
+                'prix' => $commande->prix,
+                'statut' => $commande->statut,
+                'nom' => $commande->nom,
+                'adresse' => $commande->adresse,
+                'ville' => $commande->ville,
+            ];
+            array_push($commandesDetails, $commandeDetails);
+        }
+
+        return view('commandes', [
+            'commandesDetails' => $commandesDetails
         ]);
     }
-    
 }
