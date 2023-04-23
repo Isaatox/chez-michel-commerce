@@ -37,6 +37,8 @@ Route::get('/compte', function () {
 //    return view('Compte');
 //});
 
+Route::get('/meubles/{id}',[Controller::class, 'getMeuble'])->name('voir.meuble');
+
 /*! Admin */
 Route::get('/admin',[admin\MeubleController::class,'index'])->middleware('admin')->name('indexAdmin');
 
