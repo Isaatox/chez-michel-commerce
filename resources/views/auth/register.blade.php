@@ -37,7 +37,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="civilite" :value="__('Civilité')">Civilité :</label><br>
+                                <label for="civilite" class="form-label">{{ __('Civilité') }} :</label><br>
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio" name="civilite" id="civilite_neutre" value="" required>
                                     <label class="form-check-label" for="civilite_neutre">Neutre</label>
@@ -51,7 +51,6 @@
                                     <label class="form-check-label" for="civilite_mme">Mme</label>
                                 </div>
                             </div>
-
                             <div class="form-group">
                                 <label for="adresse" :value="__('Adresse')">Adresse :</label><br>
                                 <input id="adresse" type="text" name="adresse" class="form-control" value="{{ old('adresse') }}" required autofocus />
