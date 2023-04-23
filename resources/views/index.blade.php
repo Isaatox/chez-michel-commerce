@@ -17,13 +17,13 @@
                                 <div class="price-input">
                                     <div class="field">
                                         <span>Min</span>
-                                        <input type="number" class="input-min" name="min_prix" value="2500">
+                                        <input type="number" class="input-min" name="min_prix" value="0">
                                         <span>€</span>
                                     </div>
                                     <div class="separator">-</div>
                                     <div class="field">
                                         <span>Max</span>
-                                        <input type="number" class="input-max" name="max_prix" value="7500">
+                                        <input type="number" class="input-max" name="max_prix" value="10000">
                                         <span>€</span>
                                     </div>
                                 </div>
@@ -31,9 +31,9 @@
                                     <div class="progress"></div>
                                 </div>
                                 <div class="range-input">
-                                    <input type="range" class="range-min" min="0" max="10000" value="2500"
+                                    <input type="range" class="range-min" min="0" max="10000" value="0"
                                         step="100">
-                                    <input type="range" class="range-max" min="0" max="10000" value="7500"
+                                    <input type="range" class="range-max" min="0" max="10000" value="10000"
                                         step="100">
                                 </div>
                             </div>

@@ -76,8 +76,8 @@ class Controller extends BaseController
                     break;
             }
         }
-        $query = $meubles->toSql(); // obtenir la requête SQL
-dump($query);
+        //$query = $meubles->toSql(); // obtenir la requête SQL
+        //dump($query);
         $meubles = $meubles->get();
 
         return view('index', compact('meubles', 'couleurs', 'categories'));
