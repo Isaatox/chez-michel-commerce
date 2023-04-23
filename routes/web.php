@@ -22,6 +22,7 @@ use App\Http\Controllers\mon_compte\MesCartesDePaiement;
 */
 
 Route::get('/', [Controller::class, 'index'])->name('index');
+Route::get('/filtres', [Controller::class, 'filtresMeubles'])->name('meubles.filtres');
 
 
 //Route::get('/dashboard', function () {
