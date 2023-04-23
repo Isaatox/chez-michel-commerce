@@ -25,4 +25,9 @@ class Meuble extends Model
     protected $casts = [
         'date_ajout' => 'datetime',
     ];
+
+    public function couleur()
+    {
+        return $this->belongsTo(Couleur::class);
+    }
 }

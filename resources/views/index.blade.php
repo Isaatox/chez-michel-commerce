@@ -6,23 +6,24 @@
         <div class="container">
             <p class="h3">Nos produits populaires</p>
             <hr>
+            <form action="{{route('meubles.filtres')}}" method="get">
             <div class="filtres">
                 <div class="filtre">Prix
                     <div class="dropdown">
-                        <button onclick="dropdownPrix()" class="dropbtn">Sélectionner Prix<i
+                        <button type="button" onclick="dropdownPrix()" class="dropbtn">Sélectionner Prix<i
                                 class="fa-solid fa-caret-down mt-1"></i></button>
                         <div id="dropdownPrix" class="dropdown-content">
                             <div class="container">
                                 <div class="price-input">
                                     <div class="field">
                                         <span>Min</span>
-                                        <input type="number" class="input-min" value="2500">
+                                        <input type="number" class="input-min" name="min_prix" value="0">
                                         <span>€</span>
                                     </div>
                                     <div class="separator">-</div>
                                     <div class="field">
                                         <span>Max</span>
-                                        <input type="number" class="input-max" value="7500">
+                                        <input type="number" class="input-max" name="max_prix" value="10000">
                                         <span>€</span>
                                     </div>
                                 </div>
@@ -30,9 +31,9 @@
                                     <div class="progress"></div>
                                 </div>
                                 <div class="range-input">
-                                    <input type="range" class="range-min" min="0" max="10000" value="2500"
+                                    <input type="range" class="range-min" min="0" max="10000" value="0"
                                         step="100">
-                                    <input type="range" class="range-max" min="0" max="10000" value="7500"
+                                    <input type="range" class="range-max" min="0" max="10000" value="10000"
                                         step="100">
                                 </div>
                             </div>
@@ -42,13 +43,13 @@
 
                 <div class="filtre">Couleur
                     <div class="dropdown">
-                        <button onclick="dropdownCouleur()" class="dropbtn">Sélectionner la couleur<i
+                        <button type="button" onclick="dropdownCouleur()" class="dropbtn">Sélectionner la couleur<i
                                 class="fa-solid fa-caret-down mt-1"></i></button>
                         <div id="dropdownCouleur" class="dropdown-content">
                             <div class="container item">
                                 @foreach ($couleurs as $couleur)
                                     <div>
-                                        <input type="checkbox" id="{{$couleur->nom}}" name="{{$couleur->nom}}">
+                                        <input type="checkbox" id="{{$couleur->nom}}" name="couleur[]" value="{{$couleur->id}}">
                                         <label for="{{$couleur->nom}}" class="couleur {{$couleur->nom}}" style="background-color: {{$couleur->hex_couleur}}"></label>
                                     </div>
                                 @endforeach
@@ -59,7 +60,7 @@
 
                 <div class="filtre">Trier
                     <div class="dropdown">
-                        <button onclick="dropdownOrdre()" class="dropbtn">Trier<i
+                        <button type="button" onclick="dropdownOrdre()" class="dropbtn">Trier<i
                                 class="fa-solid fa-caret-down mt-1"></i></button>
                         <div id="dropdownOrdre" class="dropdown-content">
                             <div class="container">
@@ -88,14 +89,14 @@
 
                 <div class="filtre">Catégorie
                     <div class="dropdown">
-                        <button onclick="dropdownCategorie()" class="dropbtn">Sélectionner la catégorie<i
+                        <button type="button" onclick="dropdownCategorie()" class="dropbtn">Sélectionner la catégorie<i
                                 class="fa-solid fa-caret-down mt-1"></i></button>
                         <div id="dropdownCategorie" class="dropdown-content">
                             <div class="container">
                                 <ul>
                                     @foreach ($categories as $categorie)
                                         <li>
-                                            <input type="checkbox" id="{{$categorie->nom}}" name="{{$categorie->nom}}">
+                                            <input type="checkbox" id="{{$categorie->nom}}" name="categorie[]" value="{{$categorie->id}}">
                                             <label for="{{$categorie->nom}}">{{$categorie->label}}</label>
                                         </li>
                                     @endforeach
@@ -104,8 +105,9 @@
                         </div>
                     </div>
                 </div>
-                <button class="btn btn-primary">Rechercher</button>
+                <button type="submit" class="btn btn-primary">Rechercher</button>
             </div>
+            </form>
         </div>
         <div class="cartes">
             <div class="row gy-5">
