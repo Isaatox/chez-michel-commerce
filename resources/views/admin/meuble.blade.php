@@ -80,7 +80,7 @@
     </form>
         <div class="container"> <!-- ou container-fluid -->
             <hr>
-        <h4>Tous les meubles :</h4>.
+        <h4>Tous les meubles :</h4>
 
     @if(count($meubles) > 0)
             <table class="table table-striped">
@@ -89,7 +89,6 @@
                     <th><a href="?sort_order={{ $sortOrder == 'asc' ? 'desc' : 'asc' }}">Nom</a></th>
                     <th>Description</th>
                     <th><a href="?sort_order={{ $sortOrder == 'asc' ? 'desc' : 'asc' }}">Prix</a></th>
-
                     <th>Actions</th>
                 </tr>
                 </thead>
@@ -100,10 +99,8 @@
                         <td>{{ $meuble->description }}</td>
                         <td>{{ $meuble->prix }}</td>
                         <td>
-                            <a href="" class="btn btn-warning">Modifier</a>
-                            <a href="" class="btn btn-danger">Supprimer</a>
-{{--                            <a href="{{ route('modifier_meuble', ['id' => $meuble->id]) }}" class="btn btn-warning">Modifier</a>--}}
-{{--                            <a href="{{ route('supprimer_meuble', ['id' => $meuble->id]) }}" class="btn btn-danger">Supprimer</a>--}}
+                            <a href="{{route('meuble.modifier', ['id' => $meuble->id])}}" class="btn btn-warning">Modifier</a>
+                            <a href="{{route('meuble.supprimer', ['id' => $meuble->id])}}" class="btn btn-danger">Supprimer</a>
                         </td>
                     </tr>
                 @endforeach

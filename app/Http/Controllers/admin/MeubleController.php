@@ -89,7 +89,7 @@ class MeubleController extends Controller
         $images = array();
         foreach($request->file('images') as $image) {
             $fileName = uniqid() . '_' . $image->getClientOriginalName();
-            $image->move(public_path('public'), $fileName); // utilise public_path() pour sauvegarder les images dans le dossier public
+            $image->move(public_path('public'), $fileName);
             array_push($images, $fileName);
         }
 
