@@ -8,14 +8,14 @@
     <script src="{{ url('js/bootstrap.js') }}"></script>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@3008display-swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/navcompte.css"/>
+    <link rel="stylesheet" href="{{ url('css/navcompte.css') }}"/>
     <script src="https://kit.fontawesome.com/b78998cfc3.js" crossorigin="anonymous"></script>
     <title>Chez Michel</title>
 </head>
 <body>
 @include('layouts.header')
 <div class="main">
-    @include('layouts.navcompte')
+    @include('layouts.navCompte')
     @yield('content')
 </div>
 @include('layouts.footer')

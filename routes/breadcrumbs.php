@@ -2,6 +2,8 @@
 
 use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
 
+
+//Route pour compte en admin
 Breadcrumbs::for('admin', function ($trail) {
     $trail->push('Admin', route('index'));
 });
@@ -36,3 +38,10 @@ Breadcrumbs::for('uneCategorie', function ($trail) {
     $trail->push('La categorie', route('categorie'));
 });
 
+//Route pour compte
+
+Breadcrumbs::for('commandes', function ($trail) {
+    //CHanger la route en compte après
+    $trail->parent('admin');
+    $trail->push('MesCommandes', route('mesCommandes'));
+});

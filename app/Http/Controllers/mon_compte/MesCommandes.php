@@ -10,9 +10,10 @@ class MesCommandes extends Controller
 {
     public function index()
     {
-        $commandes = Commande::where('utilisateur_commande', Auth::user()->id)->get();
-        return view('MonCompte.MesCommandes', [
-            'commandes' => $commandes,
+        $commande = Mescommandes::where('id_user', \Auth::user()->id)->get();
+        return view('compte.mesCommandes', [
+            'commandes' => $commande
         ]);
     }
+    
 }
