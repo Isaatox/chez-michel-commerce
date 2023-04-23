@@ -3,11 +3,6 @@
     <a href="#">Mes informations</a>
     <a href="#">Mot de passe</a>
     <a href="#">Mes cartes de paiement</a>
-    @if(Auth::user()->role === "admin")
-        <a href="{{route('indexAdmin')}}">Administration</a>
-    @else
-
-    @endif
     <a href="{{ route('logout') }}">Se déconnecter</a>
 </div>
 <div class="menuPhone" >

@@ -30,7 +30,7 @@ Route::get('/', [Controller::class, 'index'])->name('index');
 
 Route::get('/compte', function () {
     return view('Compte');
-})->middleware(['auth'])->name('commpte');
+})->middleware(['auth'])->name('compte');
 
 //Route::get('/meubles/{categorie}', [MeublesParCategorieController::class, 'index'])->name('MeublesParCategorie');
 //Route::get('/Meuble', function () {
@@ -66,10 +66,10 @@ Route::delete('/admin/meuble/{id}', [admin\MeubleController::class, 'supprimerMe
 //Route::get('/meubles/{categorie}', [MeublesParCategorieController::class, 'index'])->name('MeublesParCategorie');
 
 /*! Compte */
-Route::get('/MonCompte/MesCommandes', [MesCommandes::class, 'index'])->name('MesCommandes');
-Route::get('/MonCompte/MesInformations', [MesInformations::class, 'index'])->name('MesInformations');
-Route::get('/MonCompte/MotDepasse', [MotDePasse::class, 'index'])->name('MotDePasse');
-Route::get('/MonCompte/MesCartesDePaiements', [MesCartesDePaiement::class, 'index'])->name('MesCartesDePaiement');
+Route::get('/moncompte/mesCommandes', [MesCommandes::class, 'index'])->name('mesCommandes');
+Route::get('/moncompte/mesinformations', [MesInformations::class, 'index'])->name('MesInformations');
+Route::get('/moncompte/motdepasse', [MotDePasse::class, 'index'])->name('MotDePasse');
+Route::get('/moncompte/mescartesdepaiements', [MesCartesDePaiement::class, 'index'])->name('MesCartesDePaiement');
 
 
 

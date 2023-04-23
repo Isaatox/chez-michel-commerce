@@ -20,8 +20,8 @@
                             @csrf
                             <!-- Name -->
                             <div class="form-group">
-                                <label for="prenom" class="form-label">{{ __('Prénom') }} :</label>
-                                <input id="prenom" type="text" name="prenom" class="form-control" value="{{ old('prenom') }}" required autofocus />
+                                <label for="nom" class="form-label">{{ __('Nom') }} :</label>
+                                <input id="nom" type="text" name="nom" class="form-control" value="{{ old('nom') }}" required autofocus />
                             </div>
 
                             <!-- Prenom -->
