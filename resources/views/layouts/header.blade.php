@@ -1,8 +1,8 @@
 <link rel="stylesheet" href="{{ url('css/nav.css') }}">
 
 <header>
-    <a href="#" class="logo">
-        <img src="image/chez_michel.png" alt="">
+    <a href="{{route('index')}}" class="logo">
+        <img src="{{ asset('image/chez_michel.png') }}" alt="">
         Chez Michel
     </a>
     <div class="search">

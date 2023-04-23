@@ -24,8 +24,8 @@ class Meuble extends Migration
             $table->float('prix', 6, 2);
             $table->float('note', 1, 1)->default('0');
             $table->string('photo1');
-            $table->string('photo2');
-            $table->string('photo3');
+            $table->string('photo2')->nullable();
+            $table->string('photo3')->nullable();
         });
     }
 
