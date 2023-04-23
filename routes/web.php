@@ -29,46 +29,43 @@ Route::get('/mon_compte/MesCommandes', [MesCommandes::class, 'index'])->name('Me
 Route::get('/mon_compte/MesInformations', [MesInformations::class, 'index'])->name('MesInformations');
 
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+//Route::get('/dashboard', function () {
+//    return view('dashboard');
+//})->middleware(['auth'])->name('dashboard');
 
 Route::get('/compte', function () {
     return view('Compte');
-});
+})->middleware(['auth'])->name('commpte');
 
-Route::get('/meubles/{categorie}', [MeublesParCategorieController::class, 'index'])->name('MeublesParCategorie');
-Route::get('/Meuble', function () {
-    return view('Compte');
-});
-
-
-
+//Route::get('/meubles/{categorie}', [MeublesParCategorieController::class, 'index'])->name('MeublesParCategorie');
+//Route::get('/Meuble', function () {
+//    return view('Compte');
+//});
 
 /*! Admin */
-Route::get('/admin',[admin\MeubleController::class,'index'])->name('index');
+Route::get('/admin',[admin\MeubleController::class,'index'])->middleware('admin')->name('indexAdmin');
 
-Route::get('/admin/categorie',[admin\MeubleController::class,'viewCategorie'])->name('categorie');
-Route::post('/admin/ajouter_categorie',[CategorieController::class,'ajouterCategorie'])->name('ajouter_categorie');
+Route::get('/admin/categorie',[admin\MeubleController::class,'viewCategorie'])->middleware('admin')->name('categorie');
+Route::post('/admin/ajouter_categorie',[CategorieController::class,'ajouterCategorie'])->middleware('admin')->name('ajouter_categorie');
 
-Route::get('/admin/categorie/{id}', [CategorieController::class, 'getCategorie'])->name('categorie.afficher');
-Route::post('/admin/categorie/{id}', [CategorieController::class, 'modifierCategorie'])->name('categorie.modifier');
-Route::delete('/admin/categorie/{id}', [CategorieController::class, 'supprimerCategorie'])->name('categorie.supprimer');
+Route::get('/admin/categorie/{id}', [CategorieController::class, 'getCategorie'])->middleware('admin')->name('categorie.afficher');
+Route::post('/admin/categorie/{id}', [CategorieController::class, 'modifierCategorie'])->middleware('admin')->name('categorie.modifier');
+Route::delete('/admin/categorie/{id}', [CategorieController::class, 'supprimerCategorie'])->middleware('admin')->name('categorie.supprimer');
 
 
-Route::get('/admin/couleur',[admin\MeubleController::class,'viewCouleur'])->name('couleur');
-Route::post('/admin/ajouter_couleur',[CouleurController::class,'ajouterCouleur'])->name('ajouter_couleur');
+Route::get('/admin/couleur',[admin\MeubleController::class,'viewCouleur'])->middleware('admin')->name('couleur');
+Route::post('/admin/ajouter_couleur',[CouleurController::class,'ajouterCouleur'])->middleware('admin')->name('ajouter_couleur');
 
-Route::get('/admin/couleur/{id}', [CouleurController::class, 'getCouleur'])->name('couleur.afficher');
-Route::put('/admin/couleur/{id}', [CouleurController::class, 'modifierCouleur'])->name('couleur.modifier');
-Route::delete('/admin/couleur/{id}', [CouleurController::class, 'supprimerCouleur'])->name('couleur.supprimer');
+Route::get('/admin/couleur/{id}', [CouleurController::class, 'getCouleur'])->middleware('admin')->name('couleur.afficher');
+Route::put('/admin/couleur/{id}', [CouleurController::class, 'modifierCouleur'])->middleware('admin')->name('couleur.modifier');
+Route::delete('/admin/couleur/{id}', [CouleurController::class, 'supprimerCouleur'])->middleware('admin')->name('couleur.supprimer');
 
-Route::get('/admin/ajouter_meubles',[admin\MeubleController::class,'viewAjoutMeuble'])->name('ajouter_meubles');
-Route::post('/admin/enregistrer_meuble',[admin\MeubleController::class,'enregistrer_meuble'])->name('enregistrer_meuble');
+Route::get('/admin/ajouter_meubles',[admin\MeubleController::class,'viewAjoutMeuble'])->middleware('admin')->name('ajouter_meubles');
+Route::post('/admin/enregistrer_meuble',[admin\MeubleController::class,'enregistrer_meuble'])->middleware('admin')->name('enregistrer_meuble');
 
-Route::get('/admin/meuble/{id}', [admin\MeubleController::class, 'getMeuble'])->name('meuble.afficher');
-Route::post('/admin/meuble/{id}', [admin\MeubleController::class, 'modifierMeuble'])->name('meuble.modifier');
-Route::delete('/admin/meuble/{id}', [admin\MeubleController::class, 'supprimerMeuble'])->name('meuble.supprimer');
+Route::get('/admin/meuble/{id}', [admin\MeubleController::class, 'getMeuble'])->middleware('admin')->name('meuble.afficher');
+Route::post('/admin/meuble/{id}', [admin\MeubleController::class, 'modifierMeuble'])->middleware('admin')->name('meuble.modifier');
+Route::delete('/admin/meuble/{id}', [admin\MeubleController::class, 'supprimerMeuble'])->middleware('admin')->name('meuble.supprimer');
 
 
 
