@@ -9,9 +9,8 @@ class MesCartesDePaiement extends Controller
 {
     public function index()
     {
-        $cartes = CarteBancaire::where('id_user', \Auth::user()->id)->get();
-        return view('moncompte.MesCartesDePaiement', [
-            'cartes' => $cartes
-        ]);
+        $user = auth()->user();
+
+        return view('compte.mesCartesPaiement', compact('user'));
     }
 }

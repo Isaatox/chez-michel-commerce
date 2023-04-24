@@ -74,9 +74,11 @@ Route::get('/moncompte/mesCommandes', [MesCommandes::class, 'index'])->name('mes
 Route::get('/moncompte/mesInformations', [MesInformations::class, 'index'])->name('mesInformations');
 Route::post('/moncompte/mesInformations', [MesInformations::class, 'modifier'])->name('mesInformations.modifier');
 
-Route::get('/moncompte/motdepasse', [MotDePasse::class, 'index'])->name('MotDePasse');
+Route::get('/moncompte/motdepasse', [MesInformations::class, 'index2'])->name('mesInformations.MotDePasse');
+Route::post('/moncompte/motdepasse', [MesInformations::class, 'modifierMotDePasse'])->name('mesInformations.modifierMotDePasse');
+
 Route::get('/moncompte/mescartesdepaiements', [MesCartesDePaiement::class, 'index'])->name('MesCartesDePaiement');
 
-
+Route::post('/logout', function () { auth()->logout(); return redirect('/'); })->name('logout');
 
 require __DIR__.'/auth.php';

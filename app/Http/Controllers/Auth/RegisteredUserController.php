@@ -32,31 +32,33 @@ class RegisteredUserController extends Controller
      * @throws \Illuminate\Validation\ValidationException
      */
     public function store(Request $request)
-    {
-        $request->validate([
-            'prenom' => ['required', 'string', 'max:255'],
-            'nom' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'adresse' => ['required', 'string', 'max:255'],
-            'ville' => ['required', 'string', 'max:255'],
-            'code_postal' => ['required', 'string', 'max:10'],
-        ]);
+{
+    $request->validate([
+        'civilite' => ['required', 'in:Neutre,M,Mme'],
+        'prenom' => ['required', 'string', 'max:255'],
+        'nom' => ['required', 'string', 'max:255'],
+        'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+        'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        'adresse' => ['required', 'string', 'max:255'],
+        'ville' => ['required', 'string', 'max:255'],
+        'code_postal' => ['required', 'string', 'max:10'],
+    ]);
 
-        $user = User::create([
-            'prenom' => $request->prenom,
-            'nom' => $request->nom,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'adresse' => $request->adresse,
-            'ville' => $request->ville,
-            'code_postal' => $request->code_postal,
-        ]);
+    $user = User::create([
+        'civilite' => $request->civilite,
+        'prenom' => $request->prenom,
+        'nom' => $request->nom,
+        'email' => $request->email,
+        'password' => Hash::make($request->password),
+        'adresse' => $request->adresse,
+        'ville' => $request->ville,
+        'code_postal' => $request->code_postal,
+    ]);
 
-        event(new Registered($user));
+    event(new Registered($user));
 
-        Auth::login($user);
+    Auth::login($user);
 
-        return redirect(RouteServiceProvider::HOME);
-    }
+    return redirect(RouteServiceProvider::HOME);
+}
 }
