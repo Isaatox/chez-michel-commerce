@@ -33,7 +33,7 @@
                             <label for="civilite" class="col-sm-4 col-form-label">{{ __('Civilité') }} :</label>
                             <div class="col-sm-8">
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="civilite" id="civilite_neutre" value="" required {{ $user->civilite == 'Neutre' ? 'checked' : '' }}>
+                                    <input class="form-check-input" type="radio" name="civilite" id="civilite_neutre" value="Neutre" required {{ $user->civilite == 'Neutre' ? 'checked' : '' }}>
                                     <label class="form-check-label" for="civilite_neutre">Neutre</label>
                                 </div>
                                 <div class="form-check form-check-inline">
@@ -55,16 +55,16 @@
                         </div>
                         <br>
                         <div class="form-group row">
-                            <label for="ville" class="col-sm-4 col-form-label">{{ __('ville') }} :</label>
+                            <label for="ville" class="col-sm-4 col-form-label">{{ __('Ville') }} :</label>
                             <div class="col-sm-8">
-                                <input id="ville" type="text" name="ville" class="form-control" value="{{ old('ville') }}" required autofocus />
+                                <input id="ville" type="text" name="ville" class="form-control" value="{{ $user->ville }}" required autofocus />
                             </div>
                         </div>
                         <br>
                         <div class="form-group row">
-                            <label for="code_postal" class="col-sm-4 col-form-label">{{ __('Code Postal') }} :</label>
+                            <label for="code_postal" class="col-sm-4 col-form-label">{{ __('Code_Postal') }} :</label>
                             <div class="col-sm-8">
-                                <input id="code_postal" type="text" name="code_postal" class="form-control" value="{{ old('code_postal') }}" required autofocus />
+                                <input id="code_postal" type="text" name="code_postal" class="form-control" value="{{ $user->code_postal }}" required autofocus />
                             </div>
                         </div>
                         <br>
