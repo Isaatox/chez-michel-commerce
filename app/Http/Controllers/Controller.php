@@ -40,7 +40,7 @@ class Controller extends BaseController
     {
         $categories = Categorie::all();
         $couleurs = Couleur::all();
-        $meubles = Meuble::query();
+        $meubles = Meuble::query()->with('avis');
 
         if (request()->has('couleur')) {
             $couleursID = request()->couleur;
@@ -72,7 +72,10 @@ class Controller extends BaseController
                     $meubles->orderBy('nom', 'asc');
                     break;
                 case 'noteClient':
-                    $meubles->orderBy('note_client', 'desc');
+                    $meubles->leftJoin('avis_meubles', 'meubles.id', '=', 'avis_meubles.id_meuble')
+                        ->selectRaw('meubles.*, AVG(avis_meubles.note) as moyenne_notes')
+                        ->groupBy('meubles.id')
+                        ->orderBy('moyenne_notes', 'desc');
                     break;
                 default:
                     break;
