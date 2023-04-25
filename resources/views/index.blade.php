@@ -129,12 +129,15 @@
                                 </div>
                                 <div class="card-footer d-flex align-items-center space-between">
                                     <div class="rating">
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star"></span>
-                                        <p>(15)</p>
+                                        @php($moyenne = round($meuble->avis->avg('note')))
+                                        @for ($i = 1; $i <= 5; $i++)
+                                            @if ($i <= $moyenne)
+                                                <span class="fa fa-star checked"></span>
+                                            @else
+                                                <span class="fa fa-star"></span>
+                                            @endif
+                                        @endfor
+                                        <p>({{ $meuble->avis->count() }})</p>
                                     </div>
                                     <a href="{{ route('voir.meuble', ['id' => $meuble->id]) }}" class="btn btn-primary d-flex align-items-center justify-content-center">Voir plus</a>
                                 </div>

@@ -26,6 +26,11 @@ class Meuble extends Model
         'date_ajout' => 'datetime',
     ];
 
+    public function avis()
+    {
+        return $this->hasMany(AvisMeubles::class, 'id_meuble');
+    }
+
     public function couleur()
     {
         return $this->belongsTo(Couleur::class);

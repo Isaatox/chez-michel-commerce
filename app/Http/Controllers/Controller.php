@@ -30,8 +30,10 @@ class Controller extends BaseController
     {
         $categories = Categorie::all();
         $couleurs = Couleur::all();
-        $meuble = Meuble::findOrFail($id);
-        return view('Meuble', compact('meuble','couleurs','categories'));
+        $meuble = Meuble::with(['avis' => function ($query) {
+            $query->with('utilisateur')->latest();
+        }])->findOrFail($id);
+        return view('Meuble', compact('meuble', 'couleurs', 'categories'));
     }
 
     public function filtresMeubles()
