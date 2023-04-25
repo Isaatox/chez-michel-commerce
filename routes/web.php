@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\admin;
+use App\Http\Controllers\AvisMeublesController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\CouleurController;
@@ -39,6 +40,7 @@ Route::get('/compte', function () {
 //});
 
 Route::get('/meubles/{id}',[Controller::class, 'getMeuble'])->name('voir.meuble');
+Route::post('/meubles/ajouterAvis', [AvisMeublesController::class, 'ajouterAvis'])->name('avis-meuble.ajouterAvis');
 
 /*! Admin */
 Route::get('/admin',[admin\MeubleController::class,'index'])->middleware('admin')->name('indexAdmin');

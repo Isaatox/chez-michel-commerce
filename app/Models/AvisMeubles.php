@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class AvisMeuble extends Model
+class AvisMeubles extends Model
 {
     use HasFactory;
 
@@ -24,4 +24,9 @@ class AvisMeuble extends Model
     protected $fillable = [
         'id_utilisateur', 'id_meuble', 'note', 'commentaire'
     ];
+
+    public function utilisateur()
+    {
+        return $this->belongsTo(User::class, 'id_utilisateur');
+    }
 }
