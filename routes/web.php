@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\admin;
-use App\Http\Controllers\AvisMeublesController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\CouleurController;
@@ -40,7 +39,6 @@ Route::get('/compte', function () {
 //});
 
 Route::get('/meubles/{id}',[Controller::class, 'getMeuble'])->name('voir.meuble');
-Route::post('/meubles/ajouterAvis', [AvisMeublesController::class, 'ajouterAvis'])->name('avis-meuble.ajouterAvis');
 
 /*! Admin */
 Route::get('/admin',[admin\MeubleController::class,'index'])->middleware('admin')->name('indexAdmin');
@@ -71,19 +69,19 @@ Route::delete('/admin/meuble/{id}', [admin\MeubleController::class, 'supprimerMe
 //Route::get('/meubles/{categorie}', [MeublesParCategorieController::class, 'index'])->name('MeublesParCategorie');
 
 /*! Compte */
-Route::get('/moncompte/mesCommandes', [MesCommandes::class, 'getcommande'])->middleware(['auth'])->name('mesCommandes');
+Route::get('/moncompte/mesCommandes', [MesCommandes::class, 'getcommande'])->middleware(['auth'])->name('mescommandes');
 
-Route::get('/moncompte/mesInformations', [MesInformations::class, 'getinformation'])->middleware(['auth'])->name('mesInformations');
-Route::post('/moncompte/mesInformations', [MesInformations::class, 'information.modifier'])->middleware(['auth'])->name('mesInformations.modifier');
+Route::get('/moncompte/mesinformations', [MesInformations::class, 'getinformation'])->middleware(['auth'])->name('mesInformations');
+Route::post('/moncompte/mesinformations', [MesInformations::class, 'informationmodifier'])->middleware(['auth'])->name('mesinformations.modifier');
 
-Route::get('/moncompte/motdepasse', [MesInformations::class, 'getmotdepasse'])->middleware(['auth'])->name('mesInformations.MotDePasse');
-Route::post('/moncompte/motdepasse', [MesInformations::class, 'modifiermotdeaasse'])->middleware(['auth'])->name('mesInformations.modifierMotDePasse');
+Route::get('/moncompte/motdepasse', [MesInformations::class, 'getmotdepasse'])->middleware(['auth'])->name('motedepasse');
+Route::post('/moncompte/motdepasse', [MesInformations::class, 'modifiermotdepasse'])->middleware(['auth'])->name('motdepasse.modifier');
 
-Route::get('/moncompte/mescartesdepaiements', [MesCartesDePaiement::class, 'getcartepaiement'])->middleware(['auth'])->name('MesCartesDePaiement');
-Route::post('/moncompte/mescartesdepaiements', [MesCartesDePaiement::class, 'modifiercartepaiement'])->middleware(['auth'])->name('MesCartesDePaiement');
-Route::delete('/moncompte/mescartesdepaiements', [MesCartesDePaiement::class, 'deletecartepaiement'])->middleware(['auth'])->name('MesCartesDePaiement');
+Route::get('/moncompte/mescartesdepaiements/{id}', [MesCartesDePaiement::class, 'getcartepaiement'])->middleware(['auth'])->name('cartepaiement');  
 
-
+Route::post('/moncompte/mescartesdepaiements', [MesCartesDePaiement::class, 'modifierCarte'])
+    ->middleware(['auth'])
+    ->name('cartepaiement.modifier');
 
 Route::post('/logout', function () { auth()->logout(); return redirect('/'); })->name('logout');
 

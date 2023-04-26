@@ -6,7 +6,7 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-body">
-                    <form method="POST" action="{{ route('mesInformations.modifier') }}">
+                    <form method="POST" action="{{ route('mesinformations.modifier') }}">
                         @csrf
                         <div class="form-group row">
                             <label for="nom" class="col-sm-4 col-form-label">{{ __('Nom') }} :</label>

@@ -5,18 +5,19 @@ namespace App\Http\Controllers\mon_compte;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 
 class MesInformations extends Controller
 {
-    public function index()
+    public function getinformation()
     {
         $user = auth()->user();
 
         return view('compte.mesInformations', compact('user'));
     }
 
-    public function modifier(Request $request)
+    public function informationmodifier(Request $request)
     {
     $user = auth()->user(); // récupérer l'utilisateur actuellement connecté
     
@@ -34,7 +35,7 @@ class MesInformations extends Controller
     return redirect()->back()->with('Vos informations ont été mises à jour avec succès.');
     }
 
-    public function index2()
+    public function getmotdepasse()
     {
         $user = auth()->user();
 
@@ -43,23 +44,27 @@ class MesInformations extends Controller
 
     public function modifiermotdepasse(Request $request)
     {
-        $user = auth()->user();
-
-        // Vérifier que l'ancien mot de passe correspond
-        if (!Hash::check($request->input('old_password'), $user->password)) {
-            return redirect()->back()->withErrors(['Le mot de passe actuel est incorrect.']);
-        }
-
-        // Valider le nouveau mot de passe
-        $request->validate([
-            'new_password' => 'required|string|min:8|confirmed',
+        $validator = Validator::make($request->all(), [
+            'old_password' => ['required', 'string'],
+            'new_password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
 
-        // Changer le mot de passe de l'utilisateur
-        $user->password = Hash::make($request->input('new_password'));
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator);
+        }
+
+        $user = Auth::user();
+        $oldPassword = $request->input('old_password');
+        $newPassword = $request->input('new_password');
+
+        if (!Hash::check($oldPassword, $user->password)) {
+            return redirect()->back()->withErrors(['old_password' => 'Le mot de passe actuel est incorrect.']);
+        }
+
+        $user->password = Hash::make($newPassword);
         $user->save();
 
-        return redirect()->back()->with('success', 'Le mot de passe a été changé avec succès.');
+        return redirect()->route('home')->with('success', 'Votre mot de passe a été modifié avec succès.');
     }
 
 }

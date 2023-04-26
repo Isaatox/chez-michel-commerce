@@ -1,44 +1,29 @@
 @extends('layouts.mainCompte')
 @section('content')
-<div class="container">
-    <div class="row justify-content-center mt-5">
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <form method="POST" action="{{ route('mesInformations.modifierMotDePasse') }}">
-                        @csrf
-                        <div class="form-group row">
-                            <label for="ancien_mot_de_passe" class="col-sm-4 col-form-label">{{ __('Ancien mot de passe') }} :</label>
-                            <div class="col-sm-8">
-                                <input id="ancien_mot_de_passe" type="password" name="ancien_mot_de_passe" class="form-control" required autofocus />
-                            </div>
-                        </div>
-                        <br>
-                        <div class="form-group row">
-                            <label for="nouveau_mot_de_passe" class="col-sm-4 col-form-label">{{ __('Nouveau mot de passe') }} :</label>
-                            <div class="col-sm-8">
-                                <input id="nouveau_mot_de_passe" type="password" name="nouveau_mot_de_passe" class="form-control" required autofocus />
-                            </div>
-                        </div>
-                        <br>
-                        <div class="form-group row">
-                            <label for="nouveau_mot_de_passe_confirmation" class="col-sm-4 col-form-label">{{ __('Confirmation du nouveau mot de passe') }} :</label>
-                            <div class="col-sm-8">
-                                <input id="nouveau_mot_de_passe_confirmation" type="password" name="nouveau_mot_de_passe_confirmation" class="form-control" required autofocus />
-                            </div>
-                        </div>
-                        <br>
-                        <div class="form-group row">
-                            <div class="col-sm-6 offset-sm-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Enregistrer les modifications') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+    <h1>Informations de la carte bancaire</h1>
+    <p>Nom du titulaire : {{ $creditCard->nom }}</p>
+    <p>Numéro de carte : {{ decrypt($creditCard->numero_carte) }}</p>
+    <p>Date de validité : {{ $creditCard->date_validite }}</p>
+    <p>Cryptogramme : {{ decrypt($creditCard->cryptogramme) }}</p>
+    <p>Type de carte : {{ $creditCard->type }}</p>
+
+    <form method="POST" action="{{ route('cartepaiement.modifier', $user->id) }}">
+        @csrf
+        <label for="nom">Nom du titulaire</label>
+        <input type="text" name="nom" value="{{ $creditCard->nom }}" required>
+        <label for="numero_carte">Numéro de carte</label>
+        <input type="text" name="numero_carte" value="{{ decrypt($creditCard->numero_carte) }}" required>
+        <label for="date_validite">Date de validité (MM/AA)</label>
+        <input type="text" name="date_validite" value="{{ $creditCard->date_validite }}" required>
+        <label for="cryptogramme">Cryptogramme</label>
+        <input type="text" name="cryptogramme" value="{{ decrypt($creditCard->cryptogramme) }}" required>
+        <label for="type">Type de carte</label>
+        <input type="text" name="type" value="{{ $creditCard->type }}" required>
+        <button type="submit">Modifier la carte bancaire</button>
+    </form>
+
+    <form method="POST" action="{{ route('carte.supprimer', $user->id) }}">
+        @csrf
+        <button type="submit">Supprimer la carte bancaire</button>
+    </form>
 @endsection

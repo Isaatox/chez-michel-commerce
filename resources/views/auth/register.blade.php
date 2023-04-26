@@ -39,7 +39,7 @@
                             <div class="form-group">
                                 <label for="civilite" class="form-label">{{ __('Civilité') }} :</label><br>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="civilite" id="civilite_neutre" value="" required>
+                                    <input class="form-check-input" type="radio" name="civilite" id="civilite_neutre" value="Neutre" required>
                                     <label class="form-check-label" for="civilite_neutre">Neutre</label>
                                 </div>
                                 <div class="form-check form-check-inline">
