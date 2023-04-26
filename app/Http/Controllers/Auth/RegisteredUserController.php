@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
-
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
@@ -10,7 +9,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
-
 class RegisteredUserController extends Controller
 {
     /**
@@ -22,7 +20,6 @@ class RegisteredUserController extends Controller
     {
         return view('auth.register');
     }
-
     /**
      * Handle an incoming registration request.
      *
@@ -32,33 +29,38 @@ class RegisteredUserController extends Controller
      * @throws \Illuminate\Validation\ValidationException
      */
     public function store(Request $request)
-{
-    $request->validate([
-        'civilite' => ['required', 'in:Neutre,M,Mme'],
-        'prenom' => ['required', 'string', 'max:255'],
-        'nom' => ['required', 'string', 'max:255'],
-        'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-        'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        'adresse' => ['required', 'string', 'max:255'],
-        'ville' => ['required', 'string', 'max:255'],
-        'code_postal' => ['required', 'string', 'max:10'],
-    ]);
+    {
+        $request->validate([
+            'prenom' => ['required', 'string', 'max:255'],
+            'nom' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'adresse' => ['required', 'string', 'max:255'],
+            'ville' => ['required', 'string', 'max:255'],
+            'code_postal' => ['required', 'string', 'max:10'],
+            'civilite' => ['required', 'in:Neutre,M,Mme'],
+        ]);
 
-    $user = User::create([
-        'civilite' => $request->civilite,
-        'prenom' => $request->prenom,
-        'nom' => $request->nom,
-        'email' => $request->email,
-        'password' => Hash::make($request->password),
-        'adresse' => $request->adresse,
-        'ville' => $request->ville,
-        'code_postal' => $request->code_postal,
-    ]);
+        $user = User::create([
+            'prenom' => $request->prenom,
+            'nom' => $request->nom,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'adresse' => $request->adresse,
+            'ville' => $request->ville,
+            'code_postal' => $request->code_postal,
+            'civilite' =>$request->civilite,
+        ]);
 
-    event(new Registered($user));
-
-    Auth::login($user);
-
-    return redirect(RouteServiceProvider::HOME);
+        event(new Registered($user));
+        Auth::login($user);
+        
+        return redirect(RouteServiceProvider::HOME);
+    }
 }
-}
+
+
+
+
+
+
