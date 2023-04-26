@@ -69,15 +69,19 @@ Route::delete('/admin/meuble/{id}', [admin\MeubleController::class, 'supprimerMe
 //Route::get('/meubles/{categorie}', [MeublesParCategorieController::class, 'index'])->name('MeublesParCategorie');
 
 /*! Compte */
-Route::get('/moncompte/mesCommandes', [MesCommandes::class, 'index'])->name('mesCommandes');
+Route::get('/moncompte/mesCommandes', [MesCommandes::class, 'getcommande'])->middleware(['auth'])->name('mesCommandes');
 
-Route::get('/moncompte/mesInformations', [MesInformations::class, 'index'])->name('mesInformations');
-Route::post('/moncompte/mesInformations', [MesInformations::class, 'modifier'])->name('mesInformations.modifier');
+Route::get('/moncompte/mesInformations', [MesInformations::class, 'getinformation'])->middleware(['auth'])->name('mesInformations');
+Route::post('/moncompte/mesInformations', [MesInformations::class, 'information.modifier'])->middleware(['auth'])->name('mesInformations.modifier');
 
-Route::get('/moncompte/motdepasse', [MesInformations::class, 'index2'])->name('mesInformations.MotDePasse');
-Route::post('/moncompte/motdepasse', [MesInformations::class, 'modifierMotDePasse'])->name('mesInformations.modifierMotDePasse');
+Route::get('/moncompte/motdepasse', [MesInformations::class, 'getmotdepasse'])->middleware(['auth'])->name('mesInformations.MotDePasse');
+Route::post('/moncompte/motdepasse', [MesInformations::class, 'modifiermotdeaasse'])->middleware(['auth'])->name('mesInformations.modifierMotDePasse');
 
-Route::get('/moncompte/mescartesdepaiements', [MesCartesDePaiement::class, 'index'])->name('MesCartesDePaiement');
+Route::get('/moncompte/mescartesdepaiements', [MesCartesDePaiement::class, 'getcartepaiement'])->middleware(['auth'])->name('MesCartesDePaiement');
+Route::post('/moncompte/mescartesdepaiements', [MesCartesDePaiement::class, 'modifiercartepaiement'])->middleware(['auth'])->name('MesCartesDePaiement');
+Route::delete('/moncompte/mescartesdepaiements', [MesCartesDePaiement::class, 'deletecartepaiement'])->middleware(['auth'])->name('MesCartesDePaiement');
+
+
 
 Route::post('/logout', function () { auth()->logout(); return redirect('/'); })->name('logout');
 
