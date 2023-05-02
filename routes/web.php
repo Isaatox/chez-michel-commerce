@@ -29,9 +29,9 @@ Route::get('/filtres', [Controller::class, 'filtresMeubles'])->name('meubles.fil
 //    return view('dashboard');
 //})->middleware(['auth'])->name('dashboard');
 
-Route::get('/compte', function () {
-    return view('Compte');
-})->middleware(['auth'])->name('compte');
+//Route::get('/compte', function () {
+//    return view('Compte');
+//})->middleware(['auth'])->name('compte');
 
 //Route::get('/meubles/{categorie}', [MeublesParCategorieController::class, 'index'])->name('MeublesParCategorie');
 //Route::get('/Meuble', function () {
@@ -77,11 +77,11 @@ Route::post('/moncompte/mesinformations', [MesInformations::class, 'informationm
 Route::get('/moncompte/motdepasse', [MesInformations::class, 'getmotdepasse'])->middleware(['auth'])->name('motedepasse');
 Route::post('/moncompte/motdepasse', [MesInformations::class, 'modifiermotdepasse'])->middleware(['auth'])->name('motdepasse.modifier');
 
-Route::get('/moncompte/mescartesdepaiements/{id}', [MesCartesDePaiement::class, 'getcartepaiement'])->middleware(['auth'])->name('cartepaiement');  
+Route::get('/moncompte/mescartesdepaiements/', [MesCartesDePaiement::class, 'getcartepaiementall'])->middleware(['auth'])->name('cartepaiement');
 
-Route::post('/moncompte/mescartesdepaiements', [MesCartesDePaiement::class, 'modifierCarte'])
-    ->middleware(['auth'])
-    ->name('cartepaiement.modifier');
+//Route::post('/moncompte/mescartesdepaiements', [MesCartesDePaiement::class, 'modifierCarte'])
+//    ->middleware(['auth'])
+//    ->name('cartepaiement.modifier');
 
 Route::post('/logout', function () { auth()->logout(); return redirect('/'); })->name('logout');
 
