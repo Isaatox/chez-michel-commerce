@@ -12,7 +12,7 @@
     <div class="navigation">
         @if (Route::has('login'))
             @auth
-                <div class="mon_profile" onclick="location.href='/compte'">
+                <div class="mon_profile" onclick="location.href='/moncompte/mesinformations'">
                     <p id="profile">Mon profil</p>
                     <i class="fas fa-user-circle fa-2x"></i>
                 </div>

@@ -11,6 +11,12 @@ use App\Models\User;
 
 class MesCartesDePaiement extends Controller
 {
+    public function getcartepaiementall()
+    {
+//        $creditCard = CarteBancaire::all();
+        return view('compte.mesCartesPaiement');
+    }
+
     public function getcartepaiement($id)
     {
         $user = User::findOrFail($id);
@@ -30,7 +36,7 @@ class MesCartesDePaiement extends Controller
             'cryptogramme' => ['required', 'string', 'size:3'],
             'type' => ['required', 'string', 'size:3']
         ]);
-        
+
 
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator);
