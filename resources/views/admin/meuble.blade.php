@@ -100,7 +100,11 @@
                         <td>{{ $meuble->prix }}</td>
                         <td>
                             <a href="{{route('meuble.modifier', ['id' => $meuble->id])}}" class="btn btn-warning">Modifier</a>
-                            <a href="{{route('meuble.supprimer', ['id' => $meuble->id])}}" class="btn btn-danger">Supprimer</a>
+                            <form action="{{route('meuble.supprimer', ['id' => $meuble->id])}}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">Supprimer</button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach

@@ -79,6 +79,8 @@ Route::post('/moncompte/motdepasse', [MesInformations::class, 'modifiermotdepass
 
 Route::get('/moncompte/mescartesdepaiements/', [MesCartesDePaiement::class, 'getcartepaiementall'])->middleware(['auth'])->name('cartepaiement');
 
+Route::post('/moncompte/mescartesdepaiements/', [MesCartesDePaiement::class, 'ajouterCarte'])->middleware(['auth'])->name('ajouter.carte');
+
 //Route::post('/moncompte/mescartesdepaiements', [MesCartesDePaiement::class, 'modifierCarte'])
 //    ->middleware(['auth'])
 //    ->name('cartepaiement.modifier');
