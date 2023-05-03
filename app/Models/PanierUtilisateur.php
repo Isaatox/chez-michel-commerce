@@ -22,6 +22,6 @@ class PanierUtilisateur extends Model
      * @var array
      */
     protected $fillable = [
-        'nom', 'actif',
+        'user_id', 'nom', 'actif',
     ];
 }

@@ -1,9 +1,13 @@
 <?php
 
 use App\Http\Controllers\admin;
+use App\Http\Controllers\AvisMeublesController;
 use App\Http\Controllers\CategorieController;
+use App\Http\Controllers\CommandeController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\CouleurController;
+use App\Http\Controllers\PanierItemController;
+use App\Http\Controllers\PanierUtilisateurController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\mon_compte\MesCommandes;
 use App\Http\Controllers\mon_compte\MesInformations;
@@ -39,6 +43,8 @@ Route::get('/filtres', [Controller::class, 'filtresMeubles'])->name('meubles.fil
 //});
 
 Route::get('/meubles/{id}',[Controller::class, 'getMeuble'])->name('voir.meuble');
+Route::post('/meubles/ajouterAvis', [AvisMeublesController::class, 'ajouterAvis'])->name('avis-meuble.ajouterAvis');
+Route::post('/meuble/{id}/ajouter-au-panier', [PanierItemController::class, 'ajouterAuPanier'])->middleware(['auth'])->name('meuble.ajouter-au-panier');
 
 /*! Admin */
 Route::get('/admin',[admin\MeubleController::class,'index'])->middleware('admin')->name('indexAdmin');
@@ -80,6 +86,16 @@ Route::post('/moncompte/motdepasse', [MesInformations::class, 'modifiermotdepass
 Route::get('/moncompte/mescartesdepaiements/', [MesCartesDePaiement::class, 'getcartepaiementall'])->middleware(['auth'])->name('cartepaiement');
 
 Route::post('/moncompte/mescartesdepaiements/', [MesCartesDePaiement::class, 'ajouterCarte'])->middleware(['auth'])->name('ajouter.carte');
+
+//Panier
+Route::get('/monPanier', [PanierUtilisateurController::class, 'voirPanier'])->middleware(['auth'])->name('monPanier.detail');
+Route::get('/monPanier/livraison', [PanierUtilisateurController::class, 'voirPanierLivraison'])->middleware(['auth'])->name('monPanier.detail');
+Route::post('/monPanier/livraison', [PanierUtilisateurController::class, 'validerAdresse'])->middleware(['auth'])->name('adresseLivraison.store');
+Route::get('/monPanier/paiement', [PanierUtilisateurController::class, 'voirPanierPaiement'])->middleware(['auth'])->name('monPanier.detail');
+Route::get('/monPanier/recapitulatif', [PanierUtilisateurController::class, 'voirPanierRecapitulatif'])->middleware(['auth'])->name('monPanier.detail');
+
+//Commande
+Route::post('/creer_commande', [CommandeController::class, 'creerCommande'])->middleware('auth')->name('commande.creer');
 
 //Route::post('/moncompte/mescartesdepaiements', [MesCartesDePaiement::class, 'modifierCarte'])
 //    ->middleware(['auth'])

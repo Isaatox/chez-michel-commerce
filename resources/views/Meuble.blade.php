@@ -133,9 +133,21 @@
                     <p>({{ $meuble->avis->count() }})</p>
                 </div>
                 <hr>
-                <p class="h5">{{$meuble->stock}} en stock !</p>
-                <hr>
-                <a href="#" class="btn btn-info text-uppercase fw-bold text-white">Ajouter au panier</a>
+                @if ($meuble->stock > 0)
+                    <p class="h5">{{ $meuble->stock }} en stock !</p>
+                    <hr>
+                    <form action="{{ route('meuble.ajouter-au-panier', $meuble->id) }}" method="POST">
+                        @csrf
+                        <div class="input-group mb-3">
+                            <input type="number" name="quantite" class="form-control" value="1" min="1" max="{{ $meuble->stock }}">
+                            <button type="submit" class="btn btn-info text-uppercase fw-bold text-white" {{ $meuble->stock <= 0 ? 'disabled' : '' }}>
+                                Ajouter au panier
+                            </button>
+                        </div>
+                    </form>
+                @else
+                    <p class="h5 text-danger">Stock épuisé</p>
+                @endif
             </div>
         </div>
         <hr>

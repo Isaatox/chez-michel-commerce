@@ -15,6 +15,7 @@ class CreatePanierUtilisateursTable extends Migration
     {
         Schema::create('panier_utilisateurs', function (Blueprint $table) {
             $table->id();
+            $table->integer('user_id');
             $table->string('nom');
             $table->integer('actif');
             $table->timestamps();
