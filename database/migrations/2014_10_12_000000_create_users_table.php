@@ -29,6 +29,7 @@ class CreateUsersTable extends Migration
             $table->string('role')->default('client');
             $table->integer('nb_commandes')->default('0');
             $table->integer('argent_depense')->default('0');
+            $table->integer('commande_en_cours');
         });
     }
 

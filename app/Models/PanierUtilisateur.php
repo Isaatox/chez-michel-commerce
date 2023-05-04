@@ -22,6 +22,11 @@ class PanierUtilisateur extends Model
      * @var array
      */
     protected $fillable = [
-        'nom', 'actif',
+        'user_id', 'nom', 'actif',
     ];
+
+    public function panierItems()
+    {
+        return $this->hasMany(PanierItem::class, 'id_panier_utilisateur');
+    }
 }

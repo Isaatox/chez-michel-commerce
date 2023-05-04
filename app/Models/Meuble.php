@@ -12,7 +12,7 @@ class Meuble extends Model
         'id',
         'nom',
         'categorie',
-        'couleur',
+        'couleur_id',
         'description',
         'stock',
         'note',

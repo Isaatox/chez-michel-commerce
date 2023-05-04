@@ -19,6 +19,7 @@ class CreateAdresseLivraisonsTable extends Migration
             $table->string('prenom');
             $table->string('rue');
             $table->integer('code_postal');
+            $table->string('ville');
             $table->string('pays');
             $table->integer('id_utilisateur');
             $table->timestamps();

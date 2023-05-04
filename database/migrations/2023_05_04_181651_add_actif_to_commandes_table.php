@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePanierUtilisateursTable extends Migration
+class AddActifToCommandesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,9 @@ class CreatePanierUtilisateursTable extends Migration
      */
     public function up()
     {
-        Schema::create('panier_utilisateurs', function (Blueprint $table) {
-            $table->id();
-            $table->integer('user_id');
-            $table->string('nom');
-            $table->integer('actif');
-            $table->timestamps();
+        Schema::table('commandes', function (Blueprint $table) {
+            $table->integer('actif')->nullable();
+
         });
     }
 
@@ -29,6 +26,8 @@ class CreatePanierUtilisateursTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('panier_utilisateurs');
+        Schema::table('commandes', function (Blueprint $table) {
+            $table->dropColumn(['actif']);
+        });
     }
 }

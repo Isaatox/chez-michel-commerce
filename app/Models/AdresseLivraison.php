@@ -22,6 +22,6 @@ class AdresseLivraison extends Model
      * @var array
      */
     protected $fillable = [
-        'nom', 'prenom', 'rue', 'code_postal', 'pays', 'id_utilisateur',
+        'nom', 'prenom', 'rue', 'code_postal','ville', 'pays', 'id_utilisateur',
     ];
 }
