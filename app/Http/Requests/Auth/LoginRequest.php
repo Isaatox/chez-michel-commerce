@@ -49,7 +49,7 @@ class LoginRequest extends FormRequest
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
-                'email' => trans('auth.failed'),
+                'email' => 'Les informations de connexion ne sont pas valides. Veuillez vérifier votre email et votre mot de passe.',
             ]);
         }
 

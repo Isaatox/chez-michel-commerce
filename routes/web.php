@@ -9,6 +9,8 @@ use App\Http\Controllers\mon_compte\MesCommandes;
 use App\Http\Controllers\mon_compte\MesInformations;
 use App\Http\Controllers\MeublesParCategorieController;
 use App\Http\Controllers\mon_compte\MesCartesDePaiement;
+use App\Http\Controllers\ContactController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -84,5 +86,11 @@ Route::get('/moncompte/mescartesdepaiements/', [MesCartesDePaiement::class, 'get
 //    ->name('cartepaiement.modifier');
 
 Route::post('/logout', function () { auth()->logout(); return redirect('/'); })->name('logout');
+
+
+//*!Conact */
+
+Route::get('/contact', [ContactController::class, 'getcontact'])->name('contact');
+Route::post('/contact', [ContactController::class, 'contactenvoie'])->name('contact.envoyer');
 
 require __DIR__.'/auth.php';
