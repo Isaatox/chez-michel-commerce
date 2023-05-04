@@ -1,6 +1,7 @@
 @extends('layouts.mainCompte')
 @section('content')
 
+
 <div class="container">
     <div class="row justify-content-center mt-5">
         <div class="col-md-6">
@@ -62,7 +63,7 @@
                         </div>
                         <br>
                         <div class="form-group row">
-                            <label for="code_postal" class="col-sm-4 col-form-label">{{ __('Code_Postal') }} :</label>
+                            <label for="code_postal" class="col-sm-4 col-form-label">{{ __('Code Postal') }} :</label>
                             <div class="col-sm-8">
                                 <input id="code_postal" type="text" name="code_postal" class="form-control" value="{{ $user->code_postal }}" required autofocus />
                             </div>

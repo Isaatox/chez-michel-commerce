@@ -9,9 +9,9 @@
 </head>
 <body>
     <div class="container">
-        <div class="row justify-content-center mt-5">
+        <div class="row justify-content-center mt-1">
             <div class="col-md-6">
-                <div class="card">
+                <div class="card"style="height: 100%;">
                     <div class="card-header">
                         <h1 class="text-center">Inscription</h1>
                     </div>
@@ -69,13 +69,18 @@
                             <!-- Password -->
                             <div class="form-group">
                                 <label for="password" class="form-label">{{ __('Mot de passe') }} :</label>
-                                <input id="password" type="password" name="password" class="form-control" value="{{ old('mot_passe') }}" required autocomplete="new-password" />
+                                <input id="password" type="password" name="password" class="form-control" value="{{ old('mot_passe') }}" required autocomplete="new-password" minlength="8"  />
+                                @error('password_confirmation')
+                                 <span class="invalid-feedback" role="alert">
+                                 <strong>{{ $message }}</strong>
+                                 </span>
+                                @enderror
                             </div>
 
                             <!-- Confirm Password -->
                             <div class="form-group">
                                 <label for="password_confirmation" class="form-label">{{ __('Confirmer votre mot de passe') }} :</label>
-                                <input id="password_confirmation" type="password" name="password_confirmation" class="form-control"value="{{ old('mot_passe') }}" required />
+                                <input id="password_confirmation" type="password" name="password_confirmation" class="form-control"value="{{ old('mot_passe') }}" required minlength="8"  />
                             </div>
 
                             <div class="form-group text-center mt-4">
@@ -88,6 +93,7 @@
             </div>
         </div>
     </div>
+    <br>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>

@@ -2,6 +2,7 @@
 
 @section('content')
 
+<br><br><br><br>
 <div class="container-fluid">
   <div class="row justify-content-center">
     <div class="col-md-4">
@@ -62,6 +63,7 @@
 
             <div class="form-group text-center mt-3">
               <a href="{{ route('password.request') }}">{{ __('Mot de passe oublié ?') }}</a>
+              <a href="{{ route('register') }}">{{ __("S'inscrire") }}</a>
             </div>
 
             <!-- Social Login -->
@@ -77,3 +79,9 @@
   </div>
 </div>
 @endsection
+
+<style>
+        footer{
+            position: fixed !important;
+        }
+</style>
