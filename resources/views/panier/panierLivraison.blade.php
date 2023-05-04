@@ -102,10 +102,30 @@
             <div class="col-4">
                 <div class="card mb-3">
                     <div class="card-header">
-                        <h4>Ma commande</h4>
+                        <h4>Votre Panier</h4>
                     </div>
                     <div class="card-body">
-                        <p>Total: 199€ €</p>
+                        @php
+                            $total = 0;
+                        @endphp
+                        @foreach($meubles as $key => $meuble)
+                            <div class="d-flex justify-content-between">
+                                <img src="{{ asset('public/'.$meuble->photo1) }}" class="card-img-bottom w-25" alt="...">
+                                <div>
+                                    <div class="d-flex justify-content-between w-100" style="margin-right: 100px">
+                                        <p class="fw-bold h5">{{$meuble->nom}}</p>
+                                        @php
+                                            $prixTotal = $meuble->prix * $panierItems[$key]->quantite;
+                                            $total += $prixTotal;
+                                        @endphp
+                                        <p class="fw-bold h5">{{$prixTotal}} €</p>
+                                    </div>
+                                    <p class="fw-bold h5">X {{ $panierItems[$key]->quantite }}</p>
+                                </div>
+                            </div>
+                            <hr>
+                        @endforeach
+                        <p class="fw-bold h4  mt-3">Total: {{ $total }} €</p>
                     </div>
                 </div>
             </div>

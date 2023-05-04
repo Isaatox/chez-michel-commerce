@@ -16,8 +16,18 @@ class MesCartesDePaiement extends Controller
 {
     public function getcartepaiementall()
     {
+        $user = auth()->user();
+
+        $panierId = PanierUtilisateur::where('user_id', $user)
+            ->where('actif', true)
+            ->value('id');
+
+        $countPanierItems = PanierItem::where('id_panier_utilisateur', $panierId)
+            ->count();
 //        $creditCard = CarteBancaire::all();
-        return view('compte.mesCartesPaiement');
+        return view('compte.mesCartesPaiement', [
+            'countPanierItems' => $countPanierItems,
+        ]);
     }
 
     public function ajouterCarte(Request $request)
@@ -62,10 +72,6 @@ class MesCartesDePaiement extends Controller
             return redirect()->back()->with('error', 'La carte n\'a pas été ajoutée Erreur :' . $e);
         }
     }
-
-
-
-
 
 //    public function getcartepaiement($id)
 //    {

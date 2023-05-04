@@ -16,7 +16,13 @@ class CommandeController extends Controller
         $commande->numero_commande = $numero_commande;
         $commande->utilisateur_commande = $request->input('utilisateur_commande');
         $commande->pannier_commande = $request->input('panier_commande');
+        $commande->actif = true;
         $commande->save();
+
+        // Mettre à jour la colonne commande_en_cours de l'utilisateur
+        $utilisateur = auth()->user();
+        $utilisateur->commande_en_cours = $commande->id;
+        $utilisateur->save();
 
         return redirect('/monPanier/livraison');
     }

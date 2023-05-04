@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\mon_compte;
 
 use App\Models\Commande;
+use App\Models\PanierItem;
+use App\Models\PanierUtilisateur;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -12,7 +14,12 @@ class MesCommandes extends Controller
     {
         // Récupérer l'utilisateur courant
         $user = auth()->user();
+        $panierId = PanierUtilisateur::where('user_id', $user)
+            ->where('actif', true)
+            ->value('id');
 
+        $countPanierItems = PanierItem::where('id_panier_utilisateur', $panierId)
+            ->count();
         // Récupérer les commandes de l'utilisateur courant
         $commandes = $user->commandes;
 
@@ -31,7 +38,8 @@ class MesCommandes extends Controller
         }
 
         return view('commandes', [
-            'commandesDetails' => $commandesDetails
+            'commandesDetails' => $commandesDetails,
+            'countPanierItems' => $countPanierItems,
         ]);
     }
 }

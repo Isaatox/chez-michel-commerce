@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\mon_compte;
 
 use App\Http\Controllers\Controller;
+use App\Models\PanierItem;
+use App\Models\PanierUtilisateur;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -15,7 +17,13 @@ class MesInformations extends Controller
     {
         $user = auth()->user();
 
-        return view('compte.mesInformations', compact('user'));
+        $panierId = PanierUtilisateur::where('user_id', $user)
+            ->where('actif', true)
+            ->value('id');
+
+        $countPanierItems = PanierItem::where('id_panier_utilisateur', $panierId)
+            ->count();
+        return view('compte.mesInformations', compact('user', 'countPanierItems'));
     }
 
     public function informationmodifier(Request $request)

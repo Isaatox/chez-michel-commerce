@@ -63,37 +63,43 @@
             </div>
         </div>
         <div class="row">
-            <div class="listItem mt-5 col-9 w-75">
-                @foreach($meubles as $key => $meuble)
-                    <div class="card">
-                        <div class="card-body row">
-                            <div class="col-md-2">
-                                <img src="{{ asset('public/'.$meuble->photo1) }}" class="card-img-top" alt="...">
-                            </div>
-                            <div class="col-md-10 row">
-                                <div class="col-9">
-                                    <h5 class="card-title">{{$meuble->nom}}</h5>
-                                    <p class="card-text">{{$meuble->description}}</p>
-                                    <a href="#" class="text-danger">> Supprimer</a>
+            @if(empty($meubles))
+                <div class="alert alert-warning" role="alert">
+                    Votre panier est vide.
+                </div>
+            @else
+                <div class="listItem mt-5 col-9 w-75">
+                    @foreach($meubles as $key => $meuble)
+                        <div class="card">
+                            <div class="card-body row">
+                                <div class="col-md-2">
+                                    <img src="{{ asset('public/'.$meuble->photo1) }}" class="card-img-top" alt="...">
                                 </div>
-                                <div class="col-3">
-                                    <h2 class="prix">{{$meuble->prix}} €</h2>
-                                    <input type="number" name="quantite[]" class="form-control quantite" value="{{ $panierItems[$key]->quantite }}" min="1" max="{{$meuble->stock}}" data-prix="{{$meuble->prix}}">
+                                <div class="col-md-10 row">
+                                    <div class="col-9">
+                                        <h5 class="card-title">{{$meuble->nom}}</h5>
+                                        <p class="card-text">{{$meuble->description}}</p>
+                                        <<a href="#" class="text-danger">> Supprimer</a>
+                                    </div>
+                                    <div class="col-3">
+                                        <h2 class="prix">{{$meuble->prix}} €</h2>
+                                        <input type="number" name="quantite[]" class="form-control quantite" value="{{ $panierItems[$key]->quantite }}" min="1" max="{{$meuble->stock}}" data-prix="{{$meuble->prix}}">
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                @endforeach
-            </div>
-            <div class="monPrix col-3 mt-5 w-25 d-flex flex-column justify-content-around">
-                <h4 class="d-flex justify-content-between">Total : <span>199 €</span></h4>
-                <form action="{{ route('commande.creer') }}" method="POST">
-                    @csrf
-                    <input type="hidden" name="utilisateur_commande" value="{{ auth()->user()->id }}">
-                    <input type="hidden" name="panier_commande" value="{{ $panier_id }}">
-                    <button type="submit" class="btn btn-info w-100">Valider mon panier</button>
-                </form>
-            </div>
+                    @endforeach
+                </div>
+                <div class="monPrix col-3 mt-5 w-25 d-flex flex-column justify-content-around">
+                    <h4 class="d-flex justify-content-between">Total : <span>199 €</span></h4>
+                    <form action="{{ route('commande.creer') }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="utilisateur_commande" value="{{ auth()->user()->id }}">
+                        <input type="hidden" name="panier_commande" value="{{ $panier_id }}">
+                        <button type="submit" class="btn btn-info w-100">Valider mon panier</button>
+                    </form>
+                </div>
+            @endif
         </div>
     </div>
     <script>

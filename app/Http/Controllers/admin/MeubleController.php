@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Categorie;
 use App\Models\Couleur;
 use App\Models\Meuble;
+use App\Models\PanierItem;
+use App\Models\PanierUtilisateur;
 use Illuminate\Http\Request;
 use Stripe\Price;
 use Stripe\Product;
@@ -21,11 +23,27 @@ class MeubleController extends Controller
 
     public function index()
     {
-        return view('admin.admin');
+        $userId = auth()->user()->id;
+
+        $panierId = PanierUtilisateur::where('user_id', $userId)
+            ->where('actif', true)
+            ->value('id');
+
+        $countPanierItems = PanierItem::where('id_panier_utilisateur', $panierId)
+            ->count();
+        return view('admin.admin', compact('countPanierItems'));
     }
 
     public function viewAjoutMeuble(Request $request)
     {
+        $userId = auth()->user()->id;
+
+        $panierId = PanierUtilisateur::where('user_id', $userId)
+            ->where('actif', true)
+            ->value('id');
+
+        $countPanierItems = PanierItem::where('id_panier_utilisateur', $panierId)
+            ->count();
         $categories = Categorie::all();
         $couleurs = Couleur::all();
         $meubles = Meuble::all();
@@ -37,7 +55,7 @@ class MeubleController extends Controller
         $meubles = Meuble::orderBy('nom', $sortOrder)->paginate(5);
 
 
-        return view('admin.meuble', compact('meubles', 'sortOrder', 'categories', 'couleurs'));
+        return view('admin.meuble', compact('meubles', 'sortOrder', 'categories', 'couleurs', 'countPanierItems'));
 
     }
 
@@ -93,10 +111,18 @@ class MeubleController extends Controller
 
     public function getMeuble($id)
     {
+        $userId = auth()->user()->id;
+
+        $panierId = PanierUtilisateur::where('user_id', $userId)
+            ->where('actif', true)
+            ->value('id');
+
+        $countPanierItems = PanierItem::where('id_panier_utilisateur', $panierId)
+            ->count();
         $categories = Categorie::all();
         $couleurs = Couleur::all();
         $meuble = Meuble::findOrFail($id);
-        return view('admin.meubleDetail', compact('meuble','couleurs','categories'));
+        return view('admin.meubleDetail', compact('meuble','couleurs','categories','countPanierItems'));
     }
 
     public function modifierMeuble(Request $request, $id)
@@ -147,16 +173,34 @@ class MeubleController extends Controller
 
     public function viewCategorie()
     {
+        $userId = auth()->user()->id;
+
+        $panierId = PanierUtilisateur::where('user_id', $userId)
+            ->where('actif', true)
+            ->value('id');
+
+        $countPanierItems = PanierItem::where('id_panier_utilisateur', $panierId)
+            ->count();
         $categories = Categorie::all();
         $categories = Categorie::orderBy('label', 'asc')->paginate(5);
 
-        return view('admin.categorie', compact( 'categories'));
+        return view('admin.categorie',compact( 'categories','countPanierItems'));
     }
 
     public function viewCouleur()
     {
+        $userId = auth()->user()->id;
+
+        $panierId = PanierUtilisateur::where('user_id', $userId)
+            ->where('actif', true)
+            ->value('id');
+
+        $countPanierItems = PanierItem::where('id_panier_utilisateur', $panierId)
+            ->count();
+
         $couleurs = Couleur::all();
+
         $couleurs = Couleur::orderBy('label', 'asc')->paginate(5);
-        return view('admin.couleur', compact( 'couleurs'));
+        return view('admin.couleur', compact( 'couleurs','countPanierItems'));
     }
 }

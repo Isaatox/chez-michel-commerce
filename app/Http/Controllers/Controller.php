@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Couleur;
 use App\Models\Categorie;
 use App\Models\Meuble;
+use App\Models\PanierItem;
+use App\Models\PanierUtilisateur;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -16,6 +18,15 @@ class Controller extends BaseController
 
     public function index()
     {
+        $userId = auth()->user()->id;
+
+        $panierId = PanierUtilisateur::where('user_id', $userId)
+            ->where('actif', true)
+            ->value('id');
+
+        $countPanierItems = PanierItem::where('id_panier_utilisateur', $panierId)
+            ->count();
+
         $meubles = Meuble::take(4)->get();
         $categories = Categorie::all();
         $couleurs = Couleur::all();
@@ -23,17 +34,27 @@ class Controller extends BaseController
             'categories' => $categories,
             'couleurs' => $couleurs,
             'meubles' => $meubles,
+            'countPanierItems' => $countPanierItems,
         ]);
     }
 
     public function getMeuble($id)
     {
+        $userId = auth()->user()->id;
+
+        $panierId = PanierUtilisateur::where('user_id', $userId)
+            ->where('actif', true)
+            ->value('id');
+
+        $countPanierItems = PanierItem::where('id_panier_utilisateur', $panierId)
+            ->count();
+
         $categories = Categorie::all();
         $couleurs = Couleur::all();
         $meuble = Meuble::with(['avis' => function ($query) {
             $query->with('utilisateur')->latest();
         }])->findOrFail($id);
-        return view('Meuble', compact('meuble', 'couleurs', 'categories'));
+        return view('Meuble', compact('meuble', 'couleurs', 'categories', 'countPanierItems'));
     }
 
     public function filtresMeubles()

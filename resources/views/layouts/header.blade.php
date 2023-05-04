@@ -23,11 +23,13 @@
 
 
     </div>
-    <div class="panier" onclick="location.href='google.com'">
+    <div class="panier" onclick="location.href='{{route('monPanier.detail')}}'">
         <a href="#">Mon panier</a>
         <i class="fas fa-shopping-cart fa-2x"></i>
-        <div class="circle">
-            <p>1</p>
-        </div>
+        @if($countPanierItems > 0)
+            <div class="circle">
+                <p>{{$countPanierItems}}</p>
+            </div>
+        @endif
     </div>
 </header>
