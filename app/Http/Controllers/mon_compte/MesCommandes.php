@@ -14,12 +14,18 @@ class MesCommandes extends Controller
     {
         // Récupérer l'utilisateur courant
         $user = auth()->user();
-        $panierId = PanierUtilisateur::where('user_id', $user)
-            ->where('actif', true)
-            ->value('id');
+        if (auth()->check()) {
+            $user_id = auth()->id();
 
-        $countPanierItems = PanierItem::where('id_panier_utilisateur', $panierId)
-            ->count();
+            $panierId = PanierUtilisateur::where('user_id', $user_id)
+                ->where('actif', true)
+                ->value('id');
+
+            $countPanierItems = PanierItem::where('id_panier_utilisateur', $panierId)
+                ->count();
+        }else{
+            $countPanierItems = null;
+        }
         // Récupérer les commandes de l'utilisateur courant
         $commandes = $user->commandes;
 

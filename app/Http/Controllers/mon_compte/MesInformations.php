@@ -15,14 +15,19 @@ class MesInformations extends Controller
 {
     public function getinformation()
     {
-        $user = auth()->user();
+        if (auth()->check()) {
+            $user_id = auth()->id();
 
-        $panierId = PanierUtilisateur::where('user_id', $user)
-            ->where('actif', true)
-            ->value('id');
+            $panierId = PanierUtilisateur::where('user_id', $user_id)
+                ->where('actif', true)
+                ->value('id');
 
-        $countPanierItems = PanierItem::where('id_panier_utilisateur', $panierId)
-            ->count();
+            $countPanierItems = PanierItem::where('id_panier_utilisateur', $panierId)
+                ->count();
+        }else{
+            $countPanierItems = null;
+        }
+
         return view('compte.mesInformations', compact('user', 'countPanierItems'));
     }
 
