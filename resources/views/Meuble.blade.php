@@ -106,8 +106,12 @@
         <div class="col-md-6">
             <div class="d-flex">
                 <div class="ml-2 d-flex flex-column align-items-center w-25 mt-5">
-                    <img src="{{ asset('public/'.$meuble->photo2) }}" class="img-fluid w-50 shadow-lg p-3 mb-5 bg-white rounded" style="cursor: pointer" alt="..." onclick="selectImage(this)">
-                    <img src="{{ asset('public/'.$meuble->photo3) }}" class="img-fluid w-50 mt-2 shadow-lg p-3 bg-white rounded" style="cursor: pointer" alt="..." onclick="selectImage(this)">
+                    @if ($meuble->photo2)
+                        <img src="{{ asset('public/'.$meuble->photo2) }}" class="img-fluid w-50 shadow-lg p-3 mb-5 bg-white rounded" style="cursor: pointer" alt="..." onclick="selectImage(this)">
+                    @endif
+                    @if ($meuble->photo3)
+                        <img src="{{ asset('public/'.$meuble->photo3) }}" class="img-fluid w-50 mt-2 shadow-lg p-3 bg-white rounded" style="cursor: pointer" alt="..." onclick="selectImage(this)">
+                    @endif
                 </div>
                 <div class="p-5">
                     <img id="mainImage" src="{{ asset('public/'.$meuble->photo1) }}" class="img-fluid flex-grow-1 h-auto w-auto shadow-lg p-3 mb-5 rounded" alt="...">

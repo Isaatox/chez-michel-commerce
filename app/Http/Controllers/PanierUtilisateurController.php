@@ -57,6 +57,22 @@ class PanierUtilisateurController extends Controller
         }
     }
 
+    public function modifierQuantite(Request $request)
+    {
+        $panierItemId = $request->input('panierItemId');
+        $quantite = $request->input('quantite');
+
+        $panierItem = PanierItem::find($panierItemId);
+
+        if ($panierItem) {
+            $panierItem->quantite = $quantite;
+            $panierItem->save();
+        }
+
+        return redirect()->route('monPanier.livraison');
+    }
+
+
     public function voirPanierLivraison()
     {
         $user_id = auth()->id();

@@ -15,6 +15,8 @@ class MesInformations extends Controller
 {
     public function getinformation()
     {
+        $user = auth()->user();
+
         if (auth()->check()) {
             $user_id = auth()->id();
 

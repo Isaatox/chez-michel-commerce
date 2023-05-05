@@ -142,33 +142,38 @@ class MeubleController extends Controller
     {
         $meuble = Meuble::findOrFail($id);
 
-        // Supprime les anciennes images
-        if ($meuble->photo1) {
-            unlink(public_path('public/' . $meuble->photo1));
-        }
-        if ($meuble->photo2) {
-            unlink(public_path('public/' . $meuble->photo2));
-        }
-        if ($meuble->photo3) {
-            unlink(public_path('public/' . $meuble->photo3));
+        if ($request->hasFile('images')) {
+            if ($meuble->photo1) {
+                unlink(public_path('public/' . $meuble->photo1));
+            }
+            if ($meuble->photo2) {
+                unlink(public_path('public/' . $meuble->photo2));
+            }
+            if ($meuble->photo3) {
+                unlink(public_path('public/' . $meuble->photo3));
+            }
         }
 
         $images = array();
-        foreach($request->file('images') as $image) {
-            $fileName = uniqid() . '_' . $image->getClientOriginalName();
-            $image->move(public_path('public'), $fileName);
-            array_push($images, $fileName);
+        if ($request->hasFile('images')) {
+            foreach($request->file('images') as $image) {
+                $fileName = uniqid() . '_' . $image->getClientOriginalName();
+                $image->move(public_path('public'), $fileName);
+                array_push($images, $fileName);
+            }
+
+            $meuble->photo1 = $images[0];
+            $meuble->photo2 = isset($images[1]) ? $images[1] : null;
+            $meuble->photo3 = isset($images[2]) ? $images[2] : null;
         }
 
         $meuble->nom = $request->nom;
         $meuble->categorie = $request->categorie;
-        $meuble->couleur = $request->couleur;
+        $meuble->couleur_id = $request->couleur;
         $meuble->description = $request->description;
         $meuble->stock = $request->stock;
         $meuble->prix = $request->prix;
-        $meuble->photo1 = $images[0];
-        $meuble->photo2 = isset($images[1]) ? $images[1] : null;
-        $meuble->photo3 = isset($images[2]) ? $images[2] : null;
+
         $meuble->save();
 
         return redirect()->route('meuble.afficher', ['id' => $meuble->id])->with('success', 'Le meuble a été modifié avec succès.');

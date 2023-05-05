@@ -95,6 +95,7 @@ Route::post('/moncompte/mescartesdepaiements/', [MesCartesDePaiement::class, 'aj
 
 //Panier
 Route::get('/monPanier', [PanierUtilisateurController::class, 'voirPanier'])->middleware(['auth'])->name('monPanier.detail');
+Route::post('/monPanier/modifierQuantite', [PanierUtilisateurController::class, 'modifierQuantite'])->middleware(['auth'])->name('panier.modifierQuantite');
 Route::get('/monPanier/livraison', [PanierUtilisateurController::class, 'voirPanierLivraison'])->middleware(['auth'])->name('monPanier.livraison');
 Route::post('/monPanier/livraison', [PanierUtilisateurController::class, 'validerAdresse'])->middleware(['auth'])->name('adresseLivraison.store');
 Route::get('/monPanier/paiement', [PanierUtilisateurController::class, 'voirPanierPaiement'])->middleware(['auth'])->name('monPanier.paiement');
