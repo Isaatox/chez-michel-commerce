@@ -60,7 +60,7 @@
                 <select class="form-select" name="couleur" id="couleur" required>
                     <option value="" selected disabled>Sélectionnez une couleur</option>
                     @foreach ($couleurs as $couleur)
-                        <option value="{{ $couleur->id }}" style="color: {{ $couleur->hex_couleur }}" @if($meuble->couleur == $couleur->id) selected @endif>{{ $couleur->label }}</option>
+                        <option value="{{ $couleur->id }}" style="color: {{ $couleur->hex_couleur }}" @if($meuble->couleur_id == $couleur->id) selected @endif>{{ $couleur->label }}</option>
                     @endforeach
                 </select>
             </div>
@@ -68,9 +68,8 @@
 
         <div class="mb-3">
             <label for="images" class="form-label">Images :</label>
-            <input type="file" class="form-control" name="images[]" id="images" accept="image/*" multiple required>
+            <input type="file" class="form-control" name="images[]" id="images" accept="image/*" multiple>
         </div>
-
         <div class="mb-3">
             <label for="preview" class="form-label">Aperçu des images :</label>
             <div id="preview">

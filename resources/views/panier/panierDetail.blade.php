@@ -79,11 +79,11 @@
                                     <div class="col-9">
                                         <h5 class="card-title">{{$meuble->nom}}</h5>
                                         <p class="card-text">{{$meuble->description}}</p>
-                                        <<a href="#" class="text-danger">> Supprimer</a>
+                                        <a href="#" class="text-danger">> Supprimer</a>
                                     </div>
                                     <div class="col-3">
                                         <h2 class="prix">{{$meuble->prix}} €</h2>
-                                        <input type="number" name="quantite[]" class="form-control quantite" value="{{ $panierItems[$key]->quantite }}" min="1" max="{{$meuble->stock}}" data-prix="{{$meuble->prix}}">
+                                        <input type="number" name="quantite[]" class="form-control quantite update-quantite" value="{{ $panierItems[$key]->quantite }}" min="1" max="{{$meuble->stock}}" data-prix="{{$meuble->prix}}" data-panier-item-id="{{ $panierItems[$key]->id }}">
                                     </div>
                                 </div>
                             </div>
@@ -103,6 +103,13 @@
         </div>
     </div>
     <script>
+        let csrfTokenMeta = document.querySelector('meta[name="csrf-token"]');
+        if (csrfTokenMeta) {
+            let csrfToken = csrfTokenMeta.getAttribute('content');
+            // rest of the code that uses csrfToken
+        } else {
+            console.error('Meta tag with name "csrf-token" not found');
+        }
         const quantites = document.querySelectorAll('.quantite');
         const prixTotalElement = document.querySelector('.monPrix span');
 
@@ -132,6 +139,37 @@
             h2.innerText = (prix * quantite.value).toFixed(2) + ' €';
 
             calculerPrixTotal();
+        });
+        document.addEventListener('DOMContentLoaded', function() {
+            let updateQuantite = document.querySelectorAll('.update-quantite');
+            updateQuantite.forEach(function(element) {
+                element.addEventListener('change', function() {
+                    let quantite = this.value;
+                    let panierItemId = this.dataset.panierItemId;
+                    let url = "{{ route('panier.modifierQuantite') }}";
+                    let csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+                    let xhr = new XMLHttpRequest();
+                    xhr.open('POST', url);
+                    xhr.setRequestHeader('Content-Type', 'application/json');
+                    xhr.setRequestHeader('X-CSRF-TOKEN', csrfToken);
+
+                    xhr.onload = function() {
+                        if (xhr.status === 200) {
+                            console.log("Quantité modifié");
+                        } else {
+                            console.log('Erreur');
+                        }
+                    };
+
+                    let data = JSON.stringify({
+                        'panierItemId': panierItemId,
+                        'quantite': quantite
+                    });
+
+                    xhr.send(data);
+                });
+            });
         });
     </script>
 @endsection
