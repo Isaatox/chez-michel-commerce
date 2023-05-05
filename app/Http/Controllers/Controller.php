@@ -18,14 +18,18 @@ class Controller extends BaseController
 
     public function index()
     {
-        $userId = auth()->user()->id;
+        if (auth()->check()) {
+            $user_id = auth()->id();
 
-        $panierId = PanierUtilisateur::where('user_id', $userId)
-            ->where('actif', true)
-            ->value('id');
+            $panierId = PanierUtilisateur::where('user_id', $user_id)
+                ->where('actif', true)
+                ->value('id');
 
-        $countPanierItems = PanierItem::where('id_panier_utilisateur', $panierId)
-            ->count();
+            $countPanierItems = PanierItem::where('id_panier_utilisateur', $panierId)
+                ->count();
+        }else{
+            $countPanierItems = null;
+        }
 
         $meubles = Meuble::take(4)->get();
         $categories = Categorie::all();
@@ -40,14 +44,18 @@ class Controller extends BaseController
 
     public function getMeuble($id)
     {
-        $userId = auth()->user()->id;
+        if (auth()->check()) {
+            $user_id = auth()->id();
 
-        $panierId = PanierUtilisateur::where('user_id', $userId)
-            ->where('actif', true)
-            ->value('id');
+            $panierId = PanierUtilisateur::where('user_id', $user_id)
+                ->where('actif', true)
+                ->value('id');
 
-        $countPanierItems = PanierItem::where('id_panier_utilisateur', $panierId)
-            ->count();
+            $countPanierItems = PanierItem::where('id_panier_utilisateur', $panierId)
+                ->count();
+        }else{
+            $countPanierItems = null;
+        }
 
         $categories = Categorie::all();
         $couleurs = Couleur::all();

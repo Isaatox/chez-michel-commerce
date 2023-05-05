@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Couleur;
+use App\Models\PanierItem;
+use App\Models\PanierUtilisateur;
 use Illuminate\Http\Request;
 
 class CouleurController extends Controller
@@ -38,8 +40,21 @@ class CouleurController extends Controller
 
     public function getCouleur($id)
     {
+        if (auth()->check()) {
+            $user_id = auth()->id();
+
+            $panierId = PanierUtilisateur::where('user_id', $user_id)
+                ->where('actif', true)
+                ->value('id');
+
+            $countPanierItems = PanierItem::where('id_panier_utilisateur', $panierId)
+                ->count();
+        }else{
+            $countPanierItems = null;
+        }
+
         $couleur = Couleur::findOrFail($id);
-        return view('admin.couleurDetail', ['couleur' => $couleur]);
+        return view('admin.couleurDetail', ['couleur' => $couleur, 'countPanieritems' => $countPanierItems]);
     }
 
 }
