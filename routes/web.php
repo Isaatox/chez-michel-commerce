@@ -74,6 +74,7 @@ Route::delete('/admin/meuble/{id}', [admin\MeubleController::class, 'supprimerMe
 
 Route::get('/admin/utilisateur',[admin\UtilisateurController::class,'viewUtilisateur'])->middleware('admin')->name('utilisateur');
 
+Route::get('/admin/utilisateur/{id}',[UtilisateurController::class,'getUtilisateur'])->middleware('admin')->name('utilisateur.afficher');
 Route::post('/admin/utilisateur/{id}', [UtilisateurController::class, 'modifierUtilisateur'])->middleware('admin')->name('utilisateur.modifier');
 Route::delete('/admin/utilisateur/{id}', [UtilisateurController::class, 'supprimerUtilisteur'])->middleware('admin')->name('utilisateur.delete');
 
@@ -81,7 +82,7 @@ Route::delete('/admin/utilisateur/{id}', [UtilisateurController::class, 'supprim
 //Route::get('/meubles/{categorie}', [MeublesParCategorieController::class, 'index'])->name('MeublesParCategorie');
 
 /*! Compte */
-Route::get('/moncompte/mesCommandes', [MesCommandes::class, 'getcommande'])->middleware(['auth'])->name('mescommandes');
+Route::get('/moncompte/mesCommandes', [MesCommandes::class, 'getCommande'])->middleware(['auth'])->name('mescommandes');
 
 Route::get('/moncompte/mesinformations', [MesInformations::class, 'getinformation'])->middleware(['auth'])->name('mesInformations');
 Route::post('/moncompte/mesinformations', [MesInformations::class, 'informationmodifier'])->middleware(['auth'])->name('mesinformations.modifier');

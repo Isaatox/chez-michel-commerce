@@ -33,13 +33,15 @@ class UtilisateurController extends Controller
     $user = User::find($id);
     
     $request->validate([
-        'name' => 'required|string|max:255',
+        'nom' => 'required|string|max:255',
+        'prenom' => 'required|string|max:255',
         'email' => 'required|email|unique:users,email,' . $user->id,
         'password' => 'nullable|string|min:8|confirmed',
         'role' => 'required|in:admin,client',
     ]);
 
-    $user->name = $request->name;
+    $user->nom = $request->nom;
+    $user->prenom = $request->prenom;
     $user->email = $request->email;
     if (!empty($request->password)) {
         $user->password = bcrypt($request->password);
