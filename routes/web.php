@@ -13,6 +13,7 @@ use App\Http\Controllers\mon_compte\MesCommandes;
 use App\Http\Controllers\mon_compte\MesInformations;
 use App\Http\Controllers\MeublesParCategorieController;
 use App\Http\Controllers\mon_compte\MesCartesDePaiement;
+use App\Http\Controllers\admin\UtilisateurController;
 
 /*
 |--------------------------------------------------------------------------
@@ -70,6 +71,11 @@ Route::post('/admin/enregistrer_meuble',[admin\MeubleController::class,'enregist
 Route::get('/admin/meuble/{id}', [admin\MeubleController::class, 'getMeuble'])->middleware('admin')->name('meuble.afficher');
 Route::post('/admin/meuble/{id}', [admin\MeubleController::class, 'modifierMeuble'])->middleware('admin')->name('meuble.modifier');
 Route::delete('/admin/meuble/{id}', [admin\MeubleController::class, 'supprimerMeuble'])->middleware('admin')->name('meuble.supprimer');
+
+Route::get('/admin/utilisateur',[admin\UtilisateurController::class,'viewUtilisateur'])->middleware('admin')->name('utilisateur');
+
+Route::post('/admin/utilisateur/{id}', [UtilisateurController::class, 'modifierUtilisateur'])->middleware('admin')->name('utilisateur.modifier');
+Route::delete('/admin/utilisateur/{id}', [UtilisateurController::class, 'supprimerUtilisteur'])->middleware('admin')->name('utilisateur.delete');
 
 
 //Route::get('/meubles/{categorie}', [MeublesParCategorieController::class, 'index'])->name('MeublesParCategorie');

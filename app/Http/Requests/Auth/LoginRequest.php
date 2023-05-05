@@ -49,7 +49,7 @@ class LoginRequest extends FormRequest
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
-                'email' => trans('auth.failed'),
+                'email' => 'L\'adresse e-mail ou le mot de passe est incorrect.',
             ]);
         }
 
@@ -64,30 +64,27 @@ class LoginRequest extends FormRequest
      * @throws \Illuminate\Validation\ValidationException
      */
     public function ensureIsNotRateLimited()
-    {
-        if (! RateLimiter::tooManyAttempts($this->throttleKey(), 5)) {
-            return;
-        }
-
-        event(new Lockout($this));
-
-        $seconds = RateLimiter::availableIn($this->throttleKey());
-
-        throw ValidationException::withMessages([
-            'email' => trans('auth.throttle', [
-                'seconds' => $seconds,
-                'minutes' => ceil($seconds / 60),
-            ]),
-        ]);
+{
+    if (! RateLimiter::tooManyAttempts($this->throttleKey(), 5)) {
+        return;
     }
 
-    /**
-     * Get the rate limiting throttle key for the request.
-     *
-     * @return string
-     */
-    public function throttleKey()
-    {
-        return Str::lower($this->input('email')).'|'.$this->ip();
-    }
+    event(new Lockout($this));
+
+    $seconds = RateLimiter::availableIn($this->throttleKey());
+
+    throw ValidationException::withMessages([
+        'email' => 'Trop de tentatives de connexion échouées. Veuillez réessayer dans ' . ceil($seconds / 60) . ' minutes.',
+    ]);
+}
+
+/**
+ * Get the rate limiting throttle key for the request.
+ *
+ * @return string
+ */
+public function throttleKey()
+{
+    return Str::lower($this->input('email')).'|'.$this->ip();
+}
 }
