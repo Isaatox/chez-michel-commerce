@@ -1,8 +1,8 @@
 <div class="menu">
-    <a href="#">Mes commandes</a>
-    <a href="#">Mes informations</a>
-    <a href="#">Mot de passe</a>
-    <a href="#">Mes cartes de paiement</a>
+    <a href="{{route('mescommandes')}}">Mes commandes</a>
+    <a href="{{route('mesInformations')}}">Mes informations</a>
+    <a href="{{route('motedepasse')}}">Mot de passe</a>
+    <a href="{{route('cartepaiement')}}">Mes cartes de paiement</a>
     @if(Auth::user()->role === "admin")
         <a href="{{route('indexAdmin')}}">Administration</a>
     @endif
