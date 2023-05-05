@@ -1,6 +1,6 @@
 <div class="menu">
     <a href="{{ route('ajouter_meubles') }}">Ajouter un meuble</a>
-    <a href="#">Utilisateurs</a>
+    <a href="{{ route('utilisateur') }}">Utilisateurs</a>
     <a href="#">Commandes</a>
     <a href="{{ route('categorie') }}">Catégorie</a>
     <a href="{{ route('couleur') }}">Couleur</a>

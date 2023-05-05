@@ -26,10 +26,10 @@
     <div class="panier" onclick="location.href='{{route('monPanier.detail')}}'">
         <a href="#">Mon panier</a>
         <i class="fas fa-shopping-cart fa-2x"></i>
-        @if($countPanierItems > 0)
-            <div class="circle">
-                <p>{{$countPanierItems}}</p>
-            </div>
+        @if(isset($countPanierItems) && $countPanierItems > 0)
+          <div class="circle">
+          <p>{{$countPanierItems}}</p>
+         </div>
         @endif
     </div>
 </header>

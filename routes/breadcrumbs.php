@@ -45,3 +45,13 @@ Breadcrumbs::for('commandes', function ($trail) {
     $trail->parent('admin');
     $trail->push('MesCommandes', route('mesCommandes'));
 });
+
+Breadcrumbs::for('utilisateur', function ($trail) {
+    $trail->parent('admin');
+    $trail->push('Utilisteurs', route('utilisateur'));
+});
+
+Breadcrumbs::for('unUtilisateur', function ($trail) {
+    $trail->parent('utilisateur');
+    $trail->push('Un utilisateur', route('utilisateur'));
+});
