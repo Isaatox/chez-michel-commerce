@@ -55,3 +55,15 @@ Breadcrumbs::for('unUtilisateur', function ($trail) {
     $trail->parent('utilisateur');
     $trail->push('Un utilisateur', route('utilisateur'));
 });
+
+Breadcrumbs::for('cartes', function ($trail) {
+    $trail->push('Cartes de paiements', route('cartepaiement'));
+});
+
+Breadcrumbs::for('motdepasse', function ($trail) {
+    $trail->push('Mot de passe', route('motedepasse'));
+});
+
+Breadcrumbs::for('informations', function ($trail) {
+    $trail->push('Mes informations', route('mesInformations'));
+});

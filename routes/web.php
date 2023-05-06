@@ -82,8 +82,6 @@ Route::delete('/admin/utilisateur/{id}', [UtilisateurController::class, 'supprim
 //Route::get('/meubles/{categorie}', [MeublesParCategorieController::class, 'index'])->name('MeublesParCategorie');
 
 /*! Compte */
-Route::get('/moncompte/mesCommandes', [MesCommandes::class, 'getCommande'])->middleware(['auth'])->name('mescommandes');
-
 Route::get('/moncompte/mesinformations', [MesInformations::class, 'getinformation'])->middleware(['auth'])->name('mesInformations');
 Route::post('/moncompte/mesinformations', [MesInformations::class, 'informationmodifier'])->middleware(['auth'])->name('mesinformations.modifier');
 
@@ -93,6 +91,8 @@ Route::post('/moncompte/motdepasse', [MesInformations::class, 'modifiermotdepass
 Route::get('/moncompte/mescartesdepaiements/', [MesCartesDePaiement::class, 'getcartepaiementall'])->middleware(['auth'])->name('cartepaiement');
 
 Route::post('/moncompte/mescartesdepaiements/', [MesCartesDePaiement::class, 'ajouterCarte'])->middleware(['auth'])->name('ajouter.carte');
+
+Route::get('/moncompte/mesCommandes', [MesCommandes::class, 'getCommande'])->middleware(['auth'])->name('mescommandes');
 
 //Panier
 Route::get('/monPanier', [PanierUtilisateurController::class, 'voirPanier'])->middleware(['auth'])->name('monPanier.detail');
