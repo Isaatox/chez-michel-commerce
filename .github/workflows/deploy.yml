@@ -45,7 +45,7 @@ jobs:
           REMOTE_HOST: 51.77.140.41
           REMOTE_USER: debian
           REMOTE_PORT: 22
-          SOURCE: "/github/workspace/"
+          SOURCE: "/"
           TARGET: "/home/debian/ecole/"
           ARGS: "-rltgoDzvO --delete"
           EXCLUDE: ".git*"
