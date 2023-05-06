@@ -47,7 +47,7 @@ jobs:
           port: 22
           script: |
             cd /home/debian/ecole
-            git clone https://github.com/your_username/your_repo.git
-            cd your_repo
+            git clone https://github.com/Isaatox/chez-michel-commerce.git
+            cd chez-michel-commerce
             composer install
             php artisan migrate --force
