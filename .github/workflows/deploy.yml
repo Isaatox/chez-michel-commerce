@@ -17,23 +17,55 @@ jobs:
         with:
           php-version: '8.1'
 
-      - name: Clone or pull code
-        run: |
-          cd /home/debian/ecole
-          if [ -d "chez-michel-commerce" ]; then
-            cd chez-michel-commerce
-            git pull
-          else
-            git clone https://github.com/Isaatox/chez-michel-commerce.git
-            cd chez-michel-commerce
-          fi
-          cp .env.example .env
-          composer install --no-interaction --no-progress --no-suggest
-          php artisan key:generate
-          echo "DB_HOST=${{ secrets.DB_HOST }}" >> .env
-          echo "DB_DATABASE=${{ secrets.DB_DATABASE }}" >> .env
-          echo "DB_USERNAME=${{ secrets.DB_USERNAME }}" >> .env
-          echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> .env
+
+  Le script renvoie une erreur car il ne trouve pas le répertoire "/home/debian/ecole". Vous devez vous assurer que le chemin d'accès est correct.
+
+Voici le script modifié pour vérifier si le dossier existe avant de cloner le projet, sinon, le script le met à jour :
+
+  yaml
+  Copy code
+name: Deploy
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+
+      - name: Deploy code
+        uses: appleboy/ssh-action@master
+        with:
+          host: 51.77.140.41
+          username: debian
+          password: q2uyjA5MXpJj
+          port: 22
+          script: |
+            if [ -d "/home/debian/ecole/chez-michel-commerce" ]; then
+              cd /home/debian/ecole/chez-michel-commerce
+              git pull
+            else
+              cd /home/debian/ecole
+              git clone https://github.com/Isaatox/chez-michel-commerce.git
+              cd chez-michel-commerce
+            fi
+            cp .env.example .env
+            composer install --no-interaction --no-progress --no-suggest
+            php artisan key:generate
+            echo "DB_HOST=${{ secrets.DB_HOST }}" >> .env
+            echo "DB_DATABASE=${{ secrets.DB_DATABASE }}" >> .env
+            echo "DB_USERNAME=${{ secrets.DB_USERNAME }}" >> .env
+            echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> .env
 
       - name: Install dependencies
         run: |
