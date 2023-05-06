@@ -44,7 +44,6 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           REMOTE_HOST: 51.77.140.41
           REMOTE_USER: debian
-          REMOTE_PASSWORD: ${{ secrets.SSH_PASSWORD }}
           REMOTE_PORT: 22
           SOURCE: "/github/workspace/"
           TARGET: "/home/debian/ecole/"
