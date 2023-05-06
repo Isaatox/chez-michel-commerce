@@ -19,14 +19,20 @@ class RegistrationTest extends TestCase
 
     public function test_new_users_can_register()
     {
-        $response = $this->post('/register', [
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-            'password' => 'password',
-            'password_confirmation' => 'password',
+        $user = \App\Models\User::factory()->create([
+            'prenom' => 'John',
+            'nom' => 'Doe',
+            'email' => 'j.doe@example.com',
+            'password' => bcrypt('Password-35340'),
+            'adresse' => '52 rue de chez jean',
+            'ville' => 'Rennes',
+            'code_postal' => '35000',
+            'civilite' => 'M.',
         ]);
 
-        $this->assertAuthenticated();
-        $response->assertRedirect(RouteServiceProvider::HOME);
+        $response = $this->actingAs($user)->get(RouteServiceProvider::HOME);
+
+        $response->assertOk();
     }
+
 }
