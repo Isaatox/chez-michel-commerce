@@ -17,6 +17,20 @@ jobs:
         with:
           php-version: '8.1'
 
+      - name: Deploy code
+        uses: appleboy/ssh-action@master
+        with:
+          host: 51.77.140.41
+          username: debian
+          password: q2uyjA5MXpJj
+          port: 22
+          script: |
+            cd /home/debian/ecole
+            git clone https://github.com/Isaatox/chez-michel-commerce.git
+            cd chez-michel-commerce
+            composer install
+            php artisan migrate --force
+
       - name: Install dependencies
         run: |
           cp .env.example .env
@@ -38,16 +52,3 @@ jobs:
       - name: Run migrations
         run: php artisan migrate --force
 
-      - name: Deploy code
-        uses: appleboy/ssh-action@master
-        with:
-          host: 51.77.140.41
-          username: debian
-          password: q2uyjA5MXpJj
-          port: 22
-          script: |
-            cd /home/debian/ecole
-            git clone https://github.com/Isaatox/chez-michel-commerce.git
-            cd chez-michel-commerce
-            composer install
-            php artisan migrate --force
