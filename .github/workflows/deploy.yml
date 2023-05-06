@@ -17,32 +17,6 @@ jobs:
         with:
           php-version: '8.1'
 
-
-  Le script renvoie une erreur car il ne trouve pas le répertoire "/home/debian/ecole". Vous devez vous assurer que le chemin d'accès est correct.
-
-Voici le script modifié pour vérifier si le dossier existe avant de cloner le projet, sinon, le script le met à jour :
-
-  yaml
-  Copy code
-name: Deploy
-
-on:
-  push:
-    branches: [ main ]
-
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Set up PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.1'
-
       - name: Deploy code
         uses: appleboy/ssh-action@master
         with:
