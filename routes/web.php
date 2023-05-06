@@ -11,6 +11,7 @@ use App\Http\Controllers\PanierUtilisateurController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\mon_compte\MesCommandes;
 use App\Http\Controllers\mon_compte\MesInformations;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\MeublesParCategorieController;
 use App\Http\Controllers\mon_compte\MesCartesDePaiement;
 use App\Http\Controllers\admin\UtilisateurController;
@@ -104,6 +105,9 @@ Route::post('/monPanier/paiement', [PanierUtilisateurController::class, 'valider
 Route::get('/monPanier/recapitulatif', [PanierUtilisateurController::class, 'voirPanierRecapitulatif'])->middleware(['auth'])->name('monPanier.recapitulatif');
 Route::get('/monPanier/recapitulatif/telecharger', [PanierUtilisateurController::class, 'telechargerPdfRecapitulatif'])->middleware(['auth'])->name('monPanier.pdf');
 
+//Contact
+Route::get('/contact', [ContactController::class, 'getContact', 'telechargerPdfRecapitulatif'])->name('contact.index');
+Route::post('/contact', [ContactController::class, 'envoieContact'])->name('contact.submit');
 
 //Commande
 Route::post('/creer_commande', [CommandeController::class, 'creerCommande'])->middleware('auth')->name('commande.creer');

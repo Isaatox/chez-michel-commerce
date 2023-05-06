@@ -150,3 +150,11 @@
     </main>
 <script src="{{ url('js/accueil.js') }}"></script>
 @endsection
+
+
+<style>
+    footer{
+        position: fixed !important;
+    }
+</style>
+

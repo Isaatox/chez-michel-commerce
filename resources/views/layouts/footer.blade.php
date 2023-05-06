@@ -2,7 +2,7 @@
     <footer>
         <div class="footer-content">
             <h3>Copyright &copy; 2020</h3>
-            <p><a href="#">Mention Légales </a>|<a href="#"> Contact</a></p>
+            <p><a href="#">Mention Légales </a>|<a href="{{ "contact" }}"> Contact</a></p>
             <ul class="socials">
                 <li><a href="#"><i class="fa fa-facebook"></i></a></li>
                 <li><a href="#"><i class="fa fa-twitter"></i></a></li>
