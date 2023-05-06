@@ -28,8 +28,6 @@ jobs:
             cd /home/debian/ecole
             git clone https://github.com/Isaatox/chez-michel-commerce.git
             cd chez-michel-commerce
-            composer install
-            php artisan migrate --force
 
       - name: Install dependencies
         run: |
