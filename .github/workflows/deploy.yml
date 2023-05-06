@@ -1,41 +1,51 @@
-steps:
-  - name: Checkout
-    uses: actions/checkout@v2
+name: Deploy
 
-  - name: Set up PHP
-    uses: shivammathur/setup-php@v2
-    with:
-      php-version: '8.1'
+on:
+  push:
+    branches: [ main ]
 
-  - name: Install dependencies
-    run: |
-      cp .env.example .env
-      composer install --no-interaction --no-progress --no-suggest
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
 
-  - name: Generate key
-    run: php artisan key:generate
+    eps:
+      - name: Checkout
+        uses: actions/checkout@v2
 
-  - name: Configure environment variables
-    run: |
-      echo "DB_HOST=${{ secrets.DB_HOST }}" >> .env
-      echo "DB_DATABASE=${{ secrets.DB_DATABASE }}" >> .env
-      echo "DB_USERNAME=${{ secrets.DB_USERNAME }}" >> .env
-      echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> .env
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
 
-  - name: Run tests
-    run: vendor/bin/phpunit
+      - name: Install dependencies
+        run: |
+          cp .env.example .env
+          composer install --no-interaction --no-progress --no-suggest
 
-  - name: Run migrations
-    run: php artisan migrate --force
+      - name: Generate key
+        run: php artisan key:generate
 
-  - name: Deploy to OVH VPS
-    uses: easingthemes/ssh-deploy@v2
-    with:
-      SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-      REMOTE_HOST: 51.77.140.41
-      REMOTE_USER: debian
-      REMOTE_PORT: 22
-      SOURCE: "/github/workspace/"
-      TARGET: "/home/debian/ecole/"
-      ARGS: "-rltgoDzvO --delete"
-      EXCLUDE: ".git*"
+      - name: Configure environment variables
+        run: |
+          echo "DB_HOST=${{ secrets.DB_HOST }}" >> .env
+          echo "DB_DATABASE=${{ secrets.DB_DATABASE }}" >> .env
+          echo "DB_USERNAME=${{ secrets.DB_USERNAME }}" >> .env
+          echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> .env
+
+      - name: Run tests
+        run: vendor/bin/phpunit
+
+      - name: Run migrations
+        run: php artisan migrate --force
+
+      - name: Deploy to OVH VPS
+        uses: easingthemes/ssh-deploy@v2
+        with:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          REMOTE_HOST: 51.77.140.41
+          REMOTE_USER: debian
+          REMOTE_PORT: 22
+          SOURCE: "/github/workspace/"
+          TARGET: "/home/debian/ecole/"
+          ARGS: "-rltgoDzvO --delete"
+          EXCLUDE: ".git*"
