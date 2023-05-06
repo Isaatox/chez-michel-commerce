@@ -17,24 +17,23 @@ jobs:
         with:
           php-version: '8.1'
 
-      - name: Deploy code
-        uses: appleboy/ssh-action@master
-        with:
-          host: 51.77.140.41
-          username: debian
-          password: q2uyjA5MXpJj
-          port: 22
-          script: |
-            cd /home/debian/ecole
+      - name: Clone or pull code
+        run: |
+          cd /home/debian/ecole
+          if [ -d "chez-michel-commerce" ]; then
+            cd chez-michel-commerce
+            git pull
+          else
             git clone https://github.com/Isaatox/chez-michel-commerce.git
             cd chez-michel-commerce
-            cp .env.example .env
-            composer install --no-interaction --no-progress --no-suggest
-            php artisan key:generate
-            echo "DB_HOST=${{ secrets.DB_HOST }}" >> .env
-            echo "DB_DATABASE=${{ secrets.DB_DATABASE }}" >> .env
-            echo "DB_USERNAME=${{ secrets.DB_USERNAME }}" >> .env
-            echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> .env
+          fi
+          cp .env.example .env
+          composer install --no-interaction --no-progress --no-suggest
+          php artisan key:generate
+          echo "DB_HOST=${{ secrets.DB_HOST }}" >> .env
+          echo "DB_DATABASE=${{ secrets.DB_DATABASE }}" >> .env
+          echo "DB_USERNAME=${{ secrets.DB_USERNAME }}" >> .env
+          echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> .env
 
       - name: Install dependencies
         run: |
@@ -56,4 +55,3 @@ jobs:
 
       - name: Run migrations
         run: php artisan migrate --force
-
