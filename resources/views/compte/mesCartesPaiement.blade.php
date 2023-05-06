@@ -1,6 +1,9 @@
 @extends('layouts.mainCompte')
 
 @section('content')
+<div class="breadcrumbs">
+    {{ Breadcrumbs::render('cartes') }}
+</div>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
