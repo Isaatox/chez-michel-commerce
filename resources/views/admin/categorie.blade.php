@@ -2,9 +2,11 @@
 @section('content')
 
     <div class="columns-md w-100" style="padding: 15px">
+        <div class="container">
         <div class="breadcrumbs">
             {{ Breadcrumbs::render('categorie') }}
         </div>
+            <hr>
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title">Ajouter une catégorie</h3>
@@ -42,11 +44,13 @@
                     <tr>
                         <td>{{ $categorie->nom }}</td>
                         <td>{{ $categorie->label }}</td>
-                        <td>
-                            <a href="" class="btn btn-warning">Modifier</a>
-                            <a href="" class="btn btn-danger">Supprimer</a>
-                            {{--                            <a href="{{ route('modifier_meuble', ['id' => $meuble->id]) }}" class="btn btn-warning">Modifier</a>--}}
-                            {{--                            <a href="{{ route('supprimer_meuble', ['id' => $meuble->id]) }}" class="btn btn-danger">Supprimer</a>--}}
+                        <td class="d-flex justify-content-center gap-1">
+                            <a href="{{ route('categorie.modifier', ['id' => $categorie->id]) }}" class="btn btn-warning">Modifier</a>
+                            <form action="{{ route('categorie.supprimer', ['id' => $categorie->id]) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">Supprimer</button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach
@@ -72,6 +76,7 @@
         @else
             <p>Aucune catégorie trouvé</p>
         @endif
+    </div>
     </div>
     </div>
 @endsection

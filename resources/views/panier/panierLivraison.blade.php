@@ -7,6 +7,10 @@
             align-items: center;
         }
 
+        footer{
+            position: fixed !important;
+        }
+
         .line{
 
             width: 120px;
@@ -80,7 +84,7 @@
                             <div class="col">
                                 <div class="form-group">
                                     <label for="code_postal">Code postal</label>
-                                    <input type="text" name="code_postal" id="code_postal" class="form-control">
+                                    <input type="number" min="0" name="code_postal" id="code_postal" class="form-control">
                                 </div>
                             </div>
                         </div>

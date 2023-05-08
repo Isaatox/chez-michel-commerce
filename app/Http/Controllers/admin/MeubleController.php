@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\AdresseLivraison;
 use App\Models\Categorie;
 use App\Models\Commande;
 use App\Models\Couleur;
@@ -10,7 +11,9 @@ use App\Models\Meuble;
 use App\Models\PanierItem;
 use App\Models\PanierUtilisateur;
 use App\Models\User;
+use Dompdf\Dompdf;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Carbon;
 use Stripe\Price;
 use Stripe\Product;
@@ -85,6 +88,92 @@ class MeubleController extends Controller
             $meubles = Meuble::all()->count();
 
             return view('admin.admin', compact('countPanierItems', 'newUsersThisWeek', 'diffPercent', 'activeOrdersThisWeek', 'meubles', 'diffPercentOrders', 'diffPercentOrdersExecute', 'executeOrdersThisWeek'));
+    }
+
+    public function viewCommandes()
+    {
+        if (auth()->check()) {
+            $user_id = auth()->id();
+
+            $panierId = PanierUtilisateur::where('user_id', $user_id)
+                ->where('actif', true)
+                ->value('id');
+
+            $countPanierItems = PanierItem::where('id_panier_utilisateur', $panierId)
+                ->count();
+        } else {
+            $countPanierItems = null;
+        }
+
+        $commandes = Commande::paginate(10);
+
+        foreach ($commandes as $commande) {
+            $panierItems = PanierItem::where('id_panier_utilisateur', $commande->id)->get();
+
+            $meubles = array();
+            foreach ($panierItems as $item) {
+                $meuble = Meuble::find($item->id_item);
+                $meubles[] = $meuble;
+            }
+
+            $total = 0;
+            foreach ($meubles as $key => $meuble) {
+                $prixTotal = $meuble->prix * $panierItems[$key]->quantite;
+                $total += $prixTotal;
+            }
+            $commande->prix_total = $total;
+        }
+
+
+        return view('admin.commandes', compact('countPanierItems', 'commandes'));
+    }
+
+    public function viewCommandesPDF($id)
+    {
+        // Récupérer les données nécessaires depuis la méthode voirPanierRecapitulatif
+        $user_id = auth()->id();
+        $panier = PanierUtilisateur::where('user_id', $user_id)
+            ->latest('updated_at')
+            ->first();
+        $commande = Commande::where('utilisateur_commande', $user_id)
+            ->where('pannier_commande', $id)
+            ->first();
+        $panierItems = PanierItem::where('id_panier_utilisateur', $id)->get();
+        $meubles = array();
+        foreach ($panierItems as $item) {
+            $meuble = Meuble::find($item->id_item);
+            $meubles[] = $meuble;
+        }
+        $adresseLivraison = null;
+        if ($commande) {
+            $adresseLivraison = AdresseLivraison::find($commande->adresse_livraison);
+        }
+        $total = 0;
+        foreach ($meubles as $key => $meuble) {
+            $prixTotal = $meuble->prix * $panierItems[$key]->quantite;
+            $total += $prixTotal;
+        }
+
+        // Générer le PDF
+        $html = view('panier.pdfRecap', compact('adresseLivraison', 'panierItems', 'commande', 'meubles', 'total'))->render();
+        $dompdf = new Dompdf();
+        $dompdf->loadHtml($html);
+        $dompdf->setPaper('A4', 'portrait');
+        $dompdf->render();
+
+        // Renvoyer le PDF en téléchargement
+        $filename = 'recapitulatif-commande-'.$commande->numero_commande.'.pdf';
+        return new Response($dompdf->output(), 200, [
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' => 'attachment; filename="'.$filename.'"',
+        ]);
+    }
+
+    public function supprimerCommandes($id){
+        $commande = Commande::findOrFail($id);
+        $commande->delete();
+
+        return redirect()->route('view-commandes')->with('success', 'Le meuble a été supprimé avec succès.');
     }
 
     public function viewAjoutMeuble(Request $request)

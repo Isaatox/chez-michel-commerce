@@ -40,15 +40,30 @@ Breadcrumbs::for('uneCategorie', function ($trail) {
 
 //Route pour compte
 
-Breadcrumbs::for('commandes', function ($trail) {
-    //CHanger la route en compte après
-    $trail->parent('admin');
-    $trail->push('MesCommandes', route('mesCommandes'));
+Breadcrumbs::for('mesCommandes', function ($trail) {
+    $trail->push('Mes commandes', route('mescommandes'));
 });
+
+Breadcrumbs::for('maCommande', function ($trail) {
+    $trail->parent('mesCommandes');
+    $trail->push('Une commande', route('mescommandes'));
+});
+
+//Breadcrumbs::for('commandes', function ($trail) {
+//    //CHanger la route en compte après
+//    $trail->parent('admin');
+//    $trail->push('MesCommandes', route('mesCommandes'));
+//});
 
 Breadcrumbs::for('utilisateur', function ($trail) {
     $trail->parent('admin');
     $trail->push('Utilisteurs', route('utilisateur'));
+});
+
+
+Breadcrumbs::for('commandesAdmin', function ($trail) {
+    $trail->parent('admin');
+    $trail->push('Les Commandes', route('view-commandes'));
 });
 
 Breadcrumbs::for('unUtilisateur', function ($trail) {
