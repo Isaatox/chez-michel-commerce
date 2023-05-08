@@ -5,7 +5,7 @@ use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
 
 //Route pour compte en admin
 Breadcrumbs::for('admin', function ($trail) {
-    $trail->push('Admin', route('index'));
+    $trail->push('Admin', route('indexAdmin'));
 });
 
 Breadcrumbs::for('ajouter_meubles', function ($trail) {

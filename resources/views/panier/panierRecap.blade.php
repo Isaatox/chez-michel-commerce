@@ -38,6 +38,10 @@
         .monPrix {
             border: 1px solid black;
         }
+
+        footer{
+            position: fixed !important;
+        }
     </style>
     <div class="container">
         <p class="h3">Récapitulatif</p>

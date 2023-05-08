@@ -1,6 +1,19 @@
 @extends('layouts.main')
 
 @section('content')
+    @if($meubles->count() == 0)
+        <style>
+            footer {
+                position: fixed !important;
+            }
+        </style>
+    @else
+        <style>
+            footer{
+                position: relative !important;
+            }
+        </style>
+    @endif
 <link rel="stylesheet" href="{{ url('css/accueil.css') }}">
     <main>
         <div class="container">
