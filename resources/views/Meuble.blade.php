@@ -100,6 +100,16 @@
         .rating:hover>input:checked~label:before {
             opacity: 0.4
         }
+
+        footer {
+            position: fixed !important;
+        }
+
+        @media screen and (max-width: 768px) {
+            footer {
+                position: relative !important;
+            }
+        }
     </style>
 
     <div class="row m-0">

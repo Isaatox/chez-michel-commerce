@@ -29,9 +29,9 @@ class ContactController extends Controller
         $subject = $request->input('subject');
         $message = $request->input('message');
 
-        Mail::to('blier.evan@gmail.com')->send(new ContactMail($name, $email, $subject, $message));
+//        Mail::to('blier.evan@gmail.com')->send(new ContactMail($name, $email, $subject, $message));
 
         // Rediriger l'utilisateur avec un message de confirmation
-        return redirect()->route('monPanier.livraison');
+        return redirect()->route('index');
     }
 }

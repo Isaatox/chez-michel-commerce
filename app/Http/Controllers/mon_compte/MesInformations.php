@@ -60,6 +60,8 @@ class MesInformations extends Controller
 
     public function modifiermotdepasse(Request $request)
     {
+        $user = auth()->user();
+
         $validator = Validator::make($request->all(), [
             'ancien_mot_de_passe' => ['required', 'string'],
             'nouveau_mot_de_passe' => ['required', 'string', 'min:8', 'confirmed'],
@@ -80,7 +82,7 @@ class MesInformations extends Controller
         $user->password = Hash::make($newPassword);
         $user->save();
 
-        return redirect()->with('success', 'Votre mot de passe a été modifié avec succès.');
+        return view('compte.motDePasse', compact('user'))->with('success', 'Votre mot de passe a été modifié avec succès.');
     }
 
 }
