@@ -46,11 +46,13 @@
 
     <div class="columns-md w-100" style="padding: 15px">
 
-    <div class="breadcrumbs">
-        {{ Breadcrumbs::render('admin') }}
-    </div>
+
 
     <div class="container-fluid">
+        <div class="breadcrumbs">
+            {{ Breadcrumbs::render('admin') }}
+        </div>
+        <hr>
         <div class="header-body">
             <div class="row">
                 <div class="col-xl-3 col-lg-6">

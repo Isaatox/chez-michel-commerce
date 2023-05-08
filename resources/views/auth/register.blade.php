@@ -63,7 +63,7 @@
 
                             <div class="form-group">
                                 <label for="code_postal" class="form-label">{{ __('Code Postal') }} :</label>
-                                <input id="code_postal" type="text" name="code_postal" class="form-control" value="{{ old('code_postal') }}" required autofocus />
+                                <input id="code_postal" type="number" name="code_postal" class="form-control" value="{{ old('code_postal') }}" required autofocus />
                             </div>
 
                             <!-- Password -->

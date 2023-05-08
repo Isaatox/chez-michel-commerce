@@ -1,9 +1,11 @@
 @extends('layouts.mainCompte')
 @section('content')
-<div class="breadcrumbs">
-    {{ Breadcrumbs::render('motdepasse') }}
-</div>
+
     <div class="container">
+        <div class="breadcrumbs mt-3">
+            {{ Breadcrumbs::render('motdepasse') }}
+        </div>
+        <hr>
         <div class="row justify-content-center mt-5">
             <div class="col-md-6">
                 <div class="card">

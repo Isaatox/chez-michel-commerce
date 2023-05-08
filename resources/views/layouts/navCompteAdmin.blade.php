@@ -1,7 +1,7 @@
 <div class="menu">
     <a href="{{ route('ajouter_meubles') }}">Ajouter un meuble</a>
     <a href="{{ route('utilisateur') }}">Utilisateurs</a>
-    <a href="#">Commandes</a>
+    <a href="{{route('view-commandes')}}">Commandes</a>
     <a href="{{ route('categorie') }}">Catégorie</a>
     <a href="{{ route('couleur') }}">Couleur</a>
     <a href="{{ route('logout') }}">Se déconnecter</a>

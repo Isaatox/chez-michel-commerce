@@ -56,7 +56,13 @@ Route::post('/admin/ajouter_categorie',[CategorieController::class,'ajouterCateg
 
 Route::get('/admin/categorie/{id}', [CategorieController::class, 'getCategorie'])->middleware('admin')->name('categorie.afficher');
 Route::post('/admin/categorie/{id}', [CategorieController::class, 'modifierCategorie'])->middleware('admin')->name('categorie.modifier');
-Route::delete('/admin/categorie/{id}', [CategorieController::class, 'supprimerCategorie'])->middleware('admin')->name('categorie.supprimer');
+Route::delete('/admin/categorie/delete/{id}', [CategorieController::class, 'supprimerCategorie'])->middleware('admin')->name('categorie.supprimer');
+
+Route::get('/admin/commandes',[admin\MeubleController::class,'viewCommandes'])->middleware('admin')->name('view-commandes');
+Route::get('/admin/commandes/pdf/{id}',[admin\MeubleController::class,'viewCommandesPDF'])->middleware('admin')->name('view-commandes-pdf');
+Route::delete('/admin/commandes/delete/{id}', [admin\MeubleController::class, 'supprimerCommandes'])->middleware('admin')->name('view-commandes.supprimer');
+
+//Route::post('/admin/ajouter_couleur',[CouleurController::class,'ajouterCouleur'])->middleware('admin')->name('ajouter_couleur');
 
 
 Route::get('/admin/couleur',[admin\MeubleController::class,'viewCouleur'])->middleware('admin')->name('couleur');
@@ -93,7 +99,9 @@ Route::get('/moncompte/mescartesdepaiements/', [MesCartesDePaiement::class, 'get
 
 Route::post('/moncompte/mescartesdepaiements/', [MesCartesDePaiement::class, 'ajouterCarte'])->middleware(['auth'])->name('ajouter.carte');
 
-Route::get('/moncompte/mesCommandes', [MesCommandes::class, 'getCommande'])->middleware(['auth'])->name('mescommandes');
+Route::get('/moncompte/mesCommandes', [MesCommandes::class, 'getCommandes'])->middleware(['auth'])->name('mescommandes');
+Route::get('/moncompte/mesCommandes/{id}', [MesCommandes::class, 'getOneCommande'])->middleware(['auth'])->name('mescommandes.voir');
+Route::get('/moncompte/mesCommandes/telecharger/{id}', [MesCommandes::class, 'getOneCommandePDF'])->middleware(['auth'])->name('mescommandes.voirPDF');
 
 //Panier
 Route::get('/monPanier', [PanierUtilisateurController::class, 'voirPanier'])->middleware(['auth'])->name('monPanier.detail');

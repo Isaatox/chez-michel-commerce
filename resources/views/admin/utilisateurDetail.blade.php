@@ -2,12 +2,13 @@
 @section('content')
 
     <div class="columns-md w-100" style="padding: 15px">
-        <div class="breadcrumbs">
-           {{ Breadcrumbs::render('utilisateur') }}
-        </div>
+
     <div class="container"> <!-- ou container-fluid -->
+        <div class="breadcrumbs">
+            {{ Breadcrumbs::render('utilisateur') }}
+        </div>
         <hr>
-        <h4>Tous les utilisateurs :</h4>.
+        <h4>Tous les utilisateurs :</h4>
 
         @if(isset($users) && count($users) > 0)
             <table class="table table-striped">
@@ -30,7 +31,7 @@
                         <td>{{ $user->email }}</td>
                         <td>{{ $user->role }}</td>
                         <td>
-                           
+
                             <a href="{{ route('utilisateur.modifier', ['id' => $user->id]) }}" class="btn btn-warning">Modifier</a>
                             <form action="{{ route('utilisateur.delete', $user->id) }}" method="POST" class="d-inline">
                                 @csrf

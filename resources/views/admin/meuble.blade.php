@@ -18,9 +18,11 @@
     </style>
     <div class="columns-md w-100" style="padding: 15px">
 
+        <div class="container">
     <div class="breadcrumbs">
         {{ Breadcrumbs::render('ajouter_meubles') }}
     </div>
+            <hr>
     <form action="{{ route('enregistrer_meuble') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
@@ -46,14 +48,14 @@
             </div>
             <div class="col">
                 <label for="stock" class="form-label">Stock :</label>
-                <input type="number" class="form-control" name="stock" id="stock" required>
+                <input type="number" min="0" class="form-control" name="stock" id="stock" required>
             </div>
         </div>
 
         <div class="row mb-3">
             <div class="col">
                 <label for="prix" class="form-label">Prix :</label>
-                <input type="text" class="form-control" name="prix" id="prix" required>
+                <input type="number" min="0" class="form-control" name="prix" id="prix" required>
             </div>
             <div class="col">
                 <label for="couleur" class="form-label">Couleur :</label>
@@ -98,13 +100,15 @@
                         <td>{{ $meuble->nom }}</td>
                         <td>{{ $meuble->description }}</td>
                         <td>{{ $meuble->prix }}</td>
-                        <td>
-                            <a href="{{route('meuble.modifier', ['id' => $meuble->id])}}" class="btn btn-warning">Modifier</a>
-                            <form action="{{route('meuble.supprimer', ['id' => $meuble->id])}}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger">Supprimer</button>
-                            </form>
+                        <td class="d-flex justify-content-center gap-1">
+                            <div class="d-flex">
+                                <a href="{{ route('meuble.modifier', ['id' => $meuble->id]) }}" class="btn btn-warning">Modifier</a>
+                                <form action="{{ route('meuble.supprimer', ['id' => $meuble->id]) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger">Supprimer</button>
+                                </form>
+                            </div>
                         </td>
                     </tr>
                 @endforeach
@@ -130,6 +134,7 @@
             @else
         <p>Aucun meuble trouvé</p>
     @endif
+    </div>
     </div>
     </div>
     <script src="{{ url('js/admin.js') }}"></script>

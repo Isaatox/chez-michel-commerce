@@ -1,9 +1,11 @@
 @extends('layouts.mainCompteAdmin')
 @section('content')
     <div class="columns-md w-100" style="padding: 15px">
+        <div class="container">
         <div class="breadcrumbs">
             {{ Breadcrumbs::render('uneCouleur') }}
         </div>
+            <hr>
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title">Modifier une couleur</h3>
@@ -33,5 +35,6 @@
                 </form>
             </div>
         </div>
+    </div>
     </div>
 @endsection

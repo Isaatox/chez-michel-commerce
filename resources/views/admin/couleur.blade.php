@@ -2,9 +2,11 @@
 @section('content')
 
     <div class="columns-md w-100" style="padding: 15px">
-        <div class="breadcrumbs">
-            {{ Breadcrumbs::render('couleur') }}
-        </div>
+        <div class="container">
+            <div class="breadcrumbs">
+                {{ Breadcrumbs::render('couleur') }}
+            </div>
+            <hr>
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title">Ajouter une couleur</h3>
@@ -46,7 +48,7 @@
                         <tr>
                             <td>{{ $couleur->nom }}</td>
                             <td>{{ $couleur->label }}</td>
-                            <td class="d-flex flex-row justify-content-evenly">
+                            <td class="d-flex flex-row justify-content-center gap-1">
                                 <a href="{{ route('couleur.modifier', ['id' => $couleur->id]) }}" class="btn btn-warning">Modifier</a>
 {{--                                <a href="{{ route('couleur.supprimer', ['id' => $couleur->id]) }}" class="btn btn-danger">Supprimer</a>--}}
                                 <form action="{{ route('couleur.supprimer', ['id' => $couleur->id]) }}" method="POST">
@@ -80,6 +82,7 @@
                 <p>Aucune couleur trouvée</p>
             @endif
         </div>
+    </div>
     </div>
 @endsection
 
