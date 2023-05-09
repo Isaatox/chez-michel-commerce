@@ -1,0 +1,79 @@
+
+*{
+padding: O;
+margin: O;
+box-sizing: border-box;
+List-style: none;
+font-family: 'Poppins', sans-serif;
+}
+
+.main{
+    width: 90%;
+    min-height: 100vh;
+    display: flex;
+    text-align: center;
+}
+
+.menu{
+    width: 20%;
+    background-color: #28464b79;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+    flex-grow: 1;
+}
+
+.menu a{
+    text-decoration:none;
+    font-size: 18px;
+    color: #fff;
+    letter-spacing:2px;
+    display: list-item;
+    padding: 20px;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+.menu a:hover{
+    background-color: #28464b79;
+    transition: 0.5s;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+footer{
+    margin-top: 0 !important;
+}
+
+.menuPhone{
+    display: none;
+}
+
+@media only screen and (max-width: 768px) {
+    .menu {
+        display: none;
+    }
+
+    .menuPhone{
+        width: 20%;
+        background-color: #28464b79;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    .menuPhone a:hover{
+        background-color: #28464b79;
+        transition: 0.5s;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+    }
+
+    .menuPhone a {
+        font-size: 1.0rem;
+        padding: 1.5rem;
+        color: white;
+    }
+}

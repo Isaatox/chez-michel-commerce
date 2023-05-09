@@ -1,0 +1,193 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 100px;
+    z-index: 10; 
+    background-color: #28464b79;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;}
+
+header .logo {
+    position: relative;
+    font-size: 1.5em;
+    text-decoration: none;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: 1px;
+}
+
+
+header .logo img {
+    width: 75px;
+    height: 75px;
+}
+
+header .navigation {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 10px 0;
+}
+
+header .navigation a {
+    list-style: none;
+    margin: 0 10px;
+}
+
+/* header .navigation li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+header .navigation li a:hover {
+    color: blue;
+} */
+
+
+header .navigation a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.2em;
+    letter-spacing: 1px;
+    /* border: 1px solid; */
+    /* border-radius: 21px; */
+}
+
+header .navigation a:after {
+    content: "";
+    display: block;
+    height: 3px;
+    background: #42D9C8;
+    transform: scale(0);
+    transition: transform 0.3s ease-in-out;
+}
+
+header .navigation a:hover:after {
+    transform: scale(1);
+}
+
+header .navigation .mon_profile {
+    color: rgb(0, 0, 0);
+    display: flex;
+    /* text-decoration: none; */
+    /* font-size: 1em; */
+    /* letter-spacing: 1px; */
+    /* border: 1px solid black; */
+    height: 50px;
+    width: 10rem;
+    border-radius: 10px;
+    padding: 8px;
+    background-color: #fff;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+header .navigation .mon_profile p {
+    color: rgb(81, 78, 78);
+    padding-top: 5px;
+    font-size: 1em;
+    text-decoration: none;
+}
+
+header .navigation .mon_profile i {
+    padding-left: 30px;
+}
+
+
+header .search {
+    position: relative;
+    width: 400px;
+    height: 40px;
+}
+
+header .search input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    color: rgb(0, 0, 0);
+    outline: none;
+    border: 1px solid;
+    border-radius: 21px;
+    padding: 0 10px 0 45px;
+}
+
+header .search input:placeholder {
+    color: gray;
+}
+
+header .search .fa-search {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 3%;
+    color: gray;
+    border-right: 1px solid;
+    padding-right: 10px;
+}
+
+header .panier {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 10px 0;
+    cursor: pointer;
+}
+
+header .panier a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.2em;
+    letter-spacing: 1px;
+    padding-right: 10px;
+}
+
+header .panier .circle {
+    height: 15px;
+    width: 15px;
+    background-color: red;
+    border-radius: 50%;
+    display: inline-block;
+    margin-left: -10px;
+    margin-top: -5px;
+}
+
+header .panier .circle p {
+    color: #fff;
+    font-size: 0.8em;
+    margin-left: 5px;
+    margin-top: -2.5px;
+
+}
+
+
+@media (max-width: 991px) {
+    header {
+        padding: 10px 20px;
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 600px) {
+    header {
+        padding: 10px 20px;
+        flex-direction: column;
+    }
+
+    header .search {
+        width: 100%;
+    }
+}

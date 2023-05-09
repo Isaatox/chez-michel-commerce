@@ -1,0 +1,35 @@
+@import url('app.css');
+
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: blue;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+form{
+    background-color: aliceblue;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 800px;
+    height: 500px;
+}
+
+form .elements{
+    display: flex;
+    margin: 0.5rem;
+}
+
+form .elements label{
+    width: 33%;
+}
+
+form .elements input, textarea{
+    width: 67%;
+    resize: none;
+}
