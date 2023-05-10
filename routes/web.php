@@ -124,6 +124,6 @@ Route::post('/creer_commande', [CommandeController::class, 'creerCommande'])->mi
 //    ->middleware(['auth'])
 //    ->name('cartepaiement.modifier');
 
-Route::post('/logout', function () { auth()->logout(); return redirect('/'); })->name('logout');
+// Route::post('/logout', function () { auth()->logout(); return redirect('/'); })->name('logout');
 
 require __DIR__.'/auth.php';

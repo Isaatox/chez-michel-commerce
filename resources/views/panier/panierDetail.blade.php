@@ -2,9 +2,6 @@
 
 @section('content')
     <style>
-        footer{
-            position: fixed !important;
-        }
         .progresses{
             display: flex;
             align-items: center;
@@ -43,7 +40,7 @@
     <div class="container">
         <p class="h3">Mon panier</p>
         <hr>
-        <div class="container d-flex justify-content-center align-items-center">
+        <div class="container d-flex justify-content-center align-items-center mb-3">
             <div class="progresses">
                 <div class="steps">
                     <span><i class="fa fa-check"></i></span>

@@ -69,8 +69,10 @@
             <!-- Social Login -->
             <hr>
             <div class="form-group text-center">
-              <a href="#" class="btn btn-danger btn-lg rounded-pill mb-3 w-75"><i class="fab fa-google fa-lg mr-2"></i>{{ __('oogle') }}</a>
-              <a href="#" class="btn btn-primary btn-lg rounded-pill w-75"><i class="fab fa-facebook fa-lg mr-2"></i>{{ __('acebook') }}</a>
+              <a href="{{ url('login/google') }}" class="btn btn-danger btn-lg rounded-pill mb-3 w-75">
+                <i class="fab fa-google fa-lg mr-2"></i>{{ __('oogle') }}
+            </a>
+            <a href="#" class="btn btn-primary btn-lg rounded-pill w-75"><i class="fab fa-facebook fa-lg mr-2"></i>{{ __('acebook') }}</a>
             </div>
           </form>
         </div>
@@ -81,6 +83,6 @@
 @endsection
 <style>
   footer{
-      position: fixed !important;
+      position: relative !important;
   }
 </style>
