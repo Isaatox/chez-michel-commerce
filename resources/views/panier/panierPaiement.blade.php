@@ -37,10 +37,6 @@
         .monPrix {
             border: 1px solid black;
         }
-
-        footer{
-            position: fixed !important;
-        }
     </style>
 
     <div class="container">

@@ -7,9 +7,6 @@
             align-items: center;
         }
 
-        footer {
-            position: fixed !important;
-        }
 
         .line {
 
