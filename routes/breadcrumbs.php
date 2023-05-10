@@ -82,3 +82,12 @@ Breadcrumbs::for('motdepasse', function ($trail) {
 Breadcrumbs::for('informations', function ($trail) {
     $trail->push('Mes informations', route('mesInformations'));
 });
+
+Breadcrumbs::for('produits', function ($trail) {
+    $trail->push('Nos produits', route('index'));
+});
+
+Breadcrumbs::for('produit', function ($trail) {
+    $trail->parent('produits');
+    $trail->push('Meuble', route('index'));
+});

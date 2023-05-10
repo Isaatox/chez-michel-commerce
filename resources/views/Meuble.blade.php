@@ -31,11 +31,11 @@
             -moz-box-shadow: 0px 0px 5px 0px rgba(212, 182, 212, 1)
         }
 
-        .comment-box{
-            padding:5px;
+        .comment-box {
+            padding: 5px;
         }
 
-        .comment-area textarea{
+        .comment-area textarea {
             width: 100%;
             resize: none;
             border: 1px solid #ad9f9f;
@@ -102,7 +102,7 @@
         }
 
         footer {
-            position: fixed !important;
+            position: relative !important;
         }
 
         @media screen and (max-width: 768px) {
@@ -111,20 +111,27 @@
             }
         }
     </style>
-
+    <div class="breadcrumbs mt-3 p-3 fs-4">
+        {{ Breadcrumbs::render('produit') }}
+    </div>
     <div class="row m-0">
         <div class="col-md-6">
             <div class="d-flex">
                 <div class="ml-2 d-flex flex-column align-items-center w-25 mt-5">
                     @if ($meuble->photo2)
-                        <img src="{{ asset('public/'.$meuble->photo2) }}" class="img-fluid w-50 shadow-lg p-3 mb-5 bg-white rounded" style="cursor: pointer" alt="..." onclick="selectImage(this)">
+                        <img src="{{ asset('public/' . $meuble->photo2) }}"
+                            class="img-fluid w-50 shadow-lg p-3 mb-5 bg-white rounded" style="cursor: pointer" alt="..."
+                            onclick="selectImage(this)">
                     @endif
                     @if ($meuble->photo3)
-                        <img src="{{ asset('public/'.$meuble->photo3) }}" class="img-fluid w-50 mt-2 shadow-lg p-3 bg-white rounded" style="cursor: pointer" alt="..." onclick="selectImage(this)">
+                        <img src="{{ asset('public/' . $meuble->photo3) }}"
+                            class="img-fluid w-50 mt-2 shadow-lg p-3 bg-white rounded" style="cursor: pointer"
+                            alt="..." onclick="selectImage(this)">
                     @endif
                 </div>
                 <div class="p-5">
-                    <img id="mainImage" src="{{ asset('public/'.$meuble->photo1) }}" class="img-fluid flex-grow-1 h-auto w-auto shadow-lg p-3 mb-5 rounded" alt="...">
+                    <img id="mainImage" src="{{ asset('public/' . $meuble->photo1) }}"
+                        class="img-fluid flex-grow-1 h-auto w-auto shadow-lg p-3 mb-5 rounded" alt="...">
                 </div>
             </div>
         </div>
@@ -153,8 +160,10 @@
                     <form action="{{ route('meuble.ajouter-au-panier', $meuble->id) }}" method="POST">
                         @csrf
                         <div class="input-group mb-3">
-                            <input type="number" name="quantite" class="form-control" value="1" min="1" max="{{ $meuble->stock }}">
-                            <button type="submit" class="btn btn-info text-uppercase fw-bold text-white" {{ $meuble->stock <= 0 ? 'disabled' : '' }}>
+                            <input type="number" name="quantite" class="form-control" value="1" min="1"
+                                max="{{ $meuble->stock }}">
+                            <button type="submit" class="btn btn-info text-uppercase fw-bold text-white"
+                                {{ $meuble->stock <= 0 ? 'disabled' : '' }}>
                                 Ajouter au panier
                             </button>
                         </div>
@@ -167,68 +176,74 @@
         <hr>
     </div>
     <div class="container">
-    @auth
-        <div class="card">
-            <div class="row justify-content-center">
-                <div class="col-10">
-                    <div class="comment-box ml-2">
-                        <form action="{{ route('avis-meuble.ajouterAvis') }}" method="post">
-                            @csrf
-                            <input type="hidden" name="id_meuble" value="{{ $meuble->id }}">
-                            <h4>Laisse un commentaire</h4>
-                            <div class="rating">
-                                <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label>
-                                <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label>
-                                <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label>
-                                <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label>
-                                <input type="radio" name="rating" value="1" id="1" checked><label for="1">☆</label>
-                            </div>
-                            <div class="comment-area">
-                                <textarea class="form-control" name="commentaire" placeholder="Donnez votre avis ?" rows="4"></textarea>
-                            </div>
-                            <div class="comment-btns mt-2">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="pull-right d-flex justify-content-end">
-                                            <button class="btn btn-success send btn-sm">Envoyer <i class="fa fa-long-arrow-right ml-1"></i></button>
+        @auth
+            <div class="card">
+                <div class="row justify-content-center">
+                    <div class="col-10">
+                        <div class="comment-box ml-2">
+                            <form action="{{ route('avis-meuble.ajouterAvis') }}" method="post">
+                                @csrf
+                                <input type="hidden" name="id_meuble" value="{{ $meuble->id }}">
+                                <h4>Laisse un commentaire</h4>
+                                <div class="rating">
+                                    <input type="radio" name="rating" value="5" id="5"><label
+                                        for="5">☆</label>
+                                    <input type="radio" name="rating" value="4" id="4"><label
+                                        for="4">☆</label>
+                                    <input type="radio" name="rating" value="3" id="3"><label
+                                        for="3">☆</label>
+                                    <input type="radio" name="rating" value="2" id="2"><label
+                                        for="2">☆</label>
+                                    <input type="radio" name="rating" value="1" id="1" checked><label
+                                        for="1">☆</label>
+                                </div>
+                                <div class="comment-area">
+                                    <textarea class="form-control" name="commentaire" placeholder="Donnez votre avis ?" rows="4"></textarea>
+                                </div>
+                                <div class="comment-btns mt-2">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="pull-right d-flex justify-content-end">
+                                                <button class="btn btn-success send btn-sm">Envoyer <i
+                                                        class="fa fa-long-arrow-right ml-1"></i></button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </form>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    @endauth
+        @endauth
         <div class="row">
             @php($count = 0)
             @foreach ($meuble->avis as $avis)
                 @php($count++)
                 <div class="col-8 w-100 {{ $count > 4 ? 'd-none' : 'd-flex' }}" id="commentaire">
-                <div class="card card-white post">
-                    <div class="post-heading">
-                        <div class="float-left meta">
-                            <div class="title h5">
-                                <b>{{ $avis->utilisateur->nom }}&nbsp;{{ $avis->utilisateur->prenom }}</b>
-                                a posté un commentaire.
+                    <div class="card card-white post">
+                        <div class="post-heading">
+                            <div class="float-left meta">
+                                <div class="title h5">
+                                    <b>{{ $avis->utilisateur->nom }}&nbsp;{{ $avis->utilisateur->prenom }}</b>
+                                    a posté un commentaire.
+                                </div>
+                                <h6 class="text-muted time">{{ $avis->created_at->locale('fr_FR')->diffForHumans() }}</h6>
                             </div>
-                            <h6 class="text-muted time">{{ $avis->created_at->locale('fr_FR')->diffForHumans() }}</h6>
+                        </div>
+                        <div class="post-description">
+                            <p>{{ $avis->commentaire }}</p>
+                        </div>
+                        <div class="ratingAll">
+                            @for ($i = 1; $i <= $avis->note; $i++)
+                                <span class="fa fa-star checked"></span>
+                            @endfor
+                            @for ($i = $avis->note + 1; $i <= 5; $i++)
+                                <span class="fa fa-star"></span>
+                            @endfor
                         </div>
                     </div>
-                    <div class="post-description">
-                        <p>{{$avis->commentaire}}</p>
-                    </div>
-                    <div class="ratingAll">
-                        @for ($i = 1; $i <= $avis->note; $i++)
-                            <span class="fa fa-star checked"></span>
-                        @endfor
-                        @for ($i = $avis->note + 1; $i <= 5; $i++)
-                            <span class="fa fa-star"></span>
-                        @endfor
-                    </div>
                 </div>
-            </div>
             @endforeach
             @if ($count > 4)
                 <div class="col-8 w-100 d-flex justify-content-center mt-2">

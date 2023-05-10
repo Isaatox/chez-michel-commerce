@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{{ url('css/bootstrap.css') }}">
     <script src="{{ url('js/bootstrap.js') }}"></script>
     <script src="https://kit.fontawesome.com/b78998cfc3.js" crossorigin="anonymous"></script>
+    <link rel="shortcut icon" href="{{ asset('image/chez_michel.png') }}" type="image/x-icon">
     <title>Chez Michel</title>
 </head>
 

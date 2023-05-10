@@ -65,7 +65,7 @@
                 </div>
             </div>
         </div>
-        <div class="card mt-5" id="cart-summary">
+        <div class="card mt-3" id="cart-summary">
             <div class="card-header">
                 @php
                     $total = 0;

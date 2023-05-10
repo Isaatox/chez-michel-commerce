@@ -46,7 +46,7 @@
     <div class="container">
         <h1 class="text-center">Paiement</h1>
         <hr>
-        <div class="container d-flex justify-content-center align-items-center">
+        <div class="container d-flex justify-content-center align-items-center mb-3">
             <div class="progresses">
                 <div class="steps">
                     <span><i class="fa fa-check"></i></span>

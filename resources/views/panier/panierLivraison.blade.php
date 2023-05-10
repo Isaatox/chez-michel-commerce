@@ -2,16 +2,16 @@
 
 @section('content')
     <style>
-        .progresses{
+        .progresses {
             display: flex;
             align-items: center;
         }
 
-        footer{
+        footer {
             position: fixed !important;
         }
 
-        .line{
+        .line {
 
             width: 120px;
             height: 6px;
@@ -19,7 +19,7 @@
         }
 
 
-        .steps{
+        .steps {
 
             display: flex;
             background-color: #2C8C99;
@@ -38,13 +38,33 @@
             width: auto;
             padding: 5px;
         }
+
         .monPrix {
             border: 1px solid black;
         }
     </style>
     <div class="container">
         <h1 class="text-center">Adresse de livraison</h1>
-
+        <hr>
+        <div class="container d-flex justify-content-center align-items-center mb-3">
+            <div class="progresses">
+                <div class="steps">
+                    <span><i class="fa fa-check"></i></span>
+                </div>
+                <span class="line"></span>
+                <div class="steps">
+                    <span><i class="fa fa-check"></i></span>
+                </div>
+                <span class="line"></span>
+                <div class="steps">
+                    <span class="font-weight-bold">3</span>
+                </div>
+                <span class="line"></span>
+                <div class="steps">
+                    <span class="font-weight-bold">4</span>
+                </div>
+            </div>
+        </div>
         <div class="row">
             <div class="col-8">
                 <div class="listItem col-9 w-75">
@@ -56,13 +76,16 @@
                             <label for="adresse_livraison">Adresse de livraison</label>
                             <select class="form-control" id="adresse_livraison" name="adresse_livraison">
                                 <option value="">Choisir une adresse de livraison</option>
-                                @foreach($adresseLivraison as $mesAdresseLivraison)
-                                    <option value="{{ $mesAdresseLivraison->id }}">{{ $mesAdresseLivraison->nom }} {{ $mesAdresseLivraison->prenom }} - {{ $mesAdresseLivraison->rue }}, {{ $mesAdresseLivraison->code_postal }} {{ $mesAdresseLivraison->ville }}, {{ $mesAdresseLivraison->pays }}</option>
+                                @foreach ($adresseLivraison as $mesAdresseLivraison)
+                                    <option value="{{ $mesAdresseLivraison->id }}">{{ $mesAdresseLivraison->nom }}
+                                        {{ $mesAdresseLivraison->prenom }} - {{ $mesAdresseLivraison->rue }},
+                                        {{ $mesAdresseLivraison->code_postal }} {{ $mesAdresseLivraison->ville }},
+                                        {{ $mesAdresseLivraison->pays }}</option>
                                 @endforeach
                             </select>
                         </div>
-                    <hr>
-                    <h4>Nouvelle adresse</h4>
+                        <hr>
+                        <h4>Nouvelle adresse</h4>
 
                         <div class="form-group row">
                             <div class="col">
@@ -84,7 +107,8 @@
                             <div class="col">
                                 <div class="form-group">
                                     <label for="code_postal">Code postal</label>
-                                    <input type="number" min="0" name="code_postal" id="code_postal" class="form-control">
+                                    <input type="number" min="0" name="code_postal" id="code_postal"
+                                        class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -97,8 +121,9 @@
                             <input type="text" name="pays" id="pays" class="form-control">
                             <input type="hidden" name="id_utilisateur" value="{{ auth()->user()->id }}">
                         </div>
-                    <hr>
-                    <button id="valider_adresse" type="submit" class="btn btn-success mt-3 mb-3 w-100">Valider cette adresse</button>
+                        <hr>
+                        <button id="valider_adresse" type="submit" class="btn btn-success mt-3 mb-3 w-100">Valider cette
+                            adresse</button>
                     </form>
 
                 </div>
@@ -112,17 +137,18 @@
                         @php
                             $total = 0;
                         @endphp
-                        @foreach($meubles as $key => $meuble)
+                        @foreach ($meubles as $key => $meuble)
                             <div class="d-flex justify-content-between">
-                                <img src="{{ asset('public/'.$meuble->photo1) }}" class="card-img-bottom w-25" alt="...">
+                                <img src="{{ asset('public/' . $meuble->photo1) }}" class="card-img-bottom w-25"
+                                    alt="...">
                                 <div>
                                     <div class="d-flex justify-content-between w-100" style="margin-right: 100px">
-                                        <p class="fw-bold h5">{{$meuble->nom}}</p>
+                                        <p class="fw-bold h5">{{ $meuble->nom }}</p>
                                         @php
                                             $prixTotal = $meuble->prix * $panierItems[$key]->quantite;
                                             $total += $prixTotal;
                                         @endphp
-                                        <p class="fw-bold h5">{{$prixTotal}} €</p>
+                                        <p class="fw-bold h5">{{ $prixTotal }} €</p>
                                     </div>
                                     <p class="fw-bold h5">X {{ $panierItems[$key]->quantite }}</p>
                                 </div>
@@ -174,5 +200,4 @@
             });
         });
     </script>
-
 @endsection
